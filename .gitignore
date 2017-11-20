@@ -1,0 +1,35 @@
+# Eclipse #
+######################
+/bin
+.classpath
+.project
+/.settings
+
+# IntelliJ IDEA
+######################
+*.iml
+
+# Gradle #
+######################
+/build
+/.gradle
+
+# Java #
+######################
+*.class
+*.war
+*.ear
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+/target
+
+.factorypath

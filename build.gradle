@@ -1,0 +1,32 @@
+buildscript {
+	ext.slf4j = '1.7.25'
+	ext.logback = '1.2.2'
+	ext.guava = '23.3-jre'
+	ext.lombok = '1.16.18'
+	ext.junit = '4.12'
+}
+
+apply plugin: 'java'
+apply plugin: 'project-report'
+
+jar {
+    baseName = 'coursera-algorithms'
+    version = '0.1.0-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+	jcenter()
+	flatDir {
+		dirs 'libs'
+	}
+}
+
+dependencies {
+    compile "ch.qos.logback:logback-classic:$logback"
+    compile "org.projectlombok:lombok:$lombok"
+    compile "com.google.guava:guava:$guava"
+    compile "org.projectlombok:lombok:$lombok"
+    testCompile "junit:junit:$junit"
+}
