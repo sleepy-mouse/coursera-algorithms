@@ -1,24 +1,24 @@
-import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
+import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author Chris Qiu
  */
 public class WordNet {
-
     private final Map<String, Synset> words = new HashMap<>();
     private final Digraph graph;
 
     // constructor takes the name of the two input files
     public WordNet(String synsets, String hypernyms) {
-        readSynsetFile(synsets);
+        final String s = Util.checkNotNull(synsets);
+        final String h = Util.checkNotNull(hypernyms);
+        readSynsetFile(s);
         graph = new Digraph(words.size());
-        readHypernymFile(hypernyms);
+        readHypernymFile(h);
     }
 
     private void readSynsetFile(String synsetsFileName) {
@@ -26,7 +26,7 @@ public class WordNet {
         while (in.hasNextLine()) {
             final String line = in.readLine();
             Synset s = new Synset(line.split(","));
-            for (String w : s.words) {
+            for (String w : s.getWords()) {
                 words.put(w, s);
             }
         }
@@ -52,19 +52,18 @@ public class WordNet {
 
     // is the word a WordNet noun?
     public boolean isNoun(String word) {
-        if (Objects.isNull(word))
-            throw new IllegalArgumentException();
-        return words.containsKey(word);
+        final String w = Util.checkNotNull(word);
+        return words.containsKey(w);
     }
 
     // distance between nounA and nounB (defined below)
     public int distance(String nounA, String nounB) {
-        Util.validate(this, nounA, nounB);
+        Util.checkNoun(this, nounA, nounB);
         final Synset source = words.get(nounA);
         final Synset target = words.get(nounB);
-        DepthFirstDirectedPaths directedPaths = new DepthFirstDirectedPaths(graph, source.id);
-        if (directedPaths.hasPathTo(target.id)) {
-            return Math.toIntExact(Util.count(directedPaths.pathTo(target.id)));
+        BreadthFirstDirectedPaths directedPaths = new BreadthFirstDirectedPaths(graph, source.getId());
+        if (directedPaths.hasPathTo(target.getId())) {
+            return Math.toIntExact(Util.count(directedPaths.pathTo(target.getId())));
         }
         return 0;
     }
@@ -72,15 +71,11 @@ public class WordNet {
     // a synset (second field of synsets.txt) that is the common ancestor of nounA and nounB
     // in a shortest ancestral path (defined below)
     public String sap(String nounA, String nounB) {
-        Util.validate(this, nounA, nounB);
-        final int aid = words.get(nounA).id;
-        final int bid = words.get(nounB).id;
+        Util.checkNoun(this, nounA, nounB);
+        final int aid = words.get(nounA).getId();
+        final int bid = words.get(nounB).getId();
         final int root = Util.root(graph);
         final int id = Util.find(graph, root, aid, bid);
         return String.valueOf(id);
-    }
-
-    // do unit testing of this class
-    public static void main(String... args) {
     }
 }

@@ -1,8 +1,10 @@
-import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
+import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+
+import java.util.Iterator;
 
 /**
  * @author Chris Qiu
@@ -12,22 +14,24 @@ public class SAP {
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
-        graph = G;
+        graph = Util.checkNotNull(G);
     }
 
     // length of shortest ancestral path between v and w; -1 if no such path
-    public int length(int v, int w) {
-        DepthFirstDirectedPaths dfs1 = new DepthFirstDirectedPaths(graph, v);
-        DepthFirstDirectedPaths dfs2 = new DepthFirstDirectedPaths(graph, w);
+    public int length(int V, int W) {
+        final int v = Util.checkVertex(graph, V);
+        final int w = Util.checkVertex(graph, W);
+        BreadthFirstDirectedPaths dfs1 = new BreadthFirstDirectedPaths(graph, v);
+        BreadthFirstDirectedPaths dfs2 = new BreadthFirstDirectedPaths(graph, w);
         final int ancestor = ancestor(v, w);
         if (ancestor > 0) {
             final Iterable<Integer> l1 = dfs1.pathTo(ancestor);
             final Iterable<Integer> l2 = dfs2.pathTo(ancestor);
             int count = 0;
-            for (int i : l1) {
+            for (Iterator<Integer> iterator = l1.iterator(); iterator.hasNext();) {
                 count++;
             }
-            for (int i : l2) {
+            for (Iterator<Integer> iterator = l2.iterator(); iterator.hasNext();) {
                 count++;
             }
             return count - 2;
@@ -35,19 +39,25 @@ public class SAP {
     }
 
     // a common ancestor of v and w that participates in a shortest ancestral path; -1 if no such path
-    public int ancestor(int v, int w) {
+    public int ancestor(int V, int W) {
+        final int v = Util.checkVertex(graph, V);
+        final int w = Util.checkVertex(graph, W);
         final int root = Util.root(graph);
         return Util.find(graph, root, v, w);
     }
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path
-    public int length(Iterable<Integer> v, Iterable<Integer> w) {
+    public int length(Iterable<Integer> V, Iterable<Integer> W) {
+        final Iterable<Integer> v = Util.checkNotNull(V);
+        final Iterable<Integer> w = Util.checkNotNull(W);
         int[] r = f(v, w);
         return r[0] == Integer.MAX_VALUE ? -1 : r[0];
     }
 
     // a common ancestor that participates in shortest ancestral path; -1 if no such path
-    public int ancestor(Iterable<Integer> v, Iterable<Integer> w) {
+    public int ancestor(Iterable<Integer> V, Iterable<Integer> W) {
+        final Iterable<Integer> v = Util.checkNotNull(V);
+        final Iterable<Integer> w = Util.checkNotNull(W);
         final int[] result = f(v, w);
         if (result[0] == Integer.MAX_VALUE) {
             return -1;
@@ -69,9 +79,9 @@ public class SAP {
             }
         }
         if (min == Integer.MAX_VALUE) {
-            return new int[]{Integer.MAX_VALUE, -1, -1};
+            return new int[] {Integer.MAX_VALUE, -1, -1};
         } else {
-            return new int[]{min, minV, minW};
+            return new int[] {min, minV, minW};
         }
     }
 

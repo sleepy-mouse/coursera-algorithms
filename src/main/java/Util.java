@@ -13,7 +13,20 @@ import java.util.Optional;
  * @author Chris Qiu
  */
 class Util {
-    static void validate(WordNet wordNet, String... nouns) {
+    static <T> T checkNotNull(T reference) {
+        if (reference == null) {
+            throw new IllegalArgumentException();
+        }
+        return reference;
+    }
+
+    static int checkVertex(Digraph graph, int w) {
+        if (w < 0 || w > graph.V() - 1)
+            throw new IllegalArgumentException(String.valueOf(w));
+        return w;
+    }
+
+    static void checkNoun(WordNet wordNet, String... nouns) {
         if (Arrays.stream(nouns).anyMatch(wordNet::isNoun))
             throw new IllegalArgumentException();
     }
@@ -43,21 +56,27 @@ class Util {
         if (graph.V() <= 0)
             throw new IllegalArgumentException(Objects.toString(graph));
         final int start = 0;
-        final Iterable<Integer> iterable = graph.adj(start);
-        final Iterator<Integer> it = iterable.iterator();
-        if (it.hasNext()) {
-            return root(graph);
+        return internalRoot(graph, start);
+    }
+
+    private static int internalRoot(Digraph graph, int v) {
+        final Iterable<Integer> neighbours = graph.adj(v);
+        Iterator<Integer> it = neighbours.iterator();
+        int current = -1;
+        while (it.hasNext()) {
+            current = it.next();
+            it = graph.adj(current).iterator();
         }
-        return start;
+        return current;
     }
 
     static String getResourceString(String fileName) {
         return String.format("/wordnet/%s", fileName);
     }
 
-    public static long count(Iterable<Integer> integers) {
+    static long count(Iterable<Integer> integers) {
         long count = 0;
-        for (int i : integers) {
+        for (Iterator<Integer> it = integers.iterator(); it.hasNext();) {
             count++;
         }
         return count;

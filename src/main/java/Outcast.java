@@ -7,12 +7,16 @@ import java.util.Arrays;
  * @author Chris Qiu
  */
 public class Outcast {
+    private final WordNet wordnet;
+
     // constructor takes a WordNet object
     public Outcast(WordNet wordnet) {
+        this.wordnet = Util.checkNotNull(wordnet);
     }
 
     // given an array of WordNet nouns, return an outcast
     public String outcast(String[] nouns) {
+        Util.checkNoun(wordnet, nouns);
         return "";
     }
 
