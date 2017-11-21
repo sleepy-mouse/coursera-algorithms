@@ -1,35 +1,20 @@
 import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
 
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.function.Predicate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author Chris Qiu
  */
 class Util {
-    static URL getFilePath(String fileName) {
-        return Util.class.getResource(String.format("/wordnet/%s", fileName));
-    }
-
-    static Path toPath(String fileName) {
-        try {
-            final Path path = Paths.get(getFilePath(fileName).toURI());
-            if (!path.toFile().exists())
-                throw new IllegalArgumentException(fileName);
-            return path;
-        } catch (URISyntaxException e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
     static void validate(WordNet wordNet, String... nouns) {
-        final Predicate<String> notInWordnet = wordNet::isNoun;
-        if (Arrays.stream(nouns).anyMatch(notInWordnet))
+        if (Arrays.stream(nouns).anyMatch(wordNet::isNoun))
             throw new IllegalArgumentException();
     }
 
@@ -44,9 +29,9 @@ class Util {
         final ListIterator<Integer> it2 = vl2.listIterator(vl2.size());
         int closestCommonAncestor = -1;
         while (it1.hasPrevious() && it2.hasPrevious()) {
-            final Integer previous1 = it1.previous();
-            final Integer previous2 = it2.previous();
-            if (!previous1.equals(previous2)) {
+            final int previous1 = it1.previous();
+            final int previous2 = it2.previous();
+            if (previous1 != previous2) {
                 break;
             }
             closestCommonAncestor = previous1;
@@ -64,5 +49,17 @@ class Util {
             return root(graph);
         }
         return start;
+    }
+
+    static String getResourceString(String fileName) {
+        return String.format("/wordnet/%s", fileName);
+    }
+
+    public static long count(Iterable<Integer> integers) {
+        long count = 0;
+        for (int i : integers) {
+            count++;
+        }
+        return count;
     }
 }

@@ -1,45 +1,47 @@
 import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.In;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author Chris Qiu
  */
 public class WordNet {
 
-    private final Map<String, Synset> words = new HashMap<>(50);
+    private final Map<String, Synset> words = new HashMap<>();
     private final Digraph graph;
 
     // constructor takes the name of the two input files
     public WordNet(String synsets, String hypernyms) {
-        final Path synsetsPath = Util.toPath(synsets);
-        final Path hypernymsPath = Util.toPath(hypernyms);
-        readFile(synsetsPath, tokens -> {
-            Synset synset = new Synset(tokens);
-            synset.set.forEach(e -> words.put(e, synset));
-        });
+        readSynsetFile(synsets);
         graph = new Digraph(words.size());
-        readFile(hypernymsPath, tokens -> {
-            final Integer sid = Integer.valueOf(tokens[0]);
-            Arrays.stream(tokens).skip(1).forEach(e -> graph.addEdge(sid, Integer.valueOf(e)));
-        });
+        readHypernymFile(hypernyms);
     }
 
-    private void readFile(Path synsetsPath, Consumer<String[]> consumer) {
-        readFile(synsetsPath, ",", consumer);
+    private void readSynsetFile(String synsetsFileName) {
+        In in = new In(WordNet.class.getResource(Util.getResourceString(synsetsFileName)));
+        while (in.hasNextLine()) {
+            final String line = in.readLine();
+            Synset s = new Synset(line.split(","));
+            for (String w : s.words) {
+                words.put(w, s);
+            }
+        }
     }
 
-    private void readFile(Path path, String delimiter, Consumer<String[]> consumer) {
-        try (Stream<String> stream = Files.lines(path)) {
-            stream.map(s -> s.split(delimiter)).forEach(consumer);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    private void readHypernymFile(String hypernymFileName) {
+        In in = new In(WordNet.class.getResource(Util.getResourceString(hypernymFileName)));
+        while (in.hasNextLine()) {
+            final String line = in.readLine();
+            final String[] tokens = line.split(",");
+            final int sid = Integer.parseInt(tokens[0]);
+            for (int i = 1; i < tokens.length; i++) {
+                String token = tokens[i];
+                graph.addEdge(sid, Integer.parseInt(token));
+            }
         }
     }
 
@@ -62,7 +64,7 @@ public class WordNet {
         final Synset target = words.get(nounB);
         DepthFirstDirectedPaths directedPaths = new DepthFirstDirectedPaths(graph, source.id);
         if (directedPaths.hasPathTo(target.id)) {
-            return Math.toIntExact(Stream.of(directedPaths.pathTo(target.id)).count());
+            return Math.toIntExact(Util.count(directedPaths.pathTo(target.id)));
         }
         return 0;
     }
@@ -80,21 +82,5 @@ public class WordNet {
 
     // do unit testing of this class
     public static void main(String... args) {
-    }
-}
-
-class Synset {
-    final int id;
-    final List<String> set;
-    final String gloss;
-
-    Synset(String id, String set, String gloss) {
-        this.id = Integer.valueOf(id);
-        this.set = Arrays.asList(set.split("\\s+"));
-        this.gloss = gloss;
-    }
-
-    Synset(String[] tokens) {
-        this(tokens[0], tokens[1], tokens[2]);
     }
 }

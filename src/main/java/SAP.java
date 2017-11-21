@@ -1,4 +1,8 @@
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
+import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 /**
  * @author Chris Qiu
@@ -20,10 +24,10 @@ public class SAP {
             final Iterable<Integer> l1 = dfs1.pathTo(ancestor);
             final Iterable<Integer> l2 = dfs2.pathTo(ancestor);
             int count = 0;
-            for (Integer i : l1) {
+            for (int i : l1) {
                 count++;
             }
-            for (Integer i : l2) {
+            for (int i : l2) {
                 count++;
             }
             return count - 2;
@@ -38,22 +42,24 @@ public class SAP {
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path
     public int length(Iterable<Integer> v, Iterable<Integer> w) {
-        int min = Integer.MAX_VALUE;
-        for (Integer i : v) {
-            for (Integer j : w) {
-                final int length = length(i, j);
-                if (min > length)
-                    min = length;
-            }
-        }
-        return min == Integer.MAX_VALUE ? -1 : min;
+        int[] r = f(v, w);
+        return r[0] == Integer.MAX_VALUE ? -1 : r[0];
     }
 
     // a common ancestor that participates in shortest ancestral path; -1 if no such path
     public int ancestor(Iterable<Integer> v, Iterable<Integer> w) {
+        final int[] result = f(v, w);
+        if (result[0] == Integer.MAX_VALUE) {
+            return -1;
+        } else {
+            return ancestor(result[1], result[2]);
+        }
+    }
+
+    private int[] f(Iterable<Integer> v, Iterable<Integer> w) {
         int min = Integer.MAX_VALUE, minV = -1, minW = -1;
-        for (Integer i : v) {
-            for (Integer j : w) {
+        for (int i : v) {
+            for (int j : w) {
                 final int length = length(i, j);
                 if (min > length) {
                     min = length;
@@ -63,15 +69,15 @@ public class SAP {
             }
         }
         if (min == Integer.MAX_VALUE) {
-            return -1;
+            return new int[]{Integer.MAX_VALUE, -1, -1};
         } else {
-            return ancestor(minV, minW);
+            return new int[]{min, minV, minW};
         }
     }
 
     // do unit testing of this class
     public static void main(String... args) {
-        In in = args.length == 0 ? new In(Util.getFilePath("digraph1.txt")) : new In(args[0]);
+        In in = args.length == 0 ? new In(SAP.class.getResource(Util.getResourceString("digraph1.txt"))) : new In(args[0]);
         Digraph G = new Digraph(in);
         SAP sap = new SAP(G);
         while (!StdIn.isEmpty()) {
