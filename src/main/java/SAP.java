@@ -1,8 +1,5 @@
 import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
 
@@ -24,15 +21,19 @@ public class SAP {
         BreadthFirstDirectedPaths dfs1 = new BreadthFirstDirectedPaths(graph, v);
         BreadthFirstDirectedPaths dfs2 = new BreadthFirstDirectedPaths(graph, w);
         final int ancestor = ancestor(v, w);
-        if (ancestor > 0) {
+        if (ancestor >= 0) {
             final Iterable<Integer> l1 = dfs1.pathTo(ancestor);
             final Iterable<Integer> l2 = dfs2.pathTo(ancestor);
             int count = 0;
-            for (Iterator<Integer> iterator = l1.iterator(); iterator.hasNext();) {
+            Iterator<Integer> it1 = l1.iterator();
+            while (it1.hasNext()) {
                 count++;
+                it1.next();
             }
-            for (Iterator<Integer> iterator = l2.iterator(); iterator.hasNext();) {
+            Iterator<Integer> it2 = l2.iterator();
+            while (it2.hasNext()) {
                 count++;
+                it2.next();
             }
             return count - 2;
         } else return -1;
@@ -43,7 +44,7 @@ public class SAP {
         final int v = Util.checkVertex(graph, V);
         final int w = Util.checkVertex(graph, W);
         final int root = Util.root(graph);
-        return Util.find(graph, root, v, w);
+        return Util.closestCommonAncestor(graph, root, v, w);
     }
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path
@@ -79,23 +80,9 @@ public class SAP {
             }
         }
         if (min == Integer.MAX_VALUE) {
-            return new int[] {Integer.MAX_VALUE, -1, -1};
+            return new int[]{Integer.MAX_VALUE, -1, -1};
         } else {
-            return new int[] {min, minV, minW};
-        }
-    }
-
-    // do unit testing of this class
-    public static void main(String... args) {
-        In in = args.length == 0 ? new In(SAP.class.getResource(Util.getResourceString("digraph1.txt"))) : new In(args[0]);
-        Digraph G = new Digraph(in);
-        SAP sap = new SAP(G);
-        while (!StdIn.isEmpty()) {
-            int v = StdIn.readInt();
-            int w = StdIn.readInt();
-            int length = sap.length(v, w);
-            int ancestor = sap.ancestor(v, w);
-            StdOut.printf("length = %d, ancestor = %d\n", length, ancestor);
+            return new int[]{min, minV, minW};
         }
     }
 }

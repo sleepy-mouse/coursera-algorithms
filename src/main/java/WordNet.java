@@ -14,8 +14,8 @@ public class WordNet {
 
     // constructor takes the name of the two input files
     public WordNet(String synsets, String hypernyms) {
-        final String s = Util.checkNotNull(synsets);
-        final String h = Util.checkNotNull(hypernyms);
+        final String s = Util.checkEmptyString(synsets);
+        final String h = Util.checkEmptyString(hypernyms);
         readSynsetFile(s);
         graph = new Digraph(words.size());
         readHypernymFile(h);
@@ -75,7 +75,7 @@ public class WordNet {
         final int aid = words.get(nounA).getId();
         final int bid = words.get(nounB).getId();
         final int root = Util.root(graph);
-        final int id = Util.find(graph, root, aid, bid);
+        final int id = Util.closestCommonAncestor(graph, root, aid, bid);
         return String.valueOf(id);
     }
 }

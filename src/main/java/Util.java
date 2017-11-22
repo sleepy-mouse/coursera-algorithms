@@ -1,11 +1,10 @@
-import edu.princeton.cs.algs4.DepthFirstDirectedPaths;
+import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -27,47 +26,65 @@ class Util {
     }
 
     static void checkNoun(WordNet wordNet, String... nouns) {
-        if (Arrays.stream(nouns).anyMatch(wordNet::isNoun))
+        if (nouns.length == 0 || Arrays.stream(nouns).noneMatch(wordNet::isNoun))
             throw new IllegalArgumentException();
     }
 
-    static int find(Digraph graph, int root, int aid, int bid) {
-        DepthFirstDirectedPaths dfs1 = new DepthFirstDirectedPaths(graph, aid);
-        DepthFirstDirectedPaths dfs2 = new DepthFirstDirectedPaths(graph, bid);
-        List<Integer> vl1 = new ArrayList<>();
+    static int closestCommonAncestor(Digraph graph, int root, int aid, int bid) {
+        int closest = -1, shortest = Integer.MAX_VALUE;
+        BreadthFirstDirectedPaths dfs1 = new BreadthFirstDirectedPaths(graph, aid),
+                dfs2 = new BreadthFirstDirectedPaths(graph, bid);
+        final boolean b1 = dfs1.hasPathTo(bid), b2 = dfs2.hasPathTo(aid);
+        if (b1) {
+            int[] a = getClosest(bid, closest, shortest, dfs1);
+            closest = a[0];
+            shortest = a[1];
+        }
+        if (b2) {
+            int[] a = getClosest(aid, closest, shortest, dfs2);
+            closest = a[0];
+            shortest = a[1];
+        }
+        List<Integer> vl1 = new ArrayList<>(), vl2 = new ArrayList<>();
         Optional.ofNullable(dfs1.pathTo(root)).ifPresent(e -> e.forEach(vl1::add));
-        List<Integer> vl2 = new ArrayList<>();
         Optional.ofNullable(dfs2.pathTo(root)).ifPresent(e -> e.forEach(vl2::add));
-        final ListIterator<Integer> it1 = vl1.listIterator(vl1.size());
-        final ListIterator<Integer> it2 = vl2.listIterator(vl2.size());
-        int closestCommonAncestor = -1;
-        while (it1.hasPrevious() && it2.hasPrevious()) {
-            final int previous1 = it1.previous();
-            final int previous2 = it2.previous();
-            if (previous1 != previous2) {
+
+        for (int i = vl1.size() - 1, j = vl2.size() - 1; i >= 0 && j >= 0; i--, j--) {
+            final int current1 = vl1.get(i), current2 = vl2.get(j);
+            if (current1 != current2) {
+                int length = i + j + 2;
+                if (length < shortest) {
+                    shortest = length;
+                    closest = vl1.get(i + 1);
+                }
                 break;
             }
-            closestCommonAncestor = previous1;
         }
-        return closestCommonAncestor;
+        return closest;
+    }
+
+    private static int[] getClosest(int id, int closest, int shortest, BreadthFirstDirectedPaths dfs) {
+        final Iterator<Integer> it = dfs.pathTo(id).iterator();
+        int length = -1;
+        while (it.hasNext()) {
+            length++;
+            it.next();
+        }
+        if (length < shortest) {
+            shortest = length;
+            closest = id;
+        }
+        return new int[]{closest, shortest};
     }
 
     static int root(Digraph graph) {
         if (graph.V() <= 0)
             throw new IllegalArgumentException(Objects.toString(graph));
-        final int start = 0;
-        return internalRoot(graph, start);
-    }
-
-    private static int internalRoot(Digraph graph, int v) {
-        final Iterable<Integer> neighbours = graph.adj(v);
-        Iterator<Integer> it = neighbours.iterator();
-        int current = -1;
-        while (it.hasNext()) {
-            current = it.next();
-            it = graph.adj(current).iterator();
+        for (int i = 0; i < graph.V(); i++) {
+            if (!graph.adj(i).iterator().hasNext() && graph.indegree(i) > 0)
+                return i;
         }
-        return current;
+        return -1;
     }
 
     static String getResourceString(String fileName) {
@@ -76,9 +93,17 @@ class Util {
 
     static long count(Iterable<Integer> integers) {
         long count = 0;
-        for (Iterator<Integer> it = integers.iterator(); it.hasNext();) {
+        Iterator<Integer> it = integers.iterator();
+        while (it.hasNext()) {
             count++;
+            it.next();
         }
         return count;
+    }
+
+    static String checkEmptyString(String hypernyms) {
+        if (hypernyms == null || hypernyms.trim().isEmpty())
+            throw new IllegalArgumentException(hypernyms);
+        return hypernyms.trim();
     }
 }

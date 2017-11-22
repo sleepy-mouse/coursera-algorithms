@@ -22,5 +22,4 @@ class Synset {
     public List<String> getWords() {
         return Collections.unmodifiableList(words);
     }
-
 }
