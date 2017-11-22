@@ -1,42 +1,43 @@
 import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
 import edu.princeton.cs.algs4.Digraph;
 
-import java.util.Iterator;
-
 /**
  * @author Chris Qiu
  */
 public class SAP {
     private final Digraph graph;
+    private final BreadthFirstDirectedPaths[] cache;
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
         graph = Util.checkNotNull(G);
+        cache = new BreadthFirstDirectedPaths[graph.V()];
     }
 
     // length of shortest ancestral path between v and w; -1 if no such path
     public int length(int V, int W) {
         final int v = Util.checkVertex(graph, V);
         final int w = Util.checkVertex(graph, W);
-        BreadthFirstDirectedPaths dfs1 = new BreadthFirstDirectedPaths(graph, v);
-        BreadthFirstDirectedPaths dfs2 = new BreadthFirstDirectedPaths(graph, w);
-        final int ancestor = ancestor(v, w);
-        if (ancestor >= 0) {
-            final Iterable<Integer> l1 = dfs1.pathTo(ancestor);
-            final Iterable<Integer> l2 = dfs2.pathTo(ancestor);
-            int count = 0;
-            Iterator<Integer> it1 = l1.iterator();
-            while (it1.hasNext()) {
-                count++;
-                it1.next();
+        BreadthFirstDirectedPaths dfs1 = getBFS(v), dfs2 = getBFS(w);
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < graph.V(); i++) {
+            if (dfs1.distTo(i) != Integer.MAX_VALUE && dfs2.distTo(i) != Integer.MAX_VALUE) {
+                final int sum = dfs1.distTo(i) + dfs2.distTo(i);
+                if (min > sum) {
+                    min = sum;
+                }
             }
-            Iterator<Integer> it2 = l2.iterator();
-            while (it2.hasNext()) {
-                count++;
-                it2.next();
-            }
-            return count - 2;
-        } else return -1;
+        }
+        return min != Integer.MAX_VALUE ? min : -1;
+    }
+
+    private BreadthFirstDirectedPaths getBFS(int v) {
+        BreadthFirstDirectedPaths bfs = cache[v];
+        if (bfs == null) {
+            bfs = new BreadthFirstDirectedPaths(graph, v);
+            cache[v] = bfs;
+        }
+        return bfs;
     }
 
     // a common ancestor of v and w that participates in a shortest ancestral path; -1 if no such path
@@ -80,9 +81,9 @@ public class SAP {
             }
         }
         if (min == Integer.MAX_VALUE) {
-            return new int[]{Integer.MAX_VALUE, -1, -1};
+            return new int[] {Integer.MAX_VALUE, -1, -1};
         } else {
-            return new int[]{min, minV, minW};
+            return new int[] {min, minV, minW};
         }
     }
 }

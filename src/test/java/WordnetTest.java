@@ -2,7 +2,6 @@ import com.google.common.base.Strings;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -35,7 +34,6 @@ public class WordnetTest {
         return path;
     }
 
-    @Ignore
     @Test
     public void testOutcast() throws Exception {
         WordNet w = new WordNet("synsets.txt", "hypernyms.txt");

@@ -108,4 +108,12 @@ class Util {
             throw new IllegalArgumentException(hypernyms);
         return hypernyms.trim();
     }
+
+    static boolean isNotEmptyString(String line) {
+        return line != null && !line.isEmpty();
+    }
+
+    public static String nullToEmpty(String s) {
+        return s == null ? "" : s.trim();
+    }
 }
