@@ -102,8 +102,8 @@ public class WordnetTest {
         assertEquals(3, s.ancestor(1, 3));
         assertEquals(2, s.length(1, 3));
 
-        assertEquals(6, s.ancestor(2, 6));
-        assertEquals(4, s.length(2, 6));
+        assertEquals(2, s.ancestor(2, 6));
+        assertEquals(2, s.length(2, 6));
     }
 
     @Test
@@ -111,5 +111,12 @@ public class WordnetTest {
         SAP s = new SAP(new Digraph(in("digraph5.txt")));
         assertEquals(10, s.ancestor(11, 9));
         assertEquals(4, s.length(11, 9));
+    }
+
+    @Test
+    public void digraph9() {
+        SAP s = new SAP(new Digraph(in("digraph9.txt")));
+        assertEquals(4, s.ancestor(5, 3));
+        assertEquals(2, s.length(5, 3));
     }
 }

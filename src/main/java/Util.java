@@ -45,19 +45,21 @@ class Util {
             closest = a[0];
             shortest = a[1];
         }
-        List<Integer> vl1 = new ArrayList<>(), vl2 = new ArrayList<>();
-        Optional.ofNullable(dfs1.pathTo(root)).ifPresent(e -> e.forEach(vl1::add));
-        Optional.ofNullable(dfs2.pathTo(root)).ifPresent(e -> e.forEach(vl2::add));
+        if (root >= 0) {
+            List<Integer> vl1 = new ArrayList<>(), vl2 = new ArrayList<>();
+            Optional.ofNullable(dfs1.pathTo(root)).ifPresent(e -> e.forEach(vl1::add));
+            Optional.ofNullable(dfs2.pathTo(root)).ifPresent(e -> e.forEach(vl2::add));
 
-        for (int i = vl1.size() - 1, j = vl2.size() - 1; i >= 0 && j >= 0; i--, j--) {
-            final int current1 = vl1.get(i), current2 = vl2.get(j);
-            if (current1 != current2) {
-                int length = i + j + 2;
-                if (length < shortest) {
-                    shortest = length;
-                    closest = vl1.get(i + 1);
+            for (int i = vl1.size() - 1, j = vl2.size() - 1; i >= 0 && j >= 0; i--, j--) {
+                final int current1 = vl1.get(i), current2 = vl2.get(j);
+                if (current1 != current2) {
+                    int length = i + j + 2;
+                    if (length < shortest) {
+                        shortest = length;
+                        closest = vl1.get(i + 1);
+                    }
+                    break;
                 }
-                break;
             }
         }
         return closest;
@@ -74,7 +76,7 @@ class Util {
             shortest = length;
             closest = id;
         }
-        return new int[]{closest, shortest};
+        return new int[] {closest, shortest};
     }
 
     static int root(Digraph graph) {
