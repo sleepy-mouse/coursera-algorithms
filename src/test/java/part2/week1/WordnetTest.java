@@ -1,3 +1,5 @@
+package part2.week1;
+
 import com.google.common.base.Strings;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
@@ -5,9 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import part2.week1.Outcast;
-import part2.week1.SAP;
-import part2.week1.WordNet;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
