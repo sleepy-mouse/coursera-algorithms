@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import part2.week1.Outcast;
+import part2.week1.SAP;
+import part2.week1.WordNet;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -21,8 +24,8 @@ import static org.junit.Assert.assertEquals;
 @Slf4j
 public class WordnetTest {
 
-    static String getResourceString(String fileName) {
-        return "/wordnet/" + fileName;
+    private static String getResourceString(String fileName) {
+        return "/part2/week1/" + fileName;
     }
 
     private Path path(String fileName) {

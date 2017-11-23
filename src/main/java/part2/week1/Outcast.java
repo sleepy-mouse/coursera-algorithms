@@ -1,3 +1,5 @@
+package part2.week1;
+
 /**
  * @author Chris Qiu
  */

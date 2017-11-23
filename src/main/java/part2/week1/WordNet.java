@@ -1,3 +1,5 @@
+package part2.week1;
+
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 
