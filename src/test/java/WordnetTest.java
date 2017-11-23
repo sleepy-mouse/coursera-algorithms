@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,6 +20,10 @@ import static org.junit.Assert.assertEquals;
 
 @Slf4j
 public class WordnetTest {
+
+    static String getResourceString(String fileName) {
+        return "/wordnet/" + fileName;
+    }
 
     private Path path(String fileName) {
         try {
@@ -59,7 +64,7 @@ public class WordnetTest {
     }
 
     private In in(String fileName) {
-        return new In(SAP.class.getResource(Util.getResourceString(fileName)));
+        return new In(SAP.class.getResource(getResourceString(fileName)));
     }
 
     @Rule
@@ -82,6 +87,10 @@ public class WordnetTest {
 
         assertEquals(6, s1.ancestor(6, 6));
         assertEquals(0, s1.length(6, 6));
+
+        illegalArgument.expect(IllegalArgumentException.class);
+        List<Integer> v = Arrays.asList(2, 7), w = Arrays.asList(-1, 1, 4, 6, 10, 11);
+        assertEquals(6, s1.ancestor(v, w));
     }
 
     @Test
@@ -116,5 +125,12 @@ public class WordnetTest {
         SAP s = new SAP(new Digraph(in("digraph9.txt")));
         assertEquals(4, s.ancestor(5, 3));
         assertEquals(2, s.length(5, 3));
+    }
+
+    @Test
+    public void digraphWordnet() {
+        SAP s = new SAP(new Digraph(in("digraph-wordnet.txt")));
+//        assertEquals(0, s.ancestor(35083, 48629));
+        assertEquals(4, s.length(35083, 48629));
     }
 }

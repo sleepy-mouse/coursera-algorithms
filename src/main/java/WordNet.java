@@ -23,15 +23,25 @@ public class WordNet {
         readHypernymFile(h, graph);
     }
 
+    private In in(String synsetsFileName) {
+        In in;
+        try {
+            in = new In(synsetsFileName);
+        } catch (IllegalArgumentException e) {
+            System.err.println("invalid file path: " + synsetsFileName);
+            throw e;
+        }
+        return in;
+    }
+
     private void readSynsetFile(String synsetsFileName, Map<String, Set<Integer>> wordsMap, Map<Integer, Synset> synsetMap) {
-        In in = new In(WordNet.class.getResource(Util.getResourceString(synsetsFileName)));
+        In in = in(synsetsFileName);
         while (in.hasNextLine()) {
             final String line = Util.nullToEmpty(in.readLine());
-            if (Util.isNotEmptyString(line)) {
+            if (!line.isEmpty()) {
                 Synset s = new Synset(line.split(","));
                 for (String w : s.getWords()) {
-                    Set<Integer> synsetIds = wordsMap.computeIfAbsent(w, k -> new HashSet<>(1));
-                    synsetIds.add(s.getId());
+                    wordsMap.computeIfAbsent(w, k -> new HashSet<>(1)).add(s.getId());
                 }
                 synsetMap.putIfAbsent(s.getId(), s);
             }
@@ -39,11 +49,11 @@ public class WordNet {
     }
 
     private void readHypernymFile(String hypernymFileName, Digraph digraph) {
-        In in = new In(WordNet.class.getResource(Util.getResourceString(hypernymFileName)));
+        In in = in(hypernymFileName);
         while (in.hasNextLine()) {
             final String line = Util.nullToEmpty(in.readLine());
-            if (Util.isNotEmptyString(line)) {
-                final String[] tokens = line.trim().split(",");
+            if (!line.isEmpty()) {
+                final String[] tokens = line.split(",");
                 final int sid = Integer.parseInt(tokens[0]);
                 for (int i = 1; i < tokens.length; i++) {
                     String token = tokens[i];
