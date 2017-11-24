@@ -30,4 +30,8 @@ public class PercolationTest {
             StdDraw.pause(DELAY);
         }
     }
+
+    @Test
+    public void percolationStats() {
+    }
 }
