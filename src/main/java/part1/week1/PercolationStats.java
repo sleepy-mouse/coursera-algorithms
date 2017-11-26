@@ -30,4 +30,7 @@ public class PercolationStats {
         // TODO Not Implemented
         throw new UnsupportedOperationException();
     }
+
+    public static void main(String[] args) {
+    }
 }

@@ -2,12 +2,15 @@ package part1.week1;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.net.URL;
 
 import static part1.week1.PercolationVisualizer.draw;
 
+@Slf4j
 public class PercolationTest {
     // delay in miliseconds (controls animation speed)
     private static final int DELAY = 100;
@@ -33,5 +36,15 @@ public class PercolationTest {
 
     @Test
     public void percolationStats() {
+    }
+
+    @Test
+    public void t() {
+        Assert.assertEquals(7, Percolation.transform(3, 3, 1));
+        Assert.assertEquals(9, Percolation.transform(3, 3, 3));
+        Assert.assertEquals(5, Percolation.transform(3, 2, 2));
+        Assert.assertEquals(3, Percolation.transform(3, 1, 3));
+        Assert.assertEquals(16, Percolation.transform(4, 4, 4));
+        Assert.assertEquals(9, Percolation.transform(4, 3, 1));
     }
 }
