@@ -40,11 +40,14 @@ public class PercolationTest {
 
     @Test
     public void t() {
-        Assert.assertEquals(7, Percolation.transform(3, 3, 1));
-        Assert.assertEquals(9, Percolation.transform(3, 3, 3));
-        Assert.assertEquals(5, Percolation.transform(3, 2, 2));
-        Assert.assertEquals(3, Percolation.transform(3, 1, 3));
-        Assert.assertEquals(16, Percolation.transform(4, 4, 4));
-        Assert.assertEquals(9, Percolation.transform(4, 3, 1));
+//        log.info(String.valueOf(Percolation.transform(4, 4, 1)));
+//        Assert.assertEquals(1, Percolation.transform(3, 1, 1));
+//        Assert.assertEquals(6, Percolation.transform(3, 2, 3));
+//        Assert.assertEquals(7, Percolation.transform(3, 3, 1));
+//        Assert.assertEquals(9, Percolation.transform(3, 3, 3));
+//        Assert.assertEquals(5, Percolation.transform(3, 2, 2));
+//        Assert.assertEquals(3, Percolation.transform(3, 1, 3));
+//        Assert.assertEquals(16, Percolation.transform(4, 4, 4));
+//        Assert.assertEquals(9, Percolation.transform(4, 3, 1));
     }
 }
