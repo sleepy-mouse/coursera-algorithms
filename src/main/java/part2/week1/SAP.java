@@ -40,13 +40,13 @@ public class SAP {
     public int length(Iterable<Integer> V, Iterable<Integer> W) {
         final List<Integer> v = Util.checkVertices(graph, V);
         final List<Integer> w = Util.checkVertices(graph, W);
-        return getCCA(v, w).getLength();
+        return v.isEmpty() || w.isEmpty() ? -1 : getCCA(v, w).getLength();
     }
 
     public int ancestor(Iterable<Integer> V, Iterable<Integer> W) {
         final List<Integer> v = Util.checkVertices(graph, V);
         final List<Integer> w = Util.checkVertices(graph, W);
-        return getCCA(v, w).getAncestor();
+        return v.isEmpty() || w.isEmpty() ? -1 : getCCA(v, w).getAncestor();
     }
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path

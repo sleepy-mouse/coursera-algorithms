@@ -20,11 +20,11 @@ ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
- 858 Nov 27 06:56 Outcast.java
-3.6K Nov 27 06:56 SAP.java
-1.1K Nov 27 06:56 Synset.java
-1.7K Nov 27 06:56 Util.java
-3.4K Nov 27 06:56 WordNet.java
+ 858 Nov 27 07:32 Outcast.java
+3.6K Nov 27 07:32 SAP.java
+1.1K Nov 27 07:32 Synset.java
+1.7K Nov 27 07:32 Util.java
+3.6K Nov 27 07:32 WordNet.java
 
 
 ********************************************************************************
@@ -464,8 +464,8 @@ Test 1b: check memory of WordNet object
   * synsets = synsets5000-subgraph.txt; hypernyms = hypernyms5000-subgraph.txt
     - number of vertices in digraph = 5000
     - number of edges    in digraph = 5059
-    - student   memory              = 4712536 bytes
-    - reference memory              = 7297056 bytes
+    - student   memory              = 4711880 bytes
+    - reference memory              = 7296824 bytes
     - student / reference ratio     = 0.6
     - maximum allowed rato          = 2.0
 
@@ -475,8 +475,8 @@ Test 1c: check memory of WordNet object
   * synsets = synsets10000-subgraph.txt; hypernyms = hypernyms10000-subgraph.txt
     - number of vertices in digraph = 10000
     - number of edges    in digraph = 10087
-    - student   memory              = 11268848 bytes
-    - reference memory              = 16930552 bytes
+    - student   memory              = 11268592 bytes
+    - reference memory              = 16930952 bytes
     - student / reference ratio     = 0.7
     - maximum allowed rato          = 2.0
 
@@ -519,7 +519,7 @@ Test 3a-c: time length() and ancestor() with random subsets of 5 vertices
   *  digraph-wordnet.txt
     java.lang.OutOfMemoryError: Java heap space
 
-    edu.princeton.cs.algs4.BreadthFirstDirectedPaths.&lt;init&gt;(BreadthFirstDirectedPaths.java:80)
+    edu.princeton.cs.algs4.BreadthFirstDirectedPaths.&lt;init&gt;(BreadthFirstDirectedPaths.java:81)
     SAP.lambda$getBFSFromCache$0(SAP.java:84)
     SAP$$Lambda$1/2093176254.apply(Unknown Source)
     java.util.HashMap.computeIfAbsent(HashMap.java:1126)
@@ -606,7 +606,7 @@ Test 4: count Digraph operations during 1000 calls each
     - the distance() and sap() methods should not need to create new digraphs
 
   * calls to addEdge()   = 0
-  * calls to adj()       = 46872
+  * calls to adj()       = 46126
   * calls to reverse()   = 0
   * calls to toString()  = 0
 
@@ -621,9 +621,9 @@ Test 5: time WordNet constructor
 
 Test 6a-e: time sap() and distance() with random nouns
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - reference solution calls per second:  212750.00
-    - student   solution calls per second:      93.75
-    - reference / student ratio:              2269.33
+    - reference solution calls per second:  207793.75
+    - student   solution calls per second:      81.00
+    - reference / student ratio:              2565.35
 
 =&gt; passed    student &lt;= 10000x reference
 =&gt; FAILED    student &lt;=  1000x reference
@@ -633,9 +633,9 @@ Test 6a-e: time sap() and distance() with random nouns
 
 Test 7: time isNoun() with random nouns
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - reference solution calls per second:  580390.00
-    - student   solution calls per second:  572336.00
-    - reference / student ratio:                 1.01
+    - reference solution calls per second:  611295.00
+    - student   solution calls per second:  525288.00
+    - reference / student ratio:                 1.16
     - allowed ratio:                             4.00
 ==&gt; passed
 
@@ -683,7 +683,7 @@ Total time must not exceed 1.0 seconds.
   outcast12.txt   12     0.00
  outcast12a.txt   12     0.00
   outcast20.txt   20     0.00
-  outcast29.txt   29     0.00
+  outcast29.txt   29     0.01
 
 Total elapsed time: 0.01 seconds
 

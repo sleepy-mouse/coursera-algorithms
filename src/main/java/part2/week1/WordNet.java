@@ -3,6 +3,7 @@ package part2.week1;
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -79,9 +80,8 @@ public class WordNet {
     // distance between nounA and nounB (defined below)
     public int distance(String nounA, String nounB) {
         Util.checkNoun(this, nounA, nounB);
-        final Set<Integer> source = words.get(nounA);
-        final Set<Integer> target = words.get(nounB);
-        SAP sap = new SAP(graph);
+        final Set<Integer> source = synsets(nounA), target = synsets(nounB);
+        final SAP sap = new SAP(graph);
         return sap.length(source, target);
     }
 
@@ -89,10 +89,14 @@ public class WordNet {
     // in a shortest ancestral path (defined below)
     public String sap(String nounA, String nounB) {
         Util.checkNoun(this, nounA, nounB);
-        final Set<Integer> source = words.get(nounA);
-        final Set<Integer> target = words.get(nounB);
-        SAP sap = new SAP(graph);
+        final Set<Integer> source = synsets(nounA), target = synsets(nounB);
+        final SAP sap = new SAP(graph);
         final int ancestor = sap.ancestor(source, target);
         return synsets.get(ancestor).getWordString();
+    }
+
+    private Set<Integer> synsets(String nounA) {
+        final Set<Integer> set = words.get(nounA);
+        return set != null ? set : Collections.emptySet();
     }
 }
