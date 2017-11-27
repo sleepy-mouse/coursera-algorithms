@@ -44,8 +44,9 @@ class Util {
     }
 
     static List<Integer> checkVertices(Digraph graph, Iterable<Integer> vertices) {
+        final Iterable<Integer> integers = checkNotNull(vertices);
         final List<Integer> list = new ArrayList<>();
-        final Iterator<Integer> it = vertices.iterator();
+        final Iterator<Integer> it = integers.iterator();
         while (it.hasNext()) {
             final int v = it.next();
             if (v < 0 || v >= graph.V())

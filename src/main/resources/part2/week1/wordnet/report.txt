@@ -9,22 +9,22 @@ Findbugs:     FAILED (1 warning)
 PMD:          PASSED
 Checkstyle:   PASSED
 
-Correctness:  31/35 tests passed
+Correctness:  34/35 tests passed
 Memory:       4/4 tests passed
 Timing:       9/27 tests passed
 
-Aggregate score: 79.81%
+Aggregate score: 84.95%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
- 858 Nov 23 02:41 Outcast.java
-3.8K Nov 23 02:41 SAP.java
-1.1K Nov 23 02:41 Synset.java
-1.7K Nov 23 02:41 Util.java
-3.4K Nov 23 02:41 WordNet.java
+ 858 Nov 27 06:56 Outcast.java
+3.6K Nov 27 06:56 SAP.java
+1.1K Nov 27 06:56 Synset.java
+1.7K Nov 27 06:56 Util.java
+3.4K Nov 27 06:56 WordNet.java
 
 
 ********************************************************************************
@@ -63,7 +63,7 @@ Outcast:
 
 % findbugs *.class
 *-----------------------------------------------------------
-M C FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY FCCD: Class SAP has a circular dependency with other classes  At SAP.java:[lines 18-87]
+M C FCCD_FIND_CLASS_CIRCULAR_DEPENDENCY FCCD: Class SAP has a circular dependency with other classes  At SAP.java:[lines 18-84]
 Warnings generated: 1
 
 
@@ -220,102 +220,29 @@ Test 16: check invalid arguments to length() and ancestor() in digraph1.txt
 
 Test 17: check length() and ancestor() with Iterable arguments
   * 100 random subsets of 1 and 1 vertices in digraph-wordnet.txt
-    - failed on trial 1 of 100
-    - v = 35083
-    - w = 48629
-    - student   length() = 0
-    - reference length() = 9
-
   * 100 random subsets of 1 and 2 vertices in digraph-wordnet.txt
-    - failed on trial 1 of 100
-    - v = 7093
-    - w = 18765 21191
-    - student   length() = 0
-    - reference length() = 12
-
   * 100 random subsets of 2 and 1 vertices in digraph-wordnet.txt
-    - failed on trial 1 of 100
-    - v = 33733 81309
-    - w = 6202
-    - student   length() = 0
-    - reference length() = 14
-
   * 100 random subsets of 2 and 2 vertices in digraph-wordnet.txt
-    - failed on trial 1 of 100
-    - v = 60136 77834
-    - w = 43425 51151
-    - student   length() = 0
-    - reference length() = 12
-
   * 100 random subsets of 3 and 11 vertices in digraph-wordnet.txt
-    - failed on trial 1 of 100
-    - v = 872 38687 50710
-    - w size = 11
-    - student   length() = 0
-    - reference length() = 4
-
   * 100 random subsets of 11 and 3 vertices in digraph-wordnet.txt
-    - failed on trial 1 of 100
-    - v size = 11
-    - w = 23705 30671 60987
-    - student   length() = 0
-    - reference length() = 9
-
   * 100 random subsets of 0 and 5 vertices in digraph-wordnet.txt
   * 100 random subsets of 5 and 0 vertices in digraph-wordnet.txt
-    - failed on trial 1 of 100
-    - v = 25232 38517 51013 52123 75977
-    - w =
-    - student   length() = 0
-    - reference length() = -1
-
   * 100 random subsets of 0 and 0 vertices in digraph-wordnet.txt
-==&gt; FAILED
+==&gt; passed
 
 Test 18: Check Iterable version of length() and ancestor() with null arguments
-    java.lang.NullPointerException
-
-    Util.checkVertices(Util.java:46)
-    SAP.length(SAP.java:40)
-    TestSAP.checkNullArguments(TestSAP.java:931)
-    TestSAP.test18(TestSAP.java:980)
-    TestSAP.main(TestSAP.java:1261)
-
-    - called length(v, null)
-    - but java.lang.IllegalArgumentException not thrown
-
-==&gt; FAILED
+==&gt; passed
 
 Test 19: random calls to both version of length() and ancestor(),
          with probabilities p1 and p2, respectively
   * random calls in a random rooted DAG (20 vertices, 100 edges)
     (p1 = 0.5, p2 = 0.5)
-    - ancestor() is not ancestor on shortest ancestral path
-    - failed on call 2 to ancestor()
-    - v = 6 7 9 14 15
-    - w = 5 13 15 17
-    - student   ancestor = 6
-    - distance from v to 6 = 0
-    - distance from w to 6 = 1
-    - reference ancestor = 15
-    - reference length   = 0
-
   * random calls in a random digraph (20 vertices, 100 edges)
     (p1 = 0.5, p2 = 0.5)
-    - ancestor() is not ancestor on shortest ancestral path
-    - failed on call 1 to ancestor()
-    - v = 6 8 10 15 17
-    - w = 1 2 5 8 9
-    - student   ancestor = 6
-    - distance from v to 6 = 0
-    - distance from w to 6 = 1
-    - reference ancestor = 8
-    - reference length   = 0
-
-==&gt; FAILED
+==&gt; passed
 
 
-Total: 16/19 tests passed!
+Total: 19/19 tests passed!
 
 
 ================================================================
@@ -580,8 +507,8 @@ Test 2a-c: time length() and ancestor() with random pairs of vertices
     java.lang.OutOfMemoryError: Java heap space
 
     edu.princeton.cs.algs4.BreadthFirstDirectedPaths.&lt;init&gt;(BreadthFirstDirectedPaths.java:63)
-    SAP.getBFSFromCache(SAP.java:80)
-    SAP.getCCA(SAP.java:59)
+    SAP.getBFSFromCache(SAP.java:77)
+    SAP.getCCA(SAP.java:57)
     SAP.length(SAP.java:28)
     TimeSAP.callsPerSecond(TimeSAP.java:42)
     TimeSAP.timeLengthAndAncestor(TimeSAP.java:133)
@@ -593,10 +520,10 @@ Test 3a-c: time length() and ancestor() with random subsets of 5 vertices
     java.lang.OutOfMemoryError: Java heap space
 
     edu.princeton.cs.algs4.BreadthFirstDirectedPaths.&lt;init&gt;(BreadthFirstDirectedPaths.java:80)
-    SAP.lambda$getBFSFromCache2$0(SAP.java:87)
+    SAP.lambda$getBFSFromCache$0(SAP.java:84)
     SAP$$Lambda$1/2093176254.apply(Unknown Source)
     java.util.HashMap.computeIfAbsent(HashMap.java:1126)
-    SAP.getBFSFromCache2(SAP.java:87)
+    SAP.getBFSFromCache(SAP.java:84)
      ...
     SAP.length(SAP.java:41)
     TimeSAP.callsPerSecondSubset(TimeSAP.java:79)
@@ -609,10 +536,10 @@ Test 4a-c: time length() and ancestor() with random subsets of 100 vertices
     java.lang.OutOfMemoryError: Java heap space
 
     edu.princeton.cs.algs4.BreadthFirstDirectedPaths.&lt;init&gt;(BreadthFirstDirectedPaths.java:80)
-    SAP.lambda$getBFSFromCache2$0(SAP.java:87)
+    SAP.lambda$getBFSFromCache$0(SAP.java:84)
     SAP$$Lambda$1/2093176254.apply(Unknown Source)
     java.util.HashMap.computeIfAbsent(HashMap.java:1126)
-    SAP.getBFSFromCache2(SAP.java:87)
+    SAP.getBFSFromCache(SAP.java:84)
      ...
     SAP.length(SAP.java:41)
     TimeSAP.callsPerSecondSubset(TimeSAP.java:79)
@@ -679,7 +606,7 @@ Test 4: count Digraph operations during 1000 calls each
     - the distance() and sap() methods should not need to create new digraphs
 
   * calls to addEdge()   = 0
-  * calls to adj()       = 46208
+  * calls to adj()       = 46872
   * calls to reverse()   = 0
   * calls to toString()  = 0
 
@@ -687,16 +614,16 @@ Test 4: count Digraph operations during 1000 calls each
 
 Test 5: time WordNet constructor
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - student constructor time =  0.39 seconds
+    - student constructor time =  0.40 seconds
     - maximum allowed     time = 10.00 seconds
 
 ==&gt; passed
 
 Test 6a-e: time sap() and distance() with random nouns
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - reference solution calls per second:  219774.00
-    - student   solution calls per second:      96.75
-    - reference / student ratio:              2271.57
+    - reference solution calls per second:  212750.00
+    - student   solution calls per second:      93.75
+    - reference / student ratio:              2269.33
 
 =&gt; passed    student &lt;= 10000x reference
 =&gt; FAILED    student &lt;=  1000x reference
@@ -706,9 +633,9 @@ Test 6a-e: time sap() and distance() with random nouns
 
 Test 7: time isNoun() with random nouns
   * synsets = synsets.txt; hypernyms = hypernyms.txt
-    - reference solution calls per second:  640720.00
-    - student   solution calls per second:  586160.00
-    - reference / student ratio:                 1.09
+    - reference solution calls per second:  580390.00
+    - student   solution calls per second:  572336.00
+    - reference / student ratio:                 1.01
     - allowed ratio:                             4.00
 ==&gt; passed
 
@@ -756,9 +683,9 @@ Total time must not exceed 1.0 seconds.
   outcast12.txt   12     0.00
  outcast12a.txt   12     0.00
   outcast20.txt   20     0.00
-  outcast29.txt   29     0.01
+  outcast29.txt   29     0.00
 
-Total elapsed time: 0.02 seconds
+Total elapsed time: 0.01 seconds
 
 ==&gt; passed
 

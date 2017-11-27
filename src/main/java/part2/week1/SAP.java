@@ -51,15 +51,12 @@ public class SAP {
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path
     private CCA getCCA(List<Integer> v, List<Integer> w) {
-        final int hash1 = Objects.hash(v), hash2 = Objects.hash(w);
-        BreadthFirstDirectedPaths bfs1 = getBFSFromCache2(hash1, v), bfs2 = getBFSFromCache2(hash2, v);
-        return calculate(bfs1, bfs2);
+        return calculate(getBFSFromCache(v), getBFSFromCache(w));
     }
 
     // a common ancestor that participates in shortest ancestral path; -1 if no such path
     private CCA getCCA(int v, int w) {
-        BreadthFirstDirectedPaths bfs1 = getBFSFromCache(v), bfs2 = getBFSFromCache(w);
-        return calculate(bfs1, bfs2);
+        return calculate(getBFSFromCache(v), getBFSFromCache(w));
     }
 
     private CCA calculate(BreadthFirstDirectedPaths bfs1, BreadthFirstDirectedPaths bfs2) {
@@ -85,8 +82,8 @@ public class SAP {
         return bfs;
     }
 
-    private BreadthFirstDirectedPaths getBFSFromCache2(int hash, Iterable<Integer> v) {
-        return bfsCache2.computeIfAbsent(hash, k -> new BreadthFirstDirectedPaths(graph, v));
+    private BreadthFirstDirectedPaths getBFSFromCache(Iterable<Integer> v) {
+        return bfsCache2.computeIfAbsent(Objects.hash(v), k -> new BreadthFirstDirectedPaths(graph, v));
     }
 
     private static class CCA {
