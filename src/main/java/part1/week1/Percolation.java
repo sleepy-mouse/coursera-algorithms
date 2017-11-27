@@ -33,8 +33,8 @@ public class Percolation {
     }
 
     private int checkIndex(int row, int col) {
-        if (row < 1 || row > n) throw new IllegalArgumentException("Invalid row " + row);
-        if (col < 1 || col > n) throw new IllegalArgumentException("Invalid col " + col);
+        if (invalidIndex(row, col))
+            throw new IllegalArgumentException("Invalid: " + row + ", " + col);
         return transform(n, row, col);
     }
 
@@ -45,12 +45,30 @@ public class Percolation {
         checkNeighbour(site);
     }
 
+    private int findOpenNeighbour(int row, int col) {
+        if (invalidIndex(row, col)) return -1;
+        final int index = transform(n, row, col);
+        return isOpen(index) ? index : -1;
+    }
+
+    private boolean invalidIndex(int row, int col) {
+        return row < 1 || row > n || col < 1 || col > n;
+    }
+
     private void checkNeighbour(Site site) {
-        for (Site s : sites) {
-            if (Site.isNeighbour(site, s) && s.isOpen() && !uf.connected(site.getI(), s.getI())) {
-                uf.union(site.getI(), s.getI());
-            }
-        }
+        int x = site.x, y = site.y;
+        int left = findOpenNeighbour(x - 1, y);
+        int right = findOpenNeighbour(x + 1, y);
+        int top = findOpenNeighbour(x, y + 1);
+        int bottom = findOpenNeighbour(x, y - 1);
+        if (left > 0)
+            uf.union(left, site.i);
+        if (right > 0)
+            uf.union(right, site.i);
+        if (top > 0)
+            uf.union(top, site.i);
+        if (bottom > 0)
+            uf.union(bottom, site.i);
     }
 
     private Site openSite(int row, int col, int i) {

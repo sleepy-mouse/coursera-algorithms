@@ -20,8 +20,8 @@ ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-4.7K Nov 27 03:13 Percolation.java
-2.6K Nov 27 03:13 PercolationStats.java
+5.3K Nov 27 03:42 Percolation.java
+2.6K Nov 27 03:42 PercolationStats.java
 
 
 ********************************************************************************
@@ -72,8 +72,8 @@ PercolationStats:
 
 % custom checkstyle checks for Percolation.java
 *-----------------------------------------------------------
-[INFO] Percolation.java:89: Using a loop in this method might be a performance bug. [Performance]
-[INFO] Percolation.java:99: Using a loop in this method might be a performance bug. [Performance]
+[INFO] Percolation.java:107: Using a loop in this method might be a performance bug. [Performance]
+[INFO] Percolation.java:117: Using a loop in this method might be a performance bug. [Performance]
 [WARN] Percolation.java:3:1: Defining a nested class in this program suggests poor design. [Design]
 [WARN] Percolation.java:8:19: Can you use the type 'boolean[]' instead of 'int[]'? [Design]
 [WARN] Percolation.java:9:19: Can you use the type 'boolean[]' instead of 'int[]'? [Design]
@@ -424,11 +424,11 @@ Test 4: Call PercolationStats methods with trials = 3 and values of n that go up
 
          n  seconds log ratio
      ------------------------
-       724     0.18       2.3
-      1024     0.39       2.2
-      1448     1.11       3.0
-      2048     2.81       2.7
-      2896     7.53       2.8
+       724     0.18       2.4
+      1024     0.41       2.3
+      1448     1.15       3.0
+      2048     2.84       2.6
+      2896     7.13       2.7
 ==&gt; passed
 
 
@@ -451,7 +451,7 @@ Test 1a-1d: check that total memory &lt;= 17 n^2 + 128 n + 1024 bytes
 
                  n        bytes
 --------------------------------------------
-=&gt; FAILED       64       144240   (1.8x)
+=&gt; FAILED       64       145232   (1.8x)
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -480,10 +480,10 @@ Test 1a-1e: Creates an n-by-n percolation system; open sites at random until
                                        2 * connected()
                  n       union()              + find()        constructor
 -----------------------------------------------------------------------------------
-=&gt; FAILED       16          146                  6996   (3.8x)          1
-=&gt; FAILED       32          562                 92312  (12.5x)          1
-=&gt; FAILED       64         2127               2067342  (70.1x)          1
-=&gt; FAILED      128         9650              40212320 (340.9x)          1
+=&gt; FAILED       16          182                  5904   (3.2x)          1
+=&gt; FAILED       32          713                157314  (21.3x)          1
+=&gt; FAILED       64         2599               2225658  (75.5x)          1
+=&gt; FAILED      128        11431              34331774 (291.0x)          1
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -507,11 +507,12 @@ Tests 2a-2f: Check whether the number of calls to union(), connected(), and find
 
                  n     per open()      per isOpen()    per isFull()    per percolates()
 ---------------------------------------------------------------------------------------------
-=&gt; FAILED       16        4               0              10              90   (3.8x)
-=&gt; FAILED       32        4               0              15             285  (11.9x)
-=&gt; FAILED       64        4               0              31   (1.3x)   1178  (49.1x)
-=&gt; FAILED      128        4               0              80   (3.3x)   6800 (283.3x)
-=&gt; FAILED      256        4               0             155   (6.5x)  22630 (942.9x)
+=&gt; FAILED       16        4               0               9              81   (3.4x)
+=&gt; FAILED       32        4               0              17             374  (15.6x)
+=&gt; FAILED       64        4               0              44   (1.8x)   1848  (77.0x)
+=&gt; FAILED      128        4               0              80   (3.3x)   6640 (276.7x)
+=&gt; FAILED      256        4               0             144   (6.0x)  22608 (942.0x)
+=&gt; FAILED      512        4               0             294  (12.3x)  87318 (4e+03x)
 
 
 WARNING: the time limit of 180 seconds was exceeded, so not all tests could be completed.
