@@ -20,8 +20,8 @@ ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-4.7K Nov 27 03:00 Percolation.java
-2.7K Nov 27 03:00 PercolationStats.java
+4.7K Nov 27 03:13 Percolation.java
+2.6K Nov 27 03:13 PercolationStats.java
 
 
 ********************************************************************************
@@ -62,8 +62,6 @@ PercolationStats:
 
 % pmd .
 *-----------------------------------------------------------
-PercolationStats.java:7: Can you replace the instance (or static) variable 'openSitesFraction' with a local variable? [SingularField]
-PMD ends with 1 warning.
 
 
 ================================================================
@@ -375,14 +373,14 @@ Test 1a-1d: check memory usage as a function of T trials for n = 100
 
                  T        bytes
 --------------------------------------------
-=&gt; passed       16          208
-=&gt; passed       32          336
-=&gt; passed       64          592
-=&gt; passed      128         1104
+=&gt; passed       16           48
+=&gt; passed       32           48
+=&gt; passed       64           48
+=&gt; passed      128           48
 ==&gt; 4/4 tests passed
 
 
-Estimated student memory = 8.00 T + 80.00   (R^2 = 1.000)
+Estimated student memory = 48.00   (R^2 = 1.000)
 
 Total: 4/4 tests passed!
 
@@ -426,11 +424,11 @@ Test 4: Call PercolationStats methods with trials = 3 and values of n that go up
 
          n  seconds log ratio
      ------------------------
-       724     0.18       2.4
-      1024     0.43       2.5
-      1448     1.23       3.0
-      2048     3.07       2.6
-      2896     7.22       2.5
+       724     0.18       2.3
+      1024     0.39       2.2
+      1448     1.11       3.0
+      2048     2.81       2.7
+      2896     7.53       2.8
 ==&gt; passed
 
 
@@ -453,7 +451,7 @@ Test 1a-1d: check that total memory &lt;= 17 n^2 + 128 n + 1024 bytes
 
                  n        bytes
 --------------------------------------------
-=&gt; FAILED       64       143472   (1.8x)
+=&gt; FAILED       64       144240   (1.8x)
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -482,10 +480,10 @@ Test 1a-1e: Creates an n-by-n percolation system; open sites at random until
                                        2 * connected()
                  n       union()              + find()        constructor
 -----------------------------------------------------------------------------------
-=&gt; FAILED       16          153                  6696   (3.6x)          1
-=&gt; FAILED       32          574                145760  (19.8x)          1
-=&gt; FAILED       64         2367               2602680  (88.3x)          1
-=&gt; FAILED      128         8981              37928760 (321.5x)          1
+=&gt; FAILED       16          146                  6996   (3.8x)          1
+=&gt; FAILED       32          562                 92312  (12.5x)          1
+=&gt; FAILED       64         2127               2067342  (70.1x)          1
+=&gt; FAILED      128         9650              40212320 (340.9x)          1
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -509,11 +507,11 @@ Tests 2a-2f: Check whether the number of calls to union(), connected(), and find
 
                  n     per open()      per isOpen()    per isFull()    per percolates()
 ---------------------------------------------------------------------------------------------
-=&gt; FAILED       16        4               0               9             100   (4.2x)
-=&gt; FAILED       32        4               0              17             238   (9.9x)
-=&gt; FAILED       64        4               0              37   (1.5x)   1480  (61.7x)
-=&gt; FAILED      128        4               0              76   (3.2x)   5396 (224.8x)
-=&gt; FAILED      256        4               0             163   (6.8x)  22657 (944.0x)
+=&gt; FAILED       16        4               0              10              90   (3.8x)
+=&gt; FAILED       32        4               0              15             285  (11.9x)
+=&gt; FAILED       64        4               0              31   (1.3x)   1178  (49.1x)
+=&gt; FAILED      128        4               0              80   (3.3x)   6800 (283.3x)
+=&gt; FAILED      256        4               0             155   (6.5x)  22630 (942.9x)
 
 
 WARNING: the time limit of 180 seconds was exceeded, so not all tests could be completed.

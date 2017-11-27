@@ -6,7 +6,6 @@ import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStats {
-    private final double[] openSitesFraction;
     private final double mean;
     private final double stddev;
     private final double confidenceLo;
@@ -17,8 +16,8 @@ public class PercolationStats {
         if (n <= 0 || trials <= 0)
             throw new IllegalArgumentException();
         final double numberOfSite = n * n;
+        final double[] openSitesFraction = new double[trials];
         int x, y;
-        openSitesFraction = new double[trials];
         for (int i = 0; i < trials; i++) {
             Percolation p = new Percolation(n);
             while (!p.percolates()) {
