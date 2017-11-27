@@ -9,19 +9,19 @@ Findbugs:     PASSED
 PMD:          PASSED
 Checkstyle:   FAILED (0 errors, 3 warnings)
 
-Correctness:  25/30 tests passed
+Correctness:  29/30 tests passed
 Memory:       4/8 tests passed
 Timing:       4/20 tests passed
 
-Aggregate score: 69.00%
+Aggregate score: 77.00%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-4.7K Nov 27 02:06 Percolation.java
-2.2K Nov 27 02:06 PercolationStats.java
+4.7K Nov 27 03:00 Percolation.java
+2.7K Nov 27 03:00 PercolationStats.java
 
 
 ********************************************************************************
@@ -62,6 +62,8 @@ PercolationStats:
 
 % pmd .
 *-----------------------------------------------------------
+PercolationStats.java:7: Can you replace the instance (or static) variable 'openSitesFraction' with a local variable? [SingularField]
+PMD ends with 1 warning.
 
 
 ================================================================
@@ -72,8 +74,8 @@ PercolationStats:
 
 % custom checkstyle checks for Percolation.java
 *-----------------------------------------------------------
-[INFO] Percolation.java:87: Using a loop in this method might be a performance bug. [Performance]
-[INFO] Percolation.java:97: Using a loop in this method might be a performance bug. [Performance]
+[INFO] Percolation.java:89: Using a loop in this method might be a performance bug. [Performance]
+[INFO] Percolation.java:99: Using a loop in this method might be a performance bug. [Performance]
 [WARN] Percolation.java:3:1: Defining a nested class in this program suggests poor design. [Design]
 [WARN] Percolation.java:8:19: Can you use the type 'boolean[]' instead of 'int[]'? [Design]
 [WARN] Percolation.java:9:19: Can you use the type 'boolean[]' instead of 'int[]'? [Design]
@@ -140,46 +142,14 @@ Test 5: open every site
 Test 6: open random sites until just before system percolates,
         allowing open() to be called on a site more than once
   * n = 3
-    - numberOfOpenSites() returns wrong value after 4 sites opened
-    - student   numberOfOpenSites() = 5
-    - reference numberOfOpenSites() = 4
-
   * n = 5
-    - numberOfOpenSites() returns wrong value after 10 sites opened
-    - student   numberOfOpenSites() = 11
-    - reference numberOfOpenSites() = 10
-
   * n = 10
-    - numberOfOpenSites() returns wrong value after 14 sites opened
-    - student   numberOfOpenSites() = 15
-    - reference numberOfOpenSites() = 14
-
   * n = 10
-    - numberOfOpenSites() returns wrong value after 13 sites opened
-    - student   numberOfOpenSites() = 14
-    - reference numberOfOpenSites() = 13
-
   * n = 20
-    - numberOfOpenSites() returns wrong value after 31 sites opened
-    - student   numberOfOpenSites() = 32
-    - reference numberOfOpenSites() = 31
-
   * n = 20
-    - numberOfOpenSites() returns wrong value after 15 sites opened
-    - student   numberOfOpenSites() = 16
-    - reference numberOfOpenSites() = 15
-
   * n = 50
-    - numberOfOpenSites() returns wrong value after 123 sites opened
-    - student   numberOfOpenSites() = 124
-    - reference numberOfOpenSites() = 123
-
   * n = 50
-    - numberOfOpenSites() returns wrong value after 32 sites opened
-    - student   numberOfOpenSites() = 33
-    - reference numberOfOpenSites() = 32
-
-==&gt; FAILED
+==&gt; passed
 
 Test 7: call methods with invalid arguments
   * n = 10, (row, col) = (-1, 5)
@@ -257,51 +227,15 @@ Test 15: call all methods in random order until all sites are open,
          allowing isOpen() to be called on a site more than once
          (these inputs are prone to backwash)
   * n = 3
-    - numberOfOpenSites() returns wrong value after 4 sites opened
-    - student   numberOfOpenSites() = 5
-    - reference numberOfOpenSites() = 4
-
-    - failed on trial 1 of 40
-
   * n = 5
-    - numberOfOpenSites() returns wrong value after 5 sites opened
-    - student   numberOfOpenSites() = 6
-    - reference numberOfOpenSites() = 5
-
-    - failed on trial 1 of 20
-
   * n = 7
-    - numberOfOpenSites() returns wrong value after 15 sites opened
-    - student   numberOfOpenSites() = 17
-    - reference numberOfOpenSites() = 15
-
-    - failed on trial 1 of 10
-
   * n = 10
-    - numberOfOpenSites() returns wrong value after 9 sites opened
-    - student   numberOfOpenSites() = 10
-    - reference numberOfOpenSites() = 9
-
-    - failed on trial 1 of 5
-
   * n = 20
-    - numberOfOpenSites() returns wrong value after 25 sites opened
-    - student   numberOfOpenSites() = 26
-    - reference numberOfOpenSites() = 25
-
-    - failed on trial 1 of 2
-
   * n = 50
-    - numberOfOpenSites() returns wrong value after 24 sites opened
-    - student   numberOfOpenSites() = 25
-    - reference numberOfOpenSites() = 24
-
-    - failed on trial 1 of 1
-
-==&gt; FAILED
+==&gt; passed
 
 
-Total: 12/15 tests passed!
+Total: 14/15 tests passed!
 
 
 ================================================================
@@ -373,46 +307,10 @@ Test 8: check that stddev() is consistent with the number of intercepted calls t
 
 Test 9: check that confidenceLo() and confidenceHigh() are consistent with mean() and stddev()
   * n =  20, trials =  10
-    - PercolationStats confidence low  = 0.6603004186962897
-    - PercolationStats confidence high = 0.9465402315092334
-    - PercolationStats mean            = 0.6162500000000002
-    - PercolationStats stddev          = 0.04826503795594581
-    - T                                = 10
-    - student T                        = 10
-    - mean - 1.96 * stddev / sqrt(T)   = 0.586335019546128
-    - mean + 1.96 * stddev / sqrt(T)   = 0.6461649804538724
-
   * n =  50, trials =  20
-    - PercolationStats confidence low  = 0.5879392639679579
-    - PercolationStats confidence high = 0.5611415253543063
-    - PercolationStats mean            = 0.5901
-    - PercolationStats stddev          = 0.034191011438065036
-    - T                                = 20
-    - student T                        = 20
-    - mean - 1.96 * stddev / sqrt(T)   = 0.5751151285441827
-    - mean + 1.96 * stddev / sqrt(T)   = 0.6050848714558172
-
   * n = 100, trials =  50
-    - PercolationStats confidence low  = 0.8776978244843677
-    - PercolationStats confidence high = 0.9741610241548535
-    - PercolationStats mean            = 0.5943039999999999
-    - PercolationStats stddev          = 0.017732075859461977
-    - T                                = 50
-    - student T                        = 50
-    - mean - 1.96 * stddev / sqrt(T)   = 0.5893889193347819
-    - mean + 1.96 * stddev / sqrt(T)   = 0.599219080665218
-
   * n =  64, trials = 150
-    - PercolationStats confidence low  = 0.009610378845373302
-    - PercolationStats confidence high = 0.5911034901479388
-    - PercolationStats mean            = 0.5920882161458333
-    - PercolationStats stddev          = 0.022243846664563447
-    - T                                = 150
-    - student T                        = 150
-    - mean - 1.96 * stddev / sqrt(T)   = 0.5885284592951672
-    - mean + 1.96 * stddev / sqrt(T)   = 0.5956479729964994
-
-==&gt; FAILED
+==&gt; passed
 
 Test 10: check that exception is thrown if either n or trials is out of bounds
   * n = -23, trials =  42
@@ -435,30 +333,10 @@ Test 11: create two PercolationStats objects at the same time and check mean()
 Test 12: check that the methods return the same value, regardless of
          the order in which they are called
   * n =  20, trials =  10
-    - total number of method calls = 4
-    - current value of confidenceHi()  = 0.26119045579485867
-    - previous value of confidenceHi()  = 0.7064184741472456
-    - sequence of calls = confidenceHi() stddev() confidenceLo() stddev() confidenceHi()
-
   * n =  50, trials =  20
-    - total number of method calls = 19
-    - current value of confidenceLo()  = 0.9002290259784896
-    - previous value of confidenceLo()  = 0.8365676545991807
-    - sequence of calls = mean() mean() mean() stddev() stddev() confidenceHi() mean() stddev() confidenceLo() stddev() stddev() stddev() stddev() stddev() mean() mean() stddev() mean() mean() confidenceLo()
-
   * n = 100, trials =  50
-    - total number of method calls = 5
-    - current value of confidenceHi()  = 0.9783975691932154
-    - previous value of confidenceHi()  = 0.451677675954284
-    - sequence of calls = mean() mean() stddev() confidenceHi() stddev() confidenceHi()
-
   * n =  64, trials = 150
-    - total number of method calls = 9
-    - current value of confidenceHi()  = 0.24157156564770255
-    - previous value of confidenceHi()  = 0.5423312413892207
-    - sequence of calls = stddev() mean() mean() confidenceLo() mean() stddev() mean() mean() confidenceHi() confidenceHi()
-
-==&gt; FAILED
+==&gt; passed
 
 Test 13: check that no calls to StdRandom.setSeed()
   * n = 20, trials = 10
@@ -480,7 +358,7 @@ Test 15: check that each site is opened the expected number of times
 ==&gt; passed
 
 
-Total: 13/15 tests passed!
+Total: 15/15 tests passed!
 
 
 ================================================================
@@ -497,14 +375,14 @@ Test 1a-1d: check memory usage as a function of T trials for n = 100
 
                  T        bytes
 --------------------------------------------
-=&gt; passed       16          176
-=&gt; passed       32          304
-=&gt; passed       64          560
-=&gt; passed      128         1072
+=&gt; passed       16          208
+=&gt; passed       32          336
+=&gt; passed       64          592
+=&gt; passed      128         1104
 ==&gt; 4/4 tests passed
 
 
-Estimated student memory = 8.00 T + 48.00   (R^2 = 1.000)
+Estimated student memory = 8.00 T + 80.00   (R^2 = 1.000)
 
 Total: 4/4 tests passed!
 
@@ -548,11 +426,11 @@ Test 4: Call PercolationStats methods with trials = 3 and values of n that go up
 
          n  seconds log ratio
      ------------------------
-       724     0.19       2.4
-      1024     0.40       2.2
-      1448     1.15       3.1
-      2048     3.03       2.8
-      2896     7.57       2.6
+       724     0.18       2.4
+      1024     0.43       2.5
+      1448     1.23       3.0
+      2048     3.07       2.6
+      2896     7.22       2.5
 ==&gt; passed
 
 
@@ -575,7 +453,7 @@ Test 1a-1d: check that total memory &lt;= 17 n^2 + 128 n + 1024 bytes
 
                  n        bytes
 --------------------------------------------
-=&gt; FAILED       64       144752   (1.8x)
+=&gt; FAILED       64       143472   (1.8x)
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -604,10 +482,10 @@ Test 1a-1e: Creates an n-by-n percolation system; open sites at random until
                                        2 * connected()
                  n       union()              + find()        constructor
 -----------------------------------------------------------------------------------
-=&gt; FAILED       16          150                  8290   (4.5x)          1
-=&gt; FAILED       32          593                148964  (20.2x)          1
-=&gt; FAILED       64         2383               2906004  (98.5x)          1
-=&gt; FAILED      128         8846              32842628 (278.4x)          1
+=&gt; FAILED       16          153                  6696   (3.6x)          1
+=&gt; FAILED       32          574                145760  (19.8x)          1
+=&gt; FAILED       64         2367               2602680  (88.3x)          1
+=&gt; FAILED      128         8981              37928760 (321.5x)          1
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -631,11 +509,11 @@ Tests 2a-2f: Check whether the number of calls to union(), connected(), and find
 
                  n     per open()      per isOpen()    per isFull()    per percolates()
 ---------------------------------------------------------------------------------------------
-=&gt; FAILED       16        4               0              10              90   (3.8x)
-=&gt; FAILED       32        4               0              17             340  (14.2x)
-=&gt; FAILED       64        4               0              39   (1.6x)   1443  (60.1x)
-=&gt; FAILED      128        4               0              76   (3.2x)   5548 (231.2x)
-=&gt; FAILED      256        4               0             156   (6.5x)  23244 (968.5x)
+=&gt; FAILED       16        4               0               9             100   (4.2x)
+=&gt; FAILED       32        4               0              17             238   (9.9x)
+=&gt; FAILED       64        4               0              37   (1.5x)   1480  (61.7x)
+=&gt; FAILED      128        4               0              76   (3.2x)   5396 (224.8x)
+=&gt; FAILED      256        4               0             163   (6.8x)  22657 (944.0x)
 
 
 WARNING: the time limit of 180 seconds was exceeded, so not all tests could be completed.

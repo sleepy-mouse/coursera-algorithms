@@ -59,8 +59,10 @@ public class Percolation {
             site = new Site(row, col, i);
             sites[i] = site;
         }
-        site.setOpen(true);
-        numberOfOpenSites++;
+        if (!site.isOpen()) {
+            site.setOpen(true);
+            numberOfOpenSites++;
+        }
         return site;
     }
 

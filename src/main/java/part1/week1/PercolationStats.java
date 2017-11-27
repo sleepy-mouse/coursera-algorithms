@@ -7,6 +7,10 @@ import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStats {
     private final double[] openSitesFraction;
+    private final double mean;
+    private final double stddev;
+    private final double confidenceLo;
+    private final double confidenceHi;
 
     // perform trials independent experiments on an n-by-n grid
     public PercolationStats(int n, int trials) {
@@ -24,26 +28,35 @@ public class PercolationStats {
             }
             openSitesFraction[i] = p.numberOfOpenSites() / numberOfSite;
         }
+        mean = StdStats.mean(openSitesFraction);
+        stddev = StdStats.stddev(openSitesFraction);
+        double marginOfError = marginOfError(stddev, openSitesFraction.length);
+        confidenceLo = mean - marginOfError;
+        confidenceHi = mean + marginOfError;
     }
 
     // sample mean of percolation threshold
     public double mean() {
-        return StdStats.mean(openSitesFraction);
+        return mean;
     }
 
     // sample standard deviation of percolation threshold
     public double stddev() {
-        return StdStats.stddev(openSitesFraction);
+        return stddev;
     }
 
     // low  endpoint of 95% confidence interval
     public double confidenceLo() {
-        return StdRandom.uniform();
+        return confidenceLo;
     }
 
     // high endpoint of 95% confidence interval
     public double confidenceHi() {
-        return StdRandom.uniform();
+        return confidenceHi;
+    }
+
+    private static double marginOfError(double stddev, int n) {
+        return 1.96 * stddev / Math.sqrt(n);
     }
 
     public static void main(String[] args) {
