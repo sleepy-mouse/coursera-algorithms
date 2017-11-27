@@ -47,7 +47,7 @@ public class Percolation {
 
     private void checkNeighbour(Site site) {
         for (Site s : sites) {
-            if (s != null && Site.isNeighbour(site, s) && s.isOpen() && !uf.connected(site.getI(), s.getI())) {
+            if (Site.isNeighbour(site, s) && s.isOpen() && !uf.connected(site.getI(), s.getI())) {
                 uf.union(site.getI(), s.getI());
             }
         }

@@ -9,20 +9,20 @@ Findbugs:     PASSED
 PMD:          PASSED
 Checkstyle:   FAILED (0 errors, 7 warnings)
 
-Correctness:  12/30 tests passed
+Correctness:  13/30 tests passed
 Memory:       0/8 tests passed
 Timing:       0/20 tests passed
 
-Aggregate score: 34.00%
+Aggregate score: 36.00%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-4.6K Nov 26 15:03 Percolation.java
-1008 Nov 26 15:03 PercolationStats.java
-  17 Nov 26 15:03 Util.java
+4.7K Nov 27 00:19 Percolation.java
+1008 Nov 27 00:19 PercolationStats.java
+  17 Nov 27 00:19 Util.java
 
 
 ********************************************************************************
@@ -139,13 +139,7 @@ Test 3: open predetermined sites for n = 1 and n = 2 (corner case test)
 Test 4: check predetermined sites with long percolating path
   * filename = snake13.txt
   * filename = snake101.txt
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in WeightedQuickUnionUF exceeds limit: 250000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-==&gt; FAILED
+==&gt; passed
 
 Test 5: open every site
   * filename = input5.txt
@@ -154,9 +148,9 @@ Test 5: open every site
 Test 6: open random sites until just before system percolates,
         allowing open() to be called on a site more than once
   * n = 3
-    - numberOfOpenSites() returns wrong value after 3 sites opened
-    - student   numberOfOpenSites() = 4
-    - reference numberOfOpenSites() = 3
+    - numberOfOpenSites() returns wrong value after 5 sites opened
+    - student   numberOfOpenSites() = 6
+    - reference numberOfOpenSites() = 5
 
   * n = 5
     - numberOfOpenSites() returns wrong value after 6 sites opened
@@ -164,9 +158,9 @@ Test 6: open random sites until just before system percolates,
     - reference numberOfOpenSites() = 6
 
   * n = 10
-    - numberOfOpenSites() returns wrong value after 27 sites opened
-    - student   numberOfOpenSites() = 28
-    - reference numberOfOpenSites() = 27
+    - numberOfOpenSites() returns wrong value after 16 sites opened
+    - student   numberOfOpenSites() = 17
+    - reference numberOfOpenSites() = 16
 
   * n = 10
     - numberOfOpenSites() returns wrong value after 8 sites opened
@@ -174,19 +168,19 @@ Test 6: open random sites until just before system percolates,
     - reference numberOfOpenSites() = 8
 
   * n = 20
-    - numberOfOpenSites() returns wrong value after 20 sites opened
-    - student   numberOfOpenSites() = 21
-    - reference numberOfOpenSites() = 20
+    - numberOfOpenSites() returns wrong value after 16 sites opened
+    - student   numberOfOpenSites() = 17
+    - reference numberOfOpenSites() = 16
 
   * n = 20
-    - numberOfOpenSites() returns wrong value after 38 sites opened
-    - student   numberOfOpenSites() = 39
-    - reference numberOfOpenSites() = 38
+    - numberOfOpenSites() returns wrong value after 31 sites opened
+    - student   numberOfOpenSites() = 32
+    - reference numberOfOpenSites() = 31
 
   * n = 50
-    - numberOfOpenSites() returns wrong value after 97 sites opened
-    - student   numberOfOpenSites() = 98
-    - reference numberOfOpenSites() = 97
+    - numberOfOpenSites() returns wrong value after 27 sites opened
+    - student   numberOfOpenSites() = 28
+    - reference numberOfOpenSites() = 27
 
   * n = 50
     - numberOfOpenSites() returns wrong value after 60 sites opened
@@ -251,12 +245,6 @@ Test 13: check for backwash with predetermined sites
   * filename = input50.txt
   * filename = jerry47.txt
   * filename = sedgewick60.txt
-
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        OperationCountLimitExceededException
-        Number of calls to methods in WeightedQuickUnionUF exceeds limit: 250000000
-        ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
   * filename = wayne98.txt
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -277,51 +265,51 @@ Test 15: call all methods in random order until all sites are open,
          allowing isOpen() to be called on a site more than once
          (these inputs are prone to backwash)
   * n = 3
-    - numberOfOpenSites() returns wrong value after 6 sites opened
-    - student   numberOfOpenSites() = 7
-    - reference numberOfOpenSites() = 6
+    - numberOfOpenSites() returns wrong value after 4 sites opened
+    - student   numberOfOpenSites() = 5
+    - reference numberOfOpenSites() = 4
 
     - failed on trial 1 of 40
 
   * n = 5
-    - numberOfOpenSites() returns wrong value after 8 sites opened
-    - student   numberOfOpenSites() = 9
-    - reference numberOfOpenSites() = 8
+    - numberOfOpenSites() returns wrong value after 6 sites opened
+    - student   numberOfOpenSites() = 8
+    - reference numberOfOpenSites() = 6
 
     - failed on trial 1 of 20
 
   * n = 7
-    - numberOfOpenSites() returns wrong value after 16 sites opened
-    - student   numberOfOpenSites() = 17
-    - reference numberOfOpenSites() = 16
+    - numberOfOpenSites() returns wrong value after 5 sites opened
+    - student   numberOfOpenSites() = 6
+    - reference numberOfOpenSites() = 5
 
     - failed on trial 1 of 10
 
   * n = 10
-    - numberOfOpenSites() returns wrong value after 29 sites opened
-    - student   numberOfOpenSites() = 31
-    - reference numberOfOpenSites() = 29
+    - numberOfOpenSites() returns wrong value after 15 sites opened
+    - student   numberOfOpenSites() = 16
+    - reference numberOfOpenSites() = 15
 
     - failed on trial 1 of 5
 
   * n = 20
-    - numberOfOpenSites() returns wrong value after 16 sites opened
-    - student   numberOfOpenSites() = 17
-    - reference numberOfOpenSites() = 16
+    - numberOfOpenSites() returns wrong value after 5 sites opened
+    - student   numberOfOpenSites() = 6
+    - reference numberOfOpenSites() = 5
 
     - failed on trial 1 of 2
 
   * n = 50
-    - numberOfOpenSites() returns wrong value after 115 sites opened
-    - student   numberOfOpenSites() = 116
-    - reference numberOfOpenSites() = 115
+    - numberOfOpenSites() returns wrong value after 67 sites opened
+    - student   numberOfOpenSites() = 68
+    - reference numberOfOpenSites() = 67
 
     - failed on trial 1 of 1
 
 ==&gt; FAILED
 
 
-Total: 11/15 tests passed!
+Total: 12/15 tests passed!
 
 
 ================================================================
@@ -715,8 +703,8 @@ Test 12: check that the methods return the same value, regardless of
   * n =  20, trials =  10
     java.lang.UnsupportedOperationException
 
-    PercolationStats.confidenceHi(PercolationStats.java:29)
-    TestPercolationStats.checkImmutability(TestPercolationStats.java:489)
+    PercolationStats.stddev(PercolationStats.java:17)
+    TestPercolationStats.checkImmutability(TestPercolationStats.java:463)
     TestPercolationStats.test12(TestPercolationStats.java:870)
     TestPercolationStats.main(TestPercolationStats.java:955)
 
@@ -731,8 +719,8 @@ Test 12: check that the methods return the same value, regardless of
   * n = 100, trials =  50
     java.lang.UnsupportedOperationException
 
-    PercolationStats.mean(PercolationStats.java:11)
-    TestPercolationStats.checkImmutability(TestPercolationStats.java:450)
+    PercolationStats.confidenceHi(PercolationStats.java:29)
+    TestPercolationStats.checkImmutability(TestPercolationStats.java:489)
     TestPercolationStats.test12(TestPercolationStats.java:872)
     TestPercolationStats.main(TestPercolationStats.java:955)
 
@@ -1026,7 +1014,7 @@ Test 1a-1d: check that total memory &lt;= 17 n^2 + 128 n + 1024 bytes
 
                  n        bytes
 --------------------------------------------
-=&gt; FAILED       64       142672   (1.8x)
+=&gt; FAILED       64       138096   (1.8x)
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -1055,10 +1043,10 @@ Test 1a-1e: Creates an n-by-n percolation system; open sites at random until
                                        2 * connected()
                  n       union()              + find()        constructor
 -----------------------------------------------------------------------------------
-=&gt; FAILED       16          163                 29528  (16.0x)          1
-=&gt; FAILED       32          459                268934  (36.5x)          1
-=&gt; FAILED       64         2479               6977192 (236.6x)          1
-=&gt; FAILED      128         9398             100304384 (850.3x)          1
+=&gt; FAILED       16          130                  5806   (3.1x)          1
+=&gt; FAILED       32          609                127164  (17.2x)          1
+=&gt; FAILED       64         2285               2407214  (81.6x)          1
+=&gt; FAILED      128         9018              39348988 (333.6x)          1
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -1082,11 +1070,11 @@ Tests 2a-2f: Check whether the number of calls to union(), connected(), and find
 
                  n     per open()      per isOpen()    per isFull()    per percolates()
 ---------------------------------------------------------------------------------------------
-=&gt; FAILED       16        4               0              16             176   (7.3x)
-=&gt; FAILED       32        4               0              32   (1.3x)    704  (29.3x)
-=&gt; FAILED       64        4               0              64   (2.7x)   2048  (85.3x)
-=&gt; FAILED      128        4               0             128   (5.3x)   9344 (389.3x)
-=&gt; FAILED      256        4               0             256  (10.7x)  35584 (1e+03x)
+=&gt; FAILED       16        4               0              15             135   (5.6x)
+=&gt; FAILED       32        4               0              24             552  (23.0x)
+=&gt; FAILED       64        4               0              41   (1.7x)   1681  (70.0x)
+=&gt; FAILED      128        4               0              73   (3.0x)   5621 (234.2x)
+=&gt; FAILED      256        4               0             163   (6.8x)  21842 (910.1x)
 
 
 WARNING: the time limit of 180 seconds was exceeded, so not all tests could be completed.
@@ -1094,3 +1082,7 @@ WARNING: the time limit of 180 seconds was exceeded, so not all tests could be c
 
 Total: 0/16 tests passed: Could not complete tests, which results in a reported score of 0.
 ================================================================
+
+
+
+
