@@ -2,8 +2,9 @@ package part1.week1;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.Stopwatch;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.net.URL;
@@ -36,6 +37,16 @@ public class PercolationTest {
 
     @Test
     public void percolationStats() {
+        Stopwatch stopwatch = new Stopwatch();
+        final int n = StdRandom.uniform(10) + 1;
+        final int T = StdRandom.uniform(10) + 1;
+        PercolationStats stats = new PercolationStats(n, T);
+        String format = "%1$-23s = %2$s%n";
+        log.info(String.format(format, "mean", stats.mean()));
+        log.info(String.format(format, "stddev", stats.stddev()));
+        log.info(String.format(format, "95% confidence interval", "[" + stats.confidenceLo() + ", " + stats.confidenceHi() + "]"));
+        final double elapsedTime = stopwatch.elapsedTime();
+        log.info("elapsedTime: {}", elapsedTime);
     }
 
     @Test
