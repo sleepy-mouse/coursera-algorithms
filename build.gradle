@@ -27,5 +27,6 @@ dependencies {
     compile "ch.qos.logback:logback-classic:$logback"
     compile "org.projectlombok:lombok:$lombok"
     compile files('libs/algs4.jar')
+    testCompile "com.google.guava:guava:$guava"
     testCompile "junit:junit:$junit"
 }
