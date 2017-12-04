@@ -15,10 +15,11 @@ import static part1.week1.PercolationVisualizer.draw;
 public class PercolationTest {
     // delay in miliseconds (controls animation speed)
     private static final int DELAY = 100;
+    private static final String RESOURCE_PATH = "/part1/week1/percolation";
 
     @Test
     public void visualise() {
-        URL filePath = Percolation.class.getResource("/part1/week1/percolation/input1.txt");
+        URL filePath = Percolation.class.getResource(RESOURCE_PATH + "/input1.txt");
         In in = new In(filePath);
         int n = in.readInt();                   // n-by-n percolation system
         StdDraw.enableDoubleBuffering();        // turn on animation mode
