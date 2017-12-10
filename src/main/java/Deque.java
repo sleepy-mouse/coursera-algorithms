@@ -1,10 +1,8 @@
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Deque<Item> implements Iterable<Item> {
     private final Util util = new Util();
-    private final List<Item> deque;
+    private final LinkedList<Item> deque;
 
     public Deque() {
         deque = new LinkedList<>();

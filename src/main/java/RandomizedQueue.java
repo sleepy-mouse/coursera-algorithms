@@ -42,4 +42,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         // TODO
         throw new UnsupportedOperationException();
     }
+
+    public static void main(String... args) {
+    }
 }
