@@ -20,26 +20,26 @@ public class Deque<Item> implements Iterable<Item> {
 
     // insert the item at the front
     public void addFirst(Item item) {
-        final Item item1 = util.checkNotNull(item);
-        deque.add(0, item1);
+        final Item e = util.checkNotNull(item);
+        deque.addFirst(e);
     }
 
     // insert the item at the end
     public void addLast(Item item) {
-        final Item item1 = util.checkNotNull(item);
-        deque.add(item1);
+        final Item e = util.checkNotNull(item);
+        deque.addLast(e);
     }
 
     // delete and return the item at the front
     public Item removeFirst() {
         util.checkEmptyDeque(deque);
-        return deque.remove(0);
+        return deque.removeFirst();
     }
 
     // delete and return the item at the end
     public Item removeLast() {
         util.checkEmptyDeque(deque);
-        return deque.remove(deque.size() - 1);
+        return deque.removeLast();
     }
 
     // return an iterator over items in order from front to end

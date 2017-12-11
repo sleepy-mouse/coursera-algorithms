@@ -1,46 +1,51 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
+    private Deque<Item> deque;
+
     // construct an empty randomized queue
     public RandomizedQueue() {
-        // TODO
-        throw new UnsupportedOperationException();
+        deque = new Deque<>();
     }
 
     // is the randomized queue empty?
     public boolean isEmpty() {
-        // TODO
-        throw new UnsupportedOperationException();
+        return deque.isEmpty();
     }
 
     // return the number of items on the randomized queue
     public int size() {
-        // TODO
-        throw new UnsupportedOperationException();
+        return deque.size();
     }
 
     // add the item
     public void enqueue(Item item) {
-        // TODO
-        throw new UnsupportedOperationException();
+        deque.addLast(item);
     }
 
     // remove and return a random item
     public Item dequeue() {
+        checkEmptyQueue();
         // TODO
         throw new UnsupportedOperationException();
     }
 
     // return a random item (but do not remove it)
     public Item sample() {
+        checkEmptyQueue();
         // TODO
-        throw new UnsupportedOperationException();
+        return null;
+    }
+
+    private void checkEmptyQueue() {
+        if (deque.isEmpty())
+            throw new NoSuchElementException();
     }
 
     // return an independent iterator over items in random order
     public Iterator<Item> iterator() {
-        // TODO
-        throw new UnsupportedOperationException();
+        return deque.iterator();
     }
 
     public static void main(String... args) {

@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
  * @author Chris Qiu
  */
 class Util {
-    void checkEmptyDeque(List<?> deque) {
+    <E> void checkEmptyDeque(List<E> deque) {
         if (deque.isEmpty())
             throw new NoSuchElementException();
     }

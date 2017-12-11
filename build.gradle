@@ -4,6 +4,7 @@ buildscript {
     ext.guava = '23.3-jre'
     ext.lombok = '1.16.18'
     ext.junit = '4.12'
+    ext.assertj_version = '3.8.0'
 }
 
 apply plugin: 'java'
@@ -29,4 +30,5 @@ dependencies {
     compile files('libs/algs4.jar')
     testCompile "com.google.guava:guava:$guava"
     testCompile "junit:junit:$junit"
+    testCompile "org.assertj:assertj-core:${assertj_version}"
 }
