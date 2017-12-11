@@ -229,6 +229,10 @@ class LinkedList<E> implements List<E>, Deque<E> {
         size++;
     }
 
+    private void decrementSize() {
+        size--;
+    }
+
     @Override
     public boolean offerFirst(E e) {
         addFirst(e);
@@ -268,6 +272,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
             first = removeFirstNode(first);
             if (first == null)
                 last = null;
+            decrementSize();
             return object;
         }
     }
@@ -281,6 +286,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
             last = removeLastNode(last);
             if (last == null)
                 first = null;
+            decrementSize();
             return object;
         }
     }
@@ -467,10 +473,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
         @Override
         public void remove() {
-            if (removePermissable) {
-                removeNode(current);
-                removePermissable = false;
-            } else throw new IllegalStateException();
+            throw new UnsupportedOperationException();
         }
 
         @Override
@@ -494,7 +497,9 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
         @Override
         public R next() {
-            return current.prev.object;
+            if (hasNext())
+                return current.prev.object;
+            throw new NoSuchElementException();
         }
 
         @Override
@@ -519,6 +524,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
         @Override
         public void remove() {
+            throw new UnsupportedOperationException();
         }
 
         @Override
