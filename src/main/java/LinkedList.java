@@ -72,7 +72,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
     @Override
     public boolean add(E e) {
         if (e == null)
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         addLast(e);
         return true;
     }
@@ -118,7 +118,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public E get(int index) {
-        return null;
+        return findNode(index).object;
     }
 
     @Override
@@ -131,13 +131,26 @@ class LinkedList<E> implements List<E>, Deque<E> {
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException();
         if (index == size) {
-            first = new Node<>(element);
+            addLast(element);
+        } else if (index == 0) {
+            addFirst(element);
         } else {
             Node<E> n = first;
-            while (n.next != null) {
+            int i = 0;
+            while (n != null) {
+                if (i == index) {
+                    break;
+                }
                 n = n.next;
+                i++;
             }
-            n.next = new Node<>(element);
+            Node<E> newNode = new Node<>(element);
+            Node<E> prev = n.prev;
+            prev.next = newNode;
+            newNode.prev = prev;
+            newNode.next = n;
+            n.prev = newNode;
+            incrementSize();
         }
     }
 
@@ -173,7 +186,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     private Node<E> findNode(int index) {
         Node<E> n = first;
-        for (int i = 0; i <= index && n.next != null; i++, n = n.next) {
+        for (int i = 0; n != null; i++, n = n.next) {
             if (i == index)
                 return n;
         }

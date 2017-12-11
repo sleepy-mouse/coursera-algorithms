@@ -1,51 +1,57 @@
+import edu.princeton.cs.algs4.StdRandom;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
-    private Deque<Item> deque;
+    private final LinkedList<Item> list;
 
     // construct an empty randomized queue
     public RandomizedQueue() {
-        deque = new Deque<>();
+        list = new LinkedList<>();
     }
 
     // is the randomized queue empty?
     public boolean isEmpty() {
-        return deque.isEmpty();
+        return list.isEmpty();
     }
 
     // return the number of items on the randomized queue
     public int size() {
-        return deque.size();
+        return list.size();
     }
 
     // add the item
     public void enqueue(Item item) {
-        deque.addLast(item);
+        list.add(item);
     }
 
     // remove and return a random item
     public Item dequeue() {
         checkEmptyQueue();
-        // TODO
-        throw new UnsupportedOperationException();
+        int randomIndex = randomIndex();
+        return list.remove(randomIndex);
     }
 
     // return a random item (but do not remove it)
     public Item sample() {
         checkEmptyQueue();
-        // TODO
-        return null;
-    }
-
-    private void checkEmptyQueue() {
-        if (deque.isEmpty())
-            throw new NoSuchElementException();
+        int randomIndex = randomIndex();
+        return list.get(randomIndex);
     }
 
     // return an independent iterator over items in random order
     public Iterator<Item> iterator() {
-        return deque.iterator();
+        return list.iterator();
+    }
+
+    private void checkEmptyQueue() {
+        if (list.isEmpty())
+            throw new NoSuchElementException();
+    }
+
+    private int randomIndex() {
+        return StdRandom.uniform(size());
     }
 
     public static void main(String... args) {

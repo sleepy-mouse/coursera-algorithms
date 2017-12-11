@@ -99,4 +99,17 @@ public class LinkedListTest {
         assertThat(i3).isEqualTo(3);
         assertThatThrownBy(it::next).isInstanceOf(NoSuchElementException.class);
     }
+
+    @Test
+    public void addToIndex() {
+        assertThat(l.isEmpty()).isTrue();
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        l.add(0, 5);
+        assertThat(l).size().isEqualTo(4);
+        assertThat(l).containsExactly(5, 1, 2, 3);
+        l.add(2, 9);
+        assertThat(l).containsExactly(5, 1, 9, 2, 3);
+    }
 }
