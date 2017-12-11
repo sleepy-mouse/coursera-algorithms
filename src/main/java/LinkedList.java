@@ -63,10 +63,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public <T> T[] toArray(T[] a) {
-        for (int i = 0; i < a.length; i++) {
-            T t = a[i];
-        }
-        return a;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -84,7 +81,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -95,25 +92,22 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void clear() {
-        for (Iterator<E> it = this.iterator(); it.hasNext(); ) {
-            it.next();
-            it.remove();
-        }
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -123,7 +117,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public E set(int index, E element) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -164,12 +158,12 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public int indexOf(Object object) {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int lastIndexOf(Object object) {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -200,7 +194,7 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
