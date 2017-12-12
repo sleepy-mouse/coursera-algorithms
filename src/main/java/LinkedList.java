@@ -150,10 +150,17 @@ class LinkedList<E> implements List<E>, Deque<E> {
 
     @Override
     public E remove(int index) {
-        final Node<E> node = findNode(index);
-        final E object = node.object;
-        removeNode(node);
-        return object;
+        if (index == 0)
+            return removeFirst();
+        else if (index == size - 1)
+            return removeLast();
+        else {
+            final Node<E> node = findNode(index);
+            final E object = node.object;
+            removeNode(node);
+            decrementSize();
+            return object;
+        }
     }
 
     @Override
@@ -325,11 +332,8 @@ class LinkedList<E> implements List<E>, Deque<E> {
     private static <V> void removeNode(Node<V> node) {
         Objects.requireNonNull(node);
         final Node<V> prev = node.prev, next = node.next;
-        if (prev != null) {
-            prev.next = next;
-        }
-        if (next != null)
-            next.prev = prev;
+        prev.next = next;
+        next.prev = prev;
         node.prev = null;
         node.next = null;
         node = null;

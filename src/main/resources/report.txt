@@ -7,24 +7,24 @@ API:          PASSED
 
 Findbugs:     FAILED (8 warnings)
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 9 warnings)
+Checkstyle:   FAILED (0 errors, 8 warnings)
 
-Correctness:  29/43 tests passed
-Memory:       57/60 tests passed
-Timing:       92/136 tests passed
+Correctness:  34/43 tests passed
+Memory:       29/30 tests passed
+Timing:       127/136 tests passed
 
-Aggregate score: 73.49%
+Aggregate score: 85.78%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-1.3K Dec 11 14:16 Deque.java
- 14K Dec 11 14:16 LinkedList.java
- 479 Dec 11 14:16 Permutation.java
-1.5K Dec 11 14:16 RandomizedQueue.java
- 421 Dec 11 14:16 Util.java
+1.3K Dec 12 09:35 Deque.java
+ 14K Dec 12 09:35 LinkedList.java
+ 479 Dec 12 09:35 Permutation.java
+1.5K Dec 12 09:35 RandomizedQueue.java
+ 421 Dec 12 09:35 Util.java
 
 
 ********************************************************************************
@@ -63,14 +63,14 @@ Permutation:
 
 % findbugs *.class
 *-----------------------------------------------------------
-M C NP_NULL_ON_SOME_PATH NP: Dereferences the variable 'n', but its value might be null on some execution branch.  Dereferenced at LinkedList.java:[line 148]
-L D DLS_DEAD_LOCAL_STORE_OF_NULL DLS: Assigns the value null to the local variable 'oldLast' but never reads the variable.  At LinkedList.java:[line 312]
-L D DLS_DEAD_LOCAL_STORE_OF_NULL DLS: Assigns the value null to the local variable 'oldFirst' but never reads the variable.  At LinkedList.java:[line 324]
-L D DLS_DEAD_LOCAL_STORE_OF_NULL DLS: Assigns the value null to the local variable 'node' but never reads the variable.  At LinkedList.java:[line 341]
-M D COM_COPIED_OVERRIDDEN_METHOD COM: Method LinkedList$DescendingListIterator.set(Object) is implemented with an exact copy of its superclass's method  At LinkedList.java:[line 545]
-M D COM_COPIED_OVERRIDDEN_METHOD COM: Method LinkedList$DescendingListIterator.add(Object) is implemented with an exact copy of its superclass's method  At LinkedList.java:[line 549]
-M C UWF_NULL_FIELD UwF: The instance (or static) variable 'prev' is never assigned a non-null value.  At LinkedList.java:[line 457]
-M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'removePermissable' is never read. Consider removing it from the class.  At LinkedList.java:[line 443]
+M C NP_NULL_ON_SOME_PATH NP: Dereferences the variable 'n', but its value might be null on some execution branch.  Dereferenced at LinkedList.java:[line 142]
+L D DLS_DEAD_LOCAL_STORE_OF_NULL DLS: Assigns the value null to the local variable 'oldLast' but never reads the variable.  At LinkedList.java:[line 313]
+L D DLS_DEAD_LOCAL_STORE_OF_NULL DLS: Assigns the value null to the local variable 'oldFirst' but never reads the variable.  At LinkedList.java:[line 325]
+L D DLS_DEAD_LOCAL_STORE_OF_NULL DLS: Assigns the value null to the local variable 'node' but never reads the variable.  At LinkedList.java:[line 339]
+M D COM_COPIED_OVERRIDDEN_METHOD COM: Method LinkedList$DescendingListIterator.set(Object) is implemented with an exact copy of its superclass's method  At LinkedList.java:[line 543]
+M D COM_COPIED_OVERRIDDEN_METHOD COM: Method LinkedList$DescendingListIterator.add(Object) is implemented with an exact copy of its superclass's method  At LinkedList.java:[line 547]
+M C UWF_NULL_FIELD UwF: The instance (or static) variable 'prev' is never assigned a non-null value.  At LinkedList.java:[line 455]
+M P URF_UNREAD_FIELD UrF: The instance (or static) variable 'removePermissable' is never read. Consider removing it from the class.  At LinkedList.java:[line 441]
 Warnings generated: 8
 
 
@@ -79,13 +79,12 @@ Warnings generated: 8
 
 % pmd .
 *-----------------------------------------------------------
-LinkedList.java:67: Avoid unused local variables, such as 't'. [UnusedLocalVariable]
-LinkedList.java:493: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
-LinkedList.java:497: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
-LinkedList.java:544: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
-LinkedList.java:548: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
+LinkedList.java:491: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
+LinkedList.java:495: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
+LinkedList.java:542: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
+LinkedList.java:546: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
 RandomizedQueue.java:57: The method body is empty. If this is your intent, document it with a comment. [UncommentedEmptyMethodBody]
-PMD ends with 6 warnings.
+PMD ends with 5 warnings.
 
 
 ================================================================
@@ -93,16 +92,15 @@ PMD ends with 6 warnings.
 
 % checkstyle *.java
 *-----------------------------------------------------------
-[WARN] LinkedList.java:86:43: You should not need to use wildcard types in this course. [TypeParameter]
-[WARN] LinkedList.java:91:38: You should not need to use wildcard types in this course. [TypeParameter]
-[WARN] LinkedList.java:91:40: You should not need to use type upper or lower bounds in this course. [TypeParameter]
-[WARN] LinkedList.java:97:49: You should not need to use wildcard types in this course. [TypeParameter]
-[WARN] LinkedList.java:97:51: You should not need to use type upper or lower bounds in this course. [TypeParameter]
-[WARN] LinkedList.java:102:41: You should not need to use wildcard types in this course. [TypeParameter]
-[WARN] LinkedList.java:107:41: You should not need to use wildcard types in this course. [TypeParameter]
-[WARN] LinkedList.java:113:61: ';' is followed by whitespace. [EmptyForIteratorPad]
-[WARN] LinkedList.java:501:45: Do not use implementation inheritance in this course. [IllegalToken]
-Checkstyle ends with 0 errors and 9 warnings.
+[WARN] LinkedList.java:83:43: You should not need to use wildcard types in this course. [TypeParameter]
+[WARN] LinkedList.java:88:38: You should not need to use wildcard types in this course. [TypeParameter]
+[WARN] LinkedList.java:88:40: You should not need to use type upper or lower bounds in this course. [TypeParameter]
+[WARN] LinkedList.java:94:49: You should not need to use wildcard types in this course. [TypeParameter]
+[WARN] LinkedList.java:94:51: You should not need to use type upper or lower bounds in this course. [TypeParameter]
+[WARN] LinkedList.java:99:41: You should not need to use wildcard types in this course. [TypeParameter]
+[WARN] LinkedList.java:104:41: You should not need to use wildcard types in this course. [TypeParameter]
+[WARN] LinkedList.java:499:45: Do not use implementation inheritance in this course. [IllegalToken]
+Checkstyle ends with 0 errors and 8 warnings.
 
 % custom checkstyle checks for Deque.java
 *-----------------------------------------------------------
@@ -256,60 +254,13 @@ Test 1: check random calls to enqueue() and size()
 Test 2: check random calls to enqueue() and dequeue()
   *    5 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
   *   50 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
-    java.util.NoSuchElementException: 12
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TestRandomizedQueue.random(TestRandomizedQueue.java:115)
-    TestRandomizedQueue.test2(TestRandomizedQueue.java:745)
-    TestRandomizedQueue.main(TestRandomizedQueue.java:1170)
-
   *  500 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
-    - student   size() returned 11
-    - reference size() returned 9
-
   * 1000 random calls (0.7, 0.1, 0.0, 0.1, 0.1)
-    - student   size() returned 44
-    - reference size() returned 43
-
   *    5 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
   *   50 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
-    - student   isEmpty() returned false
-    - reference isEmpty() returned true
-
-    - sequence of randomized queue operations was:
-         RandomizedQueue&lt;Integer&gt; rq = new RandomizedQueue&lt;Integer&gt;()
-         rq.enqueue(43)
-         rq.dequeue()     ==&gt; 43
-         rq.isEmpty()     ==&gt; false
   *  500 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
-    - failed on operation 5 of 500
-    - dequeue() returned item 374
-    - but item 374 is no longer in randomized queue
-
-    - sequence of randomized queue operations was:
-         RandomizedQueue&lt;Integer&gt; rq = new RandomizedQueue&lt;Integer&gt;()
-         rq.size()        ==&gt; 0
-         rq.enqueue(374)
-         rq.enqueue(191)
-         rq.isEmpty()     ==&gt; false
-         rq.dequeue()     ==&gt; 374
-         rq.dequeue()     ==&gt; 374
   * 1000 random calls (0.1, 0.7, 0.0, 0.1, 0.1)
-    - student   size() returned 2
-    - reference size() returned 1
-
-    - sequence of randomized queue operations was:
-         RandomizedQueue&lt;Integer&gt; rq = new RandomizedQueue&lt;Integer&gt;()
-         rq.isEmpty()     ==&gt; true
-         rq.size()        ==&gt; 0
-         rq.enqueue(756)
-         rq.size()        ==&gt; 1
-         rq.dequeue()     ==&gt; 756
-         rq.enqueue(92)
-         rq.size()        ==&gt; 2
-==&gt; FAILED
+==&gt; passed
 
 Test 3: check random calls to enqueue(), sample(), and size()
   *    5 random calls (0.8, 0.0, 0.1, 0.0, 0.1)
@@ -325,80 +276,13 @@ Test 3: check random calls to enqueue(), sample(), and size()
 Test 4: check random calls to enqueue(), dequeue(), sample(), isEmpty(), and size()
   *    5 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
   *   50 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
-    - student   size() returned 8
-    - reference size() returned 7
-
   *  500 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
-    java.util.NoSuchElementException: 1
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TestRandomizedQueue.random(TestRandomizedQueue.java:115)
-    TestRandomizedQueue.test4(TestRandomizedQueue.java:774)
-    TestRandomizedQueue.main(TestRandomizedQueue.java:1176)
-
-    - sequence of dequeue operations was:
-         RandomizedQueue&lt;Integer&gt; rq = new RandomizedQueue&lt;Integer&gt;()
-         rq.size()        ==&gt; 0
-         rq.enqueue(122)
-         rq.isEmpty()     ==&gt; false
-         rq.enqueue(292)
-         rq.dequeue()     ==&gt; 122
-         rq.enqueue(318)
-         rq.isEmpty()     ==&gt; false
-         rq.dequeue()
-
   * 1000 random calls (0.6, 0.1, 0.1, 0.1, 0.1)
-    - student   size() returned 27
-    - reference size() returned 26
-
   *    5 random calls (0.1, 0.6, 0.1, 0.1, 0.1)
-    - student   size() returned 1
-    - reference size() returned 0
-
-    - sequence of randomized queue operations was:
-         RandomizedQueue&lt;Integer&gt; rq = new RandomizedQueue&lt;Integer&gt;()
-         rq.isEmpty()     ==&gt; true
-         rq.enqueue(4)
-         rq.dequeue()     ==&gt; 4
-         rq.size()        ==&gt; 1
   *   50 random calls (0.1, 0.6, 0.1, 0.1, 0.1)
-    - student   size() returned 1
-    - reference size() returned 0
-
-    - sequence of randomized queue operations was:
-         RandomizedQueue&lt;Integer&gt; rq = new RandomizedQueue&lt;Integer&gt;()
-         rq.enqueue(47)
-         rq.sample()      ==&gt; 47
-         rq.dequeue()     ==&gt; 47
-         rq.size()        ==&gt; 1
   *  500 random calls (0.1, 0.6, 0.1, 0.1, 0.1)
-    - student   isEmpty() returned false
-    - reference isEmpty() returned true
-
-    - sequence of randomized queue operations was:
-         RandomizedQueue&lt;Integer&gt; rq = new RandomizedQueue&lt;Integer&gt;()
-         rq.isEmpty()     ==&gt; true
-         rq.enqueue(95)
-         rq.isEmpty()     ==&gt; false
-         rq.sample()      ==&gt; 95
-         rq.sample()      ==&gt; 95
-         rq.dequeue()     ==&gt; 95
-         rq.enqueue(471)
-         rq.dequeue()     ==&gt; 471
-         rq.isEmpty()     ==&gt; false
   * 1000 random calls (0.1, 0.6, 0.1, 0.1, 0.1)
-    - student   isEmpty() returned false
-    - reference isEmpty() returned true
-
-    - sequence of randomized queue operations was:
-         RandomizedQueue&lt;Integer&gt; rq = new RandomizedQueue&lt;Integer&gt;()
-         rq.enqueue(335)
-         rq.size()        ==&gt; 1
-         rq.dequeue()     ==&gt; 335
-         rq.isEmpty()     ==&gt; false
-==&gt; FAILED
+==&gt; passed
 
 Test 5: call dequeue() and sample() from an empty randomized queue
   * dequeue()
@@ -407,20 +291,8 @@ Test 5: call dequeue() and sample() from an empty randomized queue
 
 Test 6: create multiple randomized queue objects at the same time
   * n = 10
-    - size() returns wrong value
-    - student   size() = 10
-    - reference size() = 9
-
-    - failed on dequeue() operation 0 of 10 in randomized queue 1
-
   * n = 100
-    - size() returns wrong value
-    - student   size() = 100
-    - reference size() = 99
-
-    - failed on dequeue() operation 0 of 100 in randomized queue 1
-
-==&gt; FAILED
+==&gt; passed
 
 Test 7: check that iterator() returns correct items after a sequence
         of n enqueue() operations
@@ -431,26 +303,8 @@ Test 7: check that iterator() returns correct items after a sequence
 Test 8: check that iterator() returns correct items after sequence
         of m enqueue() and dequeue() operations
   * m = 10
-    java.util.NoSuchElementException: 1
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TestRandomizedQueue.checkIteratorAfterEnqueueDequeue(TestRandomizedQueue.java:872)
-    TestRandomizedQueue.test8(TestRandomizedQueue.java:902)
-    TestRandomizedQueue.main(TestRandomizedQueue.java:1188)
-
   * m = 1000
-    java.util.NoSuchElementException: 1
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TestRandomizedQueue.checkIteratorAfterEnqueueDequeue(TestRandomizedQueue.java:872)
-    TestRandomizedQueue.test8(TestRandomizedQueue.java:903)
-    TestRandomizedQueue.main(TestRandomizedQueue.java:1188)
-
-==&gt; FAILED
+==&gt; passed
 
 Test 9: create two nested iterators over the same randomized queue
   * n = 10
@@ -495,36 +349,10 @@ Test 13: check randomness of sample() by enqueueing n items, repeatedly calling
 Test 14: check randomness of dequeue() by enqueueing n items, dequeueing n items,
          and seeing whether each of the n! permutations is equally likely
   * n = 2, trials = 12000
-    - dequeue() returns the same item more than once
-    - but no duplicate items were added
-    - failed on operation 1 of 12000
-
   * n = 3, trials = 12000
-    - dequeue() returns the same item more than once
-    - but no duplicate items were added
-    - failed on operation 1 of 12000
-
   * n = 4, trials = 12000
-    java.util.NoSuchElementException: 3
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TestRandomizedQueue.checkRandomnessOfDequeue(TestRandomizedQueue.java:568)
-    TestRandomizedQueue.test14(TestRandomizedQueue.java:994)
-    TestRandomizedQueue.main(TestRandomizedQueue.java:1206)
-
   * n = 5, trials = 12000
-    java.util.NoSuchElementException: 2
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TestRandomizedQueue.checkRandomnessOfDequeue(TestRandomizedQueue.java:568)
-    TestRandomizedQueue.test14(TestRandomizedQueue.java:995)
-    TestRandomizedQueue.main(TestRandomizedQueue.java:1206)
-
-==&gt; FAILED
+==&gt; passed
 
 Test 15: check randomness of iterator() by enqueueing n items, iterating over those
          n items, and seeing whether each of the n! permutations is equally likely
@@ -604,7 +432,7 @@ Test 18: call iterator() when randomized queue is empty
 ==&gt; passed
 
 
-Total: 10/18 tests passed!
+Total: 15/18 tests passed!
 
 
 ================================================================
@@ -1248,39 +1076,57 @@ Test 3a-3i: Total memory usage after inserting 2n-1 items, and then
 
                  n        bytes
 ----------------------------------------------------------
-    java.util.NoSuchElementException: 59
+=&gt; passed       33         1384
+=&gt; passed       65         2664
+=&gt; passed      129         5224
+=&gt; passed      257        10344
+=&gt; passed      513        20584
+=&gt; passed     1025        41064
+=&gt; passed     2049        82024
+=&gt; passed     4097       163944
+=&gt; passed     8193       327784
+==&gt; 9/9 tests passed
 
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    MemoryOfRandomizedQueue.test3(MemoryOfRandomizedQueue.java:209)
-    MemoryOfRandomizedQueue.main(MemoryOfRandomizedQueue.java:736)
+Memory: 40.00 n + 64.00   (R^2 = 1.000)
+
 
 Test 4a-4i: Total memory usage after inserting n items, deleting n items,
             then inserting n times, when n is a power of 2.
 
                  n        bytes
 ----------------------------------------------------------
-    java.util.NoSuchElementException: 21
+=&gt; passed       32         1344
+=&gt; passed       64         2624
+=&gt; passed      128         5184
+=&gt; passed      256        10304
+=&gt; passed      512        20544
+=&gt; passed     1024        41024
+=&gt; passed     2048        81984
+=&gt; passed     4096       163904
+=&gt; passed     8192       327744
+==&gt; 9/9 tests passed
 
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    MemoryOfRandomizedQueue.test4(MemoryOfRandomizedQueue.java:251)
-    MemoryOfRandomizedQueue.main(MemoryOfRandomizedQueue.java:737)
+Memory: 40.00 n + 64.00   (R^2 = 1.000)
+
 
 Test 5a-5i: Total memory usage after inserting n items,
             and then deleting all but one item.
 
                  n        bytes
 ----------------------------------------------------------
-    java.util.NoSuchElementException: 31
+=&gt; passed       32          104
+=&gt; passed       64          104
+=&gt; passed      128          104
+=&gt; passed      256          104
+=&gt; passed      512          104
+=&gt; passed     1024          104
+=&gt; passed     2048          104
+=&gt; passed     4096          104
+=&gt; passed     8192          104
+==&gt; 9/9 tests passed
 
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    MemoryOfRandomizedQueue.test5(MemoryOfRandomizedQueue.java:292)
-    MemoryOfRandomizedQueue.main(MemoryOfRandomizedQueue.java:738)
+Memory: 104.00   (R^2 = 1.000)
+
 
 Test 6a-6d: Total memory usage of iterator after inserting n items.
 
@@ -1302,55 +1148,16 @@ Memory: 56.00   (R^2 = 1.000)
 
 Test 7a: Insert 100 strings; delete them one at a time, checking
          for loitering after each deletion.
-    java.util.NoSuchElementException: 85
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    MemoryOfRandomizedQueue.test7a(MemoryOfRandomizedQueue.java:484)
-    MemoryOfRandomizedQueue.main(MemoryOfRandomizedQueue.java:740)
+==&gt; passed
 
 Test 7b: Perform random operations, checking for loitering after
          each operation. The probabilities of enqueue(), dequeue(),
          and sample() are (p1, p2, p3), respectively.
   * 200 random operations (0.8, 0.2, 0.0)
-    java.util.NoSuchElementException: 10
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    MemoryOfRandomizedQueue.loiter(MemoryOfRandomizedQueue.java:397)
-    MemoryOfRandomizedQueue.test7b(MemoryOfRandomizedQueue.java:530)
-    MemoryOfRandomizedQueue.main(MemoryOfRandomizedQueue.java:741)
-
-
   * 200 random operations (0.2, 0.8, 0.0)
-    - loitering detected after operation 3 of 200
-    - sequence of operations was:
-         rq.enqueue("JLQIIEUUCS")
-         rq.enqueue("CDBPMQVWQS")
-         rq.dequeue()     ==&gt; "CDBPMQVWQS"
-    - loitered object(s):
-      CDBPMQVWQS
-
   * 200 random operations (0.6, 0.2, 0.2)
-    - loitering detected after operation 3 of 200
-    - sequence of operations was:
-         rq.enqueue("JRTBSWIDZI")
-         rq.enqueue("AVWQSICIDA")
-         rq.dequeue()     ==&gt; "JRTBSWIDZI"
-    - loitered object(s):
-      JRTBSWIDZI
-
   * 200 random operations (0.2, 0.4, 0.4)
-    - loitering detected after operation 2 of 200
-    - sequence of operations was:
-         rq.enqueue("CYYSSBXMOF")
-         rq.dequeue()     ==&gt; "CYYSSBXMOF"
-    - loitered object(s):
-      CYYSSBXMOF
-
-==&gt; FAILED
+==&gt; passed
 
 Test 8: Insert T items into queue; then iterate over queue and check
         that worst-case constant memory is allocated or deallocated
@@ -1378,21 +1185,6 @@ Test 10: Total memory usage after inserting 4096 items, then successively
 
                  n        bytes
 ----------------------------------------------------------
-    java.util.NoSuchElementException: 4079
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    MemoryOfRandomizedQueue.test10(MemoryOfRandomizedQueue.java:671)
-    MemoryOfRandomizedQueue.main(MemoryOfRandomizedQueue.java:745)
-
-Min observed memory for RandomizedQueue: 40.00 n + 64.00   (R^2 = 1.000)
-Max observed memory for RandomizedQueue: 40.00 n + 64.00   (R^2 = 1.000)
-
-Running 30 total tests.
-
-Total: 28/30 tests passed!
-
 ================================================================
 
 
@@ -1436,7 +1228,7 @@ Test 2a-2g: make n random calls to addLast(), removeLast(), isEmpty(), and size(
 =&gt; passed        8192     0.00
 =&gt; passed       16384     0.00
 =&gt; passed       32768     0.00
-=&gt; passed       65536     0.00
+=&gt; passed       65536     0.01
 =&gt; passed      128000     0.01
 =&gt; passed      256000     0.01
 =&gt; passed      512000     0.02
@@ -1477,10 +1269,10 @@ Test 4a-4g: make n calls to addFirst(); iterate over the n items by calling
 =&gt; passed       16384     0.00
 =&gt; passed       32768     0.00
 =&gt; passed       65536     0.00
-=&gt; passed      128000     0.00
-=&gt; passed      256000     0.01
+=&gt; passed      128000     0.01
+=&gt; passed      256000     0.00
 =&gt; passed      512000     0.01
-=&gt; passed     1024000     0.02
+=&gt; passed     1024000     0.01
 =&gt; passed     2048000     0.04
 ==&gt; 12/12 tests passed
 
@@ -1513,39 +1305,9 @@ Running 58 total tests.
 Test 1: make n calls to enqueue(); make n calls to dequeue();
         count calls to StdRandom
   * n = 10
-    java.util.NoSuchElementException: 8
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TimeRandomizedQueue.countCallsToStdRandomEnqueueDequeue(TimeRandomizedQueue.java:26)
-    TimeRandomizedQueue.test1(TimeRandomizedQueue.java:303)
-    TimeRandomizedQueue.main(TimeRandomizedQueue.java:445)
-
-
   * n = 100
-    java.util.NoSuchElementException: 45
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TimeRandomizedQueue.countCallsToStdRandomEnqueueDequeue(TimeRandomizedQueue.java:26)
-    TimeRandomizedQueue.test1(TimeRandomizedQueue.java:304)
-    TimeRandomizedQueue.main(TimeRandomizedQueue.java:445)
-
-
   * n = 1000
-    java.util.NoSuchElementException: 967
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TimeRandomizedQueue.countCallsToStdRandomEnqueueDequeue(TimeRandomizedQueue.java:26)
-    TimeRandomizedQueue.test1(TimeRandomizedQueue.java:305)
-    TimeRandomizedQueue.main(TimeRandomizedQueue.java:445)
-
-
-==&gt; FAILED
+==&gt; passed
 
 Test 2: make n calls to enqueue(); make n calls to sample();
         count calls to StdRandom
@@ -1566,19 +1328,21 @@ Test 4a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
 
                     n  seconds
 ----------------------------------
-    java.util.NoSuchElementException: 1
+=&gt; passed        1024     0.00
+=&gt; passed        2048     0.00
+=&gt; passed        4096     0.00
+=&gt; passed        8192     0.00
+=&gt; passed       16384     0.00
+=&gt; passed       32768     0.00
+=&gt; passed       65536     0.01
+=&gt; passed      128000     0.01
+=&gt; passed      256000     0.02
+=&gt; passed      512000     0.06
+=&gt; passed     1024000     0.12
+=&gt; FAILED     2048000     2.00
+   [ Most likely one of your operations is not constant time. ]
 
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.get(LinkedList.java:121)
-    RandomizedQueue.sample(RandomizedQueue.java:40)
-    TimeRandomizedQueue.timeRandomOperations(TimeRandomizedQueue.java:193)
-    TimeRandomizedQueue.timeRandomOperations(TimeRandomizedQueue.java:275)
-    TimeRandomizedQueue.test4(TimeRandomizedQueue.java:334)
-    TimeRandomizedQueue.main(TimeRandomizedQueue.java:454)
-
-=&gt; FAILED        1024   [ Test did not complete due to an exception. ]
-
-==&gt; 0/12 tests passed
+==&gt; 11/12 tests passed
 
 
 Test 5a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
@@ -1586,19 +1350,17 @@ Test 5a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
 
                     n  seconds
 ----------------------------------
-    java.util.NoSuchElementException: 1
+=&gt; passed        1024     0.00
+=&gt; passed        2048     0.00
+=&gt; passed        4096     0.00
+=&gt; passed        8192     0.00
+=&gt; passed       16384     0.02
+=&gt; passed       32768     0.08
+=&gt; passed       65536     0.32
+=&gt; FAILED      128000     1.22
+   [ Most likely one of your operations is not constant time. ]
 
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.remove(LinkedList.java:159)
-    RandomizedQueue.dequeue(RandomizedQueue.java:33)
-    TimeRandomizedQueue.timeRandomOperations(TimeRandomizedQueue.java:183)
-    TimeRandomizedQueue.timeRandomOperations(TimeRandomizedQueue.java:275)
-    TimeRandomizedQueue.test5(TimeRandomizedQueue.java:345)
-    TimeRandomizedQueue.main(TimeRandomizedQueue.java:457)
-
-=&gt; FAILED        1024   [ Test did not complete due to an exception. ]
-
-==&gt; 0/12 tests passed
+==&gt; 7/12 tests passed
 
 
 Test 6a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
@@ -1606,19 +1368,19 @@ Test 6a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
 
                     n  seconds
 ----------------------------------
-    java.util.NoSuchElementException: 2
-
-    LinkedList.findNode(LinkedList.java:193)
-    LinkedList.get(LinkedList.java:121)
-    RandomizedQueue.sample(RandomizedQueue.java:40)
-    TimeRandomizedQueue.timeRandomOperations(TimeRandomizedQueue.java:193)
-    TimeRandomizedQueue.timeRandomOperations(TimeRandomizedQueue.java:275)
-    TimeRandomizedQueue.test6(TimeRandomizedQueue.java:356)
-    TimeRandomizedQueue.main(TimeRandomizedQueue.java:460)
-
-=&gt; FAILED        1024   [ Test did not complete due to an exception. ]
-
-==&gt; 0/12 tests passed
+=&gt; passed        1024     0.00
+=&gt; passed        2048     0.00
+=&gt; passed        4096     0.00
+=&gt; passed        8192     0.00
+=&gt; passed       16384     0.00
+=&gt; passed       32768     0.00
+=&gt; passed       65536     0.00
+=&gt; passed      128000     0.01
+=&gt; passed      256000     0.02
+=&gt; passed      512000     0.05
+=&gt; passed     1024000     0.17
+=&gt; passed     2048000     0.49
+==&gt; 12/12 tests passed
 
 
 Test 7a-g: make n calls to enqueue(); iterate over the n items
@@ -1630,11 +1392,36 @@ Test 7a-g: make n calls to enqueue(); iterate over the n items
 =&gt; passed        2048     0.00
 =&gt; passed        4096     0.00
 =&gt; passed        8192     0.00
-=&gt;
+=&gt; passed       16384     0.00
+=&gt; passed       32768     0.00
+=&gt; passed       65536     0.00
+=&gt; passed      128000     0.01
+=&gt; passed      256000     0.01
+=&gt; passed      512000     0.03
+=&gt; passed     1024000     0.04
+=&gt; passed     2048000     0.03
+==&gt; 12/12 tests passed
 
-...
 
-WARNING: the grading output was truncated due to excessive length.
-Typically, this is because you have a method that has an unanticipated side effect
-(such as printing to standard output or throwing an exception). A large amount of output
-can also arise from failing many tests.
+Test 8a-g: make n calls to enqueue(); interleave n calls each
+           to dequeue() and enqueue().
+
+                    n  seconds
+----------------------------------
+=&gt; passed        1025     0.00
+=&gt; passed        2049     0.01
+=&gt; passed        4097     0.03
+=&gt; passed       16385     0.48
+=&gt; FAILED       32767     1.88
+   [ Most likely one of your operations is not constant time. ]
+
+==&gt; 4/7 tests passed
+
+Total: 49/58 tests passed!
+
+
+================================================================
+
+
+
+

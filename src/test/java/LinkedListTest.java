@@ -112,4 +112,19 @@ public class LinkedListTest {
         l.add(2, 9);
         assertThat(l).containsExactly(5, 1, 9, 2, 3);
     }
+
+    @Test
+    public void removeAtIndex() {
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        assertThat(l).size().isEqualTo(3);
+        Integer removedElement = l.remove(1);
+        assertThat(removedElement).isEqualTo(2);
+        assertThat(l).containsExactly(1, 3);
+        l.add(9);
+        assertThat(l).containsExactly(1, 3, 9);
+        l.remove(2);
+        assertThat(l).containsExactly(1, 3);
+    }
 }
