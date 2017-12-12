@@ -1,3 +1,5 @@
+package part1.week2;
+
 import com.google.common.collect.ImmutableList;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;

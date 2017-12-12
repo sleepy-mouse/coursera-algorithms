@@ -1,3 +1,5 @@
+package part1.week2;
+
 import java.util.Collection;
 import java.util.Deque;
 import java.util.Iterator;

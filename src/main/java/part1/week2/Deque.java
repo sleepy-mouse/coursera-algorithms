@@ -1,3 +1,5 @@
+package part1.week2;
+
 import java.util.Iterator;
 
 public class Deque<Item> implements Iterable<Item> {
