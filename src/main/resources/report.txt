@@ -9,22 +9,22 @@ Findbugs:     FAILED (8 warnings)
 PMD:          PASSED
 Checkstyle:   FAILED (0 errors, 8 warnings)
 
-Correctness:  34/43 tests passed
-Memory:       29/30 tests passed
-Timing:       127/136 tests passed
+Correctness:  40/43 tests passed
+Memory:       30/30 tests passed
+Timing:       128/136 tests passed
 
-Aggregate score: 85.78%
+Aggregate score: 94.64%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-1.3K Dec 12 09:35 Deque.java
- 14K Dec 12 09:35 LinkedList.java
- 479 Dec 12 09:35 Permutation.java
-1.5K Dec 12 09:35 RandomizedQueue.java
- 421 Dec 12 09:35 Util.java
+1.3K Dec 12 12:38 Deque.java
+ 14K Dec 12 12:38 LinkedList.java
+ 516 Dec 12 12:38 Permutation.java
+1.5K Dec 12 12:38 RandomizedQueue.java
+ 421 Dec 12 12:38 Util.java
 
 
 ********************************************************************************
@@ -449,37 +449,37 @@ Running 9 total tests.
 
 Test 1a: check formatting for sample inputs from assignment specification
   % java Permutation 3 &lt; distinct.txt
-  A
-  A
+  E
+  I
   A
 
   % java Permutation 3 &lt; distinct.txt
-  A
-  A
-  A
+  F
+  I
+  B
 
   % java Permutation 8 &lt; duplicates.txt
+  CC
+  BB
   AA
-  AA
-  AA
-  AA
-  AA
-  AA
-  AA
-  AA
+  BB
+  BB
+  BB
+  CC
+  BB
 
 ==&gt; passed
 
 Test 1b: check formatting for other inputs
   % java Permutation 8 &lt; mediumTale.txt
-  it
-  it
-  it
-  it
-  it
-  it
-  it
-  it
+  was
+  the
+  the
+  age
+  times
+  of
+  the
+  of
 
   % java Permutation 0 &lt; distinct.txt
   [no output]
@@ -488,96 +488,36 @@ Test 1b: check formatting for other inputs
 
 Test 2: check that main() reads all data from standard input
   * filename = distinct.txt, k = 3
-    - student solution does not read all data from standard input
-    - number of tokens read          = 1
-    - number of tokens left unread   = 8
-    - number of tokens in input file = 9
-
   * filename = distinct.txt, k = 3
-    - student solution does not read all data from standard input
-    - number of tokens read          = 1
-    - number of tokens left unread   = 8
-    - number of tokens in input file = 9
-
   * filename = duplicates.txt, k = 8
-    - student solution does not read all data from standard input
-    - number of tokens read          = 1
-    - number of tokens left unread   = 7
-    - number of tokens in input file = 8
-
   * filename = mediumTale.txt, k = 8
-    - student solution does not read all data from standard input
-    - number of tokens read          = 1
-    - number of tokens left unread   = 23
-    - number of tokens in input file = 24
-
-==&gt; FAILED
+==&gt; passed
 
 Test 3a: check that main() prints each item from the sequence at most once
          (for inputs with no duplicate strings)
   * filename = distinct.txt, k = 3
-    - number of times student prints string "A"   = 3
-    - number of times string "A" appears in input = 1
-    - failed on trial 1 of 1000
-
   * filename = distinct.txt, k = 1
   * filename = distinct.txt, k = 9
-    - number of times student prints string "A"   = 9
-    - number of times string "A" appears in input = 1
-    - failed on trial 1 of 1000
-
   * filename = permutation6.txt, k = 6
-    - number of times student prints string "A"   = 6
-    - number of times string "A" appears in input = 1
-    - failed on trial 1 of 1000
-
   * filename = permutation10.txt, k = 10
-    - number of times student prints string "A"   = 10
-    - number of times string "A" appears in input = 1
-    - failed on trial 1 of 1000
-
-==&gt; FAILED
+==&gt; passed
 
 Test 3b: check that main() prints each item from the sequence at most once
          (for inputs with duplicate strings)
   * filename = duplicates.txt, k = 8
-    - number of times student prints string "AA"   = 8
-    - number of times string "AA" appears in input = 1
-    - failed on trial 1 of 1000
-
   * filename = duplicates.txt, k = 3
-    - number of times student prints string "AA"   = 3
-    - number of times string "AA" appears in input = 1
-    - failed on trial 1 of 1000
-
   * filename = permutation8.txt, k = 6
-    - number of times student prints string "D"   = 6
-    - number of times string "D" appears in input = 2
-    - failed on trial 1 of 1000
-
   * filename = permutation8.txt, k = 2
   * filename = tinyTale.txt, k = 10
-    - number of times student prints string "it"   = 10
-    - number of times string "it" appears in input = 2
-    - failed on trial 1 of 1000
-
-==&gt; FAILED
+==&gt; passed
 
 Test 3c: check that main() prints each item from the sequence at most once
          (for inputs with newlines)
   * filename = mediumTale.txt, k = 10
-    - number of times student prints string "it"   = 10
-    - number of times string "it" appears in input = 4
-    - failed on trial 1 of 1000
-
   * filename = mediumTale.txt, k = 20
-    - number of times student prints string "it"   = 20
-    - number of times string "it" appears in input = 4
-    - failed on trial 1 of 1000
-
   * filename = tale.txt, k = 10
   * filename = tale.txt, k = 50
-==&gt; FAILED
+==&gt; passed
 
 Test 4: check main() when k = 0
   * filename = distinct.txt, k = 0
@@ -587,118 +527,22 @@ Test 4: check main() when k = 0
 Test 5a: check that permutations are uniformly random
          (for inputs with no duplicate strings)
   * filename = permutation4.txt, k = 1
-
-            value  observed  expected   2*O*ln(O/E)
-        -------------------------------------------
-                A      1000     250.0       2772.59
-                B         0     250.0          0.00
-                C         0     250.0          0.00
-                D         0     250.0          0.00
-        -------------------------------------------
-                       1000    1000.0       2772.59
-
-    G-statistic = 2772.59 (p-value = 0.000000, reject if p-value &lt;= 0.0001)
-    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
-
   * filename = permutation4.txt, k = 2
-    - student prints an invalid permutation:
-      A A
-    - failed on trial 1 of 1000
-
   * filename = permutation4.txt, k = 3
-    - student prints an invalid permutation:
-      A A A
-    - failed on trial 1 of 1000
-
   * filename = permutation4.txt, k = 4
-    - student prints an invalid permutation:
-      A A A A
-    - failed on trial 1 of 1000
-
   * filename = permutation6.txt, k = 2
-    - student prints an invalid permutation:
-      A A
-    - failed on trial 1 of 1000
-
-==&gt; FAILED
+==&gt; passed
 
 Test 5b: check that permutations are uniformly random
          (for inputs with duplicate strings)
   * filename = permutation5.txt, k = 1
-
-            value  observed  expected   2*O*ln(O/E)
-        -------------------------------------------
-                A      1000     600.0       1021.65
-                B         0     400.0          0.00
-        -------------------------------------------
-                       1000    1000.0       1021.65
-
-    G-statistic = 1021.65 (p-value = 0.000000, reject if p-value &lt;= 0.0001)
-    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
-
   * filename = permutation5.txt, k = 2
-
-            value  observed  expected   2*O*ln(O/E)
-        -------------------------------------------
-              A A      1000     300.0       2407.95
-              A B         0     300.0          0.00
-              B A         0     300.0          0.00
-              B B         0     100.0          0.00
-        -------------------------------------------
-                       1000    1000.0       2407.95
-
-    G-statistic = 2407.95 (p-value = 0.000000, reject if p-value &lt;= 0.0001)
-    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
-
   * filename = permutation5.txt, k = 3
-
-            value  observed  expected   2*O*ln(O/E)
-        -------------------------------------------
-            A A A      1000     100.0       4605.17
-            A A B         0     200.0          0.00
-            A B A         0     200.0          0.00
-            A B B         0     100.0          0.00
-            B A A         0     200.0          0.00
-            B A B         0     100.0          0.00
-            B B A         0     100.0          0.00
-        -------------------------------------------
-                       1000    1000.0       4605.17
-
-    G-statistic = 4605.17 (p-value = 0.000000, reject if p-value &lt;= 0.0001)
-    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
-
   * filename = duplicates.txt, k = 3
-    - student prints an invalid permutation:
-      AA AA AA
-    - failed on trial 1 of 1000
-
   * filename = permutation8.txt, k = 2
+==&gt; passed
 
-            value  observed  expected   2*O*ln(O/E)
-        -------------------------------------------
-              A B         0      17.9          0.00
-              A C         0      71.4          0.00
-              A D         0      35.7          0.00
-              B A         0      17.9          0.00
-              B C         0      71.4          0.00
-              B D         0      35.7          0.00
-              C A         0      71.4          0.00
-              C B         0      71.4          0.00
-              C C         0     214.3          0.00
-              C D         0     142.9          0.00
-              D A         0      35.7          0.00
-              D B         0      35.7          0.00
-              D C         0     142.9          0.00
-              D D      1000      35.7       6664.41
-        -------------------------------------------
-                       1000    1000.0       6664.41
-
-    G-statistic = 6664.41 (p-value = 0.000000, reject if p-value &lt;= 0.0001)
-    Note: a correct solution will fail this test by bad luck 1 time in 10,000.
-
-==&gt; FAILED
-
-Total: 3/9 tests passed!
+Total: 9/9 tests passed!
 
 
 ================================================================
@@ -744,13 +588,13 @@ Test 4: Time main() with k = 5, for inputs containing n random strings
 =&gt; passed        1000     0.00
 =&gt; passed        2000     0.00
 =&gt; passed        4000     0.00
-=&gt; passed        8000     0.00
-=&gt; passed       16000     0.00
-=&gt; passed       32000     0.00
-=&gt; passed       64000     0.00
-=&gt; passed      128000     0.00
-=&gt; passed      256000     0.00
-=&gt; passed      512000     0.00
+=&gt; passed        8000     0.01
+=&gt; passed       16000     0.01
+=&gt; passed       32000     0.01
+=&gt; passed       64000     0.02
+=&gt; passed      128000     0.04
+=&gt; passed      256000     0.09
+=&gt; passed      512000     0.18
 ==&gt; 10/10 tests passed
 
 
@@ -762,12 +606,12 @@ Test 5: Time main() with k = 1000, for inputs containing n random strings
 =&gt; passed        2000     0.00
 =&gt; passed        4000     0.00
 =&gt; passed        8000     0.00
-=&gt; passed       16000     0.00
-=&gt; passed       32000     0.00
-=&gt; passed       64000     0.00
-=&gt; passed      128000     0.00
-=&gt; passed      256000     0.00
-=&gt; passed      512000     0.00
+=&gt; passed       16000     0.01
+=&gt; passed       32000     0.01
+=&gt; passed       64000     0.02
+=&gt; passed      128000     0.06
+=&gt; passed      256000     0.09
+=&gt; passed      512000     0.18
 ==&gt; 10/10 tests passed
 
 
@@ -798,103 +642,35 @@ Test 2: check that the maximum size of any Deque or RandomizedQueue object
         created is between k and n
   * filename = distinct.txt, n = 9, k = 1
   * filename = distinct.txt, n = 9, k = 2
-    - not storing k items on either a Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
-
   * filename = distinct.txt, n = 9, k = 4
-    - not storing k items on either a Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
-
   * filename = tinyTale.txt, n = 12, k = 10
-    - not storing k items on either a Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
-
   * filename = tale.txt, n = 138653, k = 5
-    - not storing k items on either a Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
-
   * filename = tale.txt, n = 138653, k = 50
-    - not storing k items on either a Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
-
   * filename = tale.txt, n = 138653, k = 500
-    - not storing k items on either a Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
-
   * filename = tale.txt, n = 138653, k = 5000
-    - not storing k items on either a Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
-
   * filename = tale.txt, n = 138653, k = 50000
-    - not storing k items on either a Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
-
-==&gt; FAILED
+==&gt; passed
 
 Test 3 (bonus): check that maximum size of any or Deque or RandomizedQueue object
                 created is equal to k
   * filename = tale.txt, n = 138653, k = 5
-    - not storing k items on either Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
+    - max size of RandomizedQueue object = 138653
 
   * filename = tale.txt, n = 138653, k = 50
-    - not storing k items on either Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
+    - max size of RandomizedQueue object = 138653
 
   * filename = tale.txt, n = 138653, k = 500
-    - not storing k items on either Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
+    - max size of RandomizedQueue object = 138653
 
   * filename = tale.txt, n = 138653, k = 5000
-    - not storing k items on either Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
+    - max size of RandomizedQueue object = 138653
 
   * filename = tale.txt, n = 138653, k = 50000
-    - not storing k items on either Deque or RandomizedQueue
-    - this suggests you are using an auxilliary data structure
-      other than a Deque or RandomizedQueue
-    - max size of Deque           = 0
-    - max size of RandomizedQueue = 1
+    - max size of RandomizedQueue object = 138653
 
 ==&gt; FAILED
 
-Total: 1/2 tests passed!
+Total: 2/2 tests passed!
 
 ================================================================
 
@@ -1228,7 +1004,7 @@ Test 2a-2g: make n random calls to addLast(), removeLast(), isEmpty(), and size(
 =&gt; passed        8192     0.00
 =&gt; passed       16384     0.00
 =&gt; passed       32768     0.00
-=&gt; passed       65536     0.01
+=&gt; passed       65536     0.00
 =&gt; passed      128000     0.01
 =&gt; passed      256000     0.01
 =&gt; passed      512000     0.02
@@ -1249,7 +1025,7 @@ Test 3a-3g: make n random calls to addFirst(), addLast(), removeFirst(), removeL
 =&gt; passed       16384     0.00
 =&gt; passed       32768     0.00
 =&gt; passed       65536     0.00
-=&gt; passed      128000     0.01
+=&gt; passed      128000     0.00
 =&gt; passed      256000     0.01
 =&gt; passed      512000     0.02
 =&gt; passed     1024000     0.04
@@ -1269,7 +1045,7 @@ Test 4a-4g: make n calls to addFirst(); iterate over the n items by calling
 =&gt; passed       16384     0.00
 =&gt; passed       32768     0.00
 =&gt; passed       65536     0.00
-=&gt; passed      128000     0.01
+=&gt; passed      128000     0.00
 =&gt; passed      256000     0.00
 =&gt; passed      512000     0.01
 =&gt; passed     1024000     0.01
@@ -1287,7 +1063,7 @@ Test 5a-5g: make n calls to addFirst()/addLast(); interleave n calls each to
 =&gt; passed        4097     0.00
 =&gt; passed       16385     0.00
 =&gt; passed       32767     0.00
-=&gt; passed       32768     0.00
+=&gt; passed       32768     0.01
 =&gt; passed       32769     0.00
 ==&gt; 7/7 tests passed
 
@@ -1335,14 +1111,12 @@ Test 4a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
 =&gt; passed       16384     0.00
 =&gt; passed       32768     0.00
 =&gt; passed       65536     0.01
-=&gt; passed      128000     0.01
+=&gt; passed      128000     0.02
 =&gt; passed      256000     0.02
-=&gt; passed      512000     0.06
-=&gt; passed     1024000     0.12
-=&gt; FAILED     2048000     2.00
-   [ Most likely one of your operations is not constant time. ]
-
-==&gt; 11/12 tests passed
+=&gt; passed      512000     0.05
+=&gt; passed     1024000     0.21
+=&gt; passed     2048000     0.74
+==&gt; 12/12 tests passed
 
 
 Test 5a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
@@ -1356,8 +1130,8 @@ Test 5a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
 =&gt; passed        8192     0.00
 =&gt; passed       16384     0.02
 =&gt; passed       32768     0.08
-=&gt; passed       65536     0.32
-=&gt; FAILED      128000     1.22
+=&gt; passed       65536     0.33
+=&gt; FAILED      128000     1.25
    [ Most likely one of your operations is not constant time. ]
 
 ==&gt; 7/12 tests passed
@@ -1376,10 +1150,10 @@ Test 6a-g: make n random calls to enqueue(), sample(), dequeue(), isEmpty(),
 =&gt; passed       32768     0.00
 =&gt; passed       65536     0.00
 =&gt; passed      128000     0.01
-=&gt; passed      256000     0.02
+=&gt; passed      256000     0.03
 =&gt; passed      512000     0.05
-=&gt; passed     1024000     0.17
-=&gt; passed     2048000     0.49
+=&gt; passed     1024000     0.10
+=&gt; passed     2048000     0.50
 ==&gt; 12/12 tests passed
 
 
@@ -1398,7 +1172,7 @@ Test 7a-g: make n calls to enqueue(); iterate over the n items
 =&gt; passed      128000     0.01
 =&gt; passed      256000     0.01
 =&gt; passed      512000     0.03
-=&gt; passed     1024000     0.04
+=&gt; passed     1024000     0.03
 =&gt; passed     2048000     0.03
 ==&gt; 12/12 tests passed
 
@@ -1412,12 +1186,12 @@ Test 8a-g: make n calls to enqueue(); interleave n calls each
 =&gt; passed        2049     0.01
 =&gt; passed        4097     0.03
 =&gt; passed       16385     0.48
-=&gt; FAILED       32767     1.88
+=&gt; FAILED       32767     1.89
    [ Most likely one of your operations is not constant time. ]
 
 ==&gt; 4/7 tests passed
 
-Total: 49/58 tests passed!
+Total: 50/58 tests passed!
 
 
 ================================================================
