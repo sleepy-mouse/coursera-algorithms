@@ -1,0 +1,1538 @@
+See the Assessment Guide for information on how to interpret this report.
+
+ASSESSMENT SUMMARY
+
+Compilation:  PASSED
+API:          PASSED
+
+Findbugs:     FAILED (2 warnings)
+PMD:          PASSED
+Checkstyle:   PASSED
+
+Correctness:  0/41 tests passed
+Memory:       1/1 tests passed
+Timing:       0/41 tests passed
+
+Aggregate score: 20.00%
+[Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+
+ASSESSMENT DETAILS
+
+The following files were submitted:
+----------------------------------
+ 411 Dec 12 13:21 BruteCollinearPoints.java
+ 539 Dec 12 13:21 CollinearPoints.java
+ 417 Dec 12 13:21 FastCollinearPoints.java
+1.9K Dec 12 13:21 LineSegment.java
+3.4K Dec 12 13:21 Point.java
+ 533 Dec 12 13:21 Util.java
+
+
+********************************************************************************
+*  COMPILING
+********************************************************************************
+
+
+% javac Point.java
+*-----------------------------------------------------------
+
+% javac BruteCollinearPoints.java
+*-----------------------------------------------------------
+
+% javac FastCollinearPoints.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+Checking the APIs of your programs.
+*-----------------------------------------------------------
+Point:
+
+BruteCollinearPoints:
+
+FastCollinearPoints:
+
+================================================================
+
+
+********************************************************************************
+*  CHECKING STYLE AND COMMON BUG PATTERNS
+********************************************************************************
+
+
+% findbugs *.class
+*-----------------------------------------------------------
+L D PZLA_PREFER_ZERO_LENGTH_ARRAYS PZLA: Should 'segments()' return a zero-length array instead of null?  At BruteCollinearPoints.java:[line 17]
+L D PZLA_PREFER_ZERO_LENGTH_ARRAYS PZLA: Should 'segments()' return a zero-length array instead of null?  At FastCollinearPoints.java:[line 17]
+Warnings generated: 2
+
+
+================================================================
+
+
+% pmd .
+*-----------------------------------------------------------
+BruteCollinearPoints.java:16: Return an empty array rather than null. [ReturnEmptyArrayRatherThanNull]
+FastCollinearPoints.java:16: Return an empty array rather than null. [ReturnEmptyArrayRatherThanNull]
+PMD ends with 2 warnings.
+
+
+================================================================
+
+
+% checkstyle *.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for Point.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for BruteCollinearPoints.java
+*-----------------------------------------------------------
+
+% custom checkstyle checks for FastCollinearPoints.java
+*-----------------------------------------------------------
+
+
+================================================================
+
+
+********************************************************************************
+*  TESTING CORRECTNESS
+********************************************************************************
+
+Testing correctness of Point
+*-----------------------------------------------------------
+Running 3 total tests.
+
+Test 1: p.slopeTo(q)
+  * positive infinite slope, where p and q have coordinates in [0, 500)
+     Failed on trial 1 of 100000
+     p             = (362, 343)
+     q             = (362, 480)
+     p.slopeTo(q)  = 0.0
+  * positive infinite slope, where p and q have coordinates in [0, 32768)
+     Failed on trial 1 of 100000
+     p             = (15895, 13684)
+     q             = (15895, 4573)
+     p.slopeTo(q)  = 0.0
+  * negative infinite slope, where p and q have coordinates in [0, 500)
+     Failed on trial 1 of 100000
+     p, q          = (282, 319)
+     p.slopeTo(q)  = 0.0
+  * negative infinite slope, where p and q have coordinates in [0, 32768)
+     Failed on trial 1 of 100000
+     p, q          = (11129, 10303)
+     p.slopeTo(q)  = 0.0
+  * positive zero     slope, where p and q have coordinates in [0, 500)
+  * positive zero     slope, where p and q have coordinates in [0, 32768)
+  * symmetric for random points p and q with coordinates in [0, 500)
+  * symmetric for random points p and q with coordinates in [0, 32768)
+  * transitive for random points p, q, and r with coordinates in [0, 500)
+  * transitive for random points p, q, and r with coordinates in [0, 32768)
+  * slopeTo(), where p and q have coordinates in [0, 500)
+     Failed on trial 1 of 100000
+     p                        = (320, 251)
+     q                        = (320, 387)
+     student   p.slopeTo(q) = 0.0
+     reference p.slopeTo(q) = Infinity
+  * slopeTo(), where p and q have coordinates in [0, 32768)
+     Failed on trial 1 of 100000
+     p                        = (25928, 18078)
+     q                        = (24351, 21950)
+     student   p.slopeTo(q) = 0.0
+     reference p.slopeTo(q) = -2.4552948636651872
+  * slopeTo(), where p and q have coordinates in [0, 10)
+     Failed on trial 1 of 100000
+     p                        = (4, 7)
+     q                        = (4, 0)
+     student   p.slopeTo(q) = 0.0
+     reference p.slopeTo(q) = Infinity
+  * throw a java.lang.NullPointerException if argument is null
+     - fails to throw java.lang.NullPointerException
+==&gt; FAILED
+
+Test 2: p.compareTo(q)
+  * reflexive, where p and q have coordinates in [0, 500)
+  * reflexive, where p and q have coordinates in [0, 32768)
+  * antisymmetric, where p and q have coordinates in [0, 500)
+  * antisymmetric, where p and q have coordinates in [0, 32768)
+  * transitive, where p, q, and r have coordinates in [0, 500)
+  * transitive, where p, q, and r have coordinates in [0, 32768)
+  * sign of compareTo(), where p and q have coordinates in [0, 500)
+     Failed on trial 1 of 100000
+     p                        = (353, 331)
+     q                        = (485, 82)
+     student   p.compareTo(q) = 0
+     reference p.compareTo(q) = 1
+  * sign of compareTo(), where p and q have coordinates in [0, 32768)
+     Failed on trial 1 of 100000
+     p                        = (18679, 1721)
+     q                        = (15792, 31238)
+     student   p.compareTo(q) = 0
+     reference p.compareTo(q) = -1
+  * sign of compareTo(), where p and q have coordinates in [0, 10)
+     Failed on trial 1 of 100000
+     p                        = (3, 3)
+     q                        = (8, 8)
+     student   p.compareTo(q) = 0
+     reference p.compareTo(q) = -1
+  * throw java.lang.NullPointerException exception if argument is null
+     - fails to throw java.lang.NullPointerException
+==&gt; FAILED
+
+Test 3: p.slopeOrder().compare(q, r)
+  * reflexive, where p and q have coordinates in [0, 500)
+    java.lang.NullPointerException
+
+    TestPoint.reflexiveCompare(TestPoint.java:665)
+    TestPoint.test3(TestPoint.java:893)
+    TestPoint.main(TestPoint.java:915)
+
+  * reflexive, where p and q have coordinates in [0, 32768)
+    java.lang.NullPointerException
+
+    TestPoint.reflexiveCompare(TestPoint.java:665)
+    TestPoint.test3(TestPoint.java:894)
+    TestPoint.main(TestPoint.java:915)
+
+  * antisymmetric, where p, q, and r have coordinates in [0, 500)
+    java.lang.NullPointerException
+
+    TestPoint.antisymmetricCompare(TestPoint.java:698)
+    TestPoint.test3(TestPoint.java:895)
+    TestPoint.main(TestPoint.java:915)
+
+  * antisymmetric, where p, q, and r have coordinates in [0, 32768)
+    java.lang.NullPointerException
+
+    TestPoint.antisymmetricCompare(TestPoint.java:698)
+    TestPoint.test3(TestPoint.java:896)
+    TestPoint.main(TestPoint.java:915)
+
+  * transitive, where p, q, r, and s have coordinates in [0, 500)
+    java.lang.NullPointerException
+
+    TestPoint.transitiveCompare(TestPoint.java:736)
+    TestPoint.test3(TestPoint.java:897)
+    TestPoint.main(TestPoint.java:915)
+
+  * transitive, where p, q, r, and s have coordinates in [0, 32768)
+    java.lang.NullPointerException
+
+    TestPoint.transitiveCompare(TestPoint.java:736)
+    TestPoint.test3(TestPoint.java:898)
+    TestPoint.main(TestPoint.java:915)
+
+  * sign of compare(), where p, q, and r have coordinates in [0, 500)
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:333)
+    TestPoint.test3(TestPoint.java:899)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:336)
+    TestPoint.test3(TestPoint.java:899)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:340)
+    TestPoint.test3(TestPoint.java:899)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:347)
+    TestPoint.test3(TestPoint.java:899)
+    TestPoint.main(TestPoint.java:915)
+
+  * sign of compare(), where p, q, and r have coordinates in [0, 32768)
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:333)
+    TestPoint.test3(TestPoint.java:900)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:336)
+    TestPoint.test3(TestPoint.java:900)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:340)
+    TestPoint.test3(TestPoint.java:900)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:347)
+    TestPoint.test3(TestPoint.java:900)
+    TestPoint.main(TestPoint.java:915)
+
+  * sign of compare(), where p, q, and r have coordinates in [0, 10)
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:333)
+    TestPoint.test3(TestPoint.java:901)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:336)
+    TestPoint.test3(TestPoint.java:901)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:340)
+    TestPoint.test3(TestPoint.java:901)
+    TestPoint.main(TestPoint.java:915)
+
+    java.lang.NullPointerException
+
+    TestPoint.compare(TestPoint.java:304)
+    TestPoint.compare(TestPoint.java:347)
+    TestPoint.test3(TestPoint.java:901)
+    TestPoint.main(TestPoint.java:915)
+
+  * throw java.lang.NullPointerException if either argument is null
+==&gt; FAILED
+
+
+Total: 0/3 tests passed!
+
+
+================================================================
+********************************************************************************
+*  TESTING CORRECTNESS (substituting reference Point and LineSegment)
+********************************************************************************
+
+Testing correctness of BruteCollinearPoints
+*-----------------------------------------------------------
+Running 17 total tests.
+
+The inputs satisfy the following conditions:
+  - no duplicate points
+  - no 5 (or more) points are collinear
+  - all x- and y-coordinates between 0 and 32,767
+
+Test 1: points from a file
+  * filename = input8.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:155)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+
+  * filename = equidistant.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:156)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+
+  * filename = input40.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:157)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+
+  * filename = input48.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:158)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+
+==&gt; FAILED
+
+Test 2a: points from a file with horizontal line segments
+  * filename = horizontal5.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test2a(TestBruteCollinearPoints.java:164)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:720)
+
+  * filename = horizontal25.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test2a(TestBruteCollinearPoints.java:165)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:720)
+
+==&gt; FAILED
+
+Test 2b: random horizontal line segments
+  *  1 random horizontal line segment
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
+    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:219)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+
+    - failed on trial 1 of 500
+     4
+     19329 15022
+     18243 15022
+      2469 15022
+     14958 15022
+
+  *  5 random horizontal line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
+    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:220)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+
+    - failed on trial 1 of 250
+     20
+     16401  9382
+      6814  9382
+     10285 19524
+     16642 20639
+      9732 19524
+      9136 16386
+      8944 20639
+     18657 20639
+      1531 16386
+      5645 16386
+     20414  9382
+     19026 20639
+      5533 15469
+     17439  9382
+      2938 16386
+      3741 19524
+     19590 15469
+     18786 15469
+     12899 15469
+     13611 19524
+
+  * 10 random horizontal line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
+    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:221)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+
+    - failed on trial 1 of 50
+
+  * 15 random horizontal line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
+    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:222)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+
+    - failed on trial 1 of 5
+
+==&gt; FAILED
+
+Test 3a: points from a file with vertical line segments
+  * filename = vertical5.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test3a(TestBruteCollinearPoints.java:228)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:726)
+
+  * filename = vertical25.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test3a(TestBruteCollinearPoints.java:229)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:726)
+
+==&gt; FAILED
+
+Test 3b: random vertical line segments
+  *  1 random vertical line segment
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
+    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:235)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+
+    - failed on trial 1 of 500
+     4
+     15400 19233
+     15400 11652
+     15400 18635
+     15400 17383
+
+  *  5 random vertical line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
+    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:236)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+
+    - failed on trial 1 of 250
+     20
+     17816  5037
+      6687 17873
+     18475 16928
+     17816 11297
+     17002 20372
+      7061 12312
+      6687 13171
+     17002 19317
+      7061  7352
+     18475 20396
+     18475  8581
+     17002 17404
+     17816 14198
+      6687  6043
+     17002  2874
+      7061 20631
+      7061  5129
+     18475 14996
+      6687 15904
+     17816 17526
+
+  * 10 random vertical line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
+    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:237)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+
+    - failed on trial 1 of 50
+
+  * 15 random vertical line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
+    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:238)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+
+    - failed on trial 1 of 5
+
+==&gt; FAILED
+
+Test 4a: points from a file with no line segments
+  * filename = random23.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test4a(TestBruteCollinearPoints.java:244)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:732)
+
+  * filename = random38.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test4a(TestBruteCollinearPoints.java:245)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:732)
+
+==&gt; FAILED
+
+Test 4b: random points with no line segments
+  *  5 random points
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
+    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:274)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
+
+    - failed on trial 1 of 500
+     5
+     25038 13301
+     11466 26174
+     19303  7880
+     31012 27454
+     17150 16722
+
+  * 10 random points
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
+    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:275)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
+
+    - failed on trial 1 of 250
+     10
+      6295 23577
+     16527  5806
+     17611 21845
+     15368  2852
+     17790 17467
+     11192 23485
+     29985  9703
+     21271 14048
+       694  6620
+     13451 26820
+
+  * 20 random points
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
+    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:276)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
+
+    - failed on trial 1 of 100
+     20
+      2107 29237
+     11253 17883
+      6388  4036
+     31713 16398
+     15432 26305
+     23389 18470
+     17223 10912
+     32072  6310
+      5423  2072
+      4310  4000
+     20431 31404
+      9200  3026
+     14556  9764
+      9755 24238
+     17313  1856
+     22159 23466
+     26860 28032
+      1383  5301
+     27615 27571
+     22772  1944
+
+  * 50 random points
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
+    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:277)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
+
+    - failed on trial 1 of 10
+
+==&gt; FAILED
+
+Test 5: points from a file with fewer than 4 points
+  * filename = input1.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:283)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
+
+  * filename = input2.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:284)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
+
+  * filename = input3.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:285)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
+
+==&gt; FAILED
+
+Test 6: check for dependence on either compareTo() or compare()
+        returning { -1, +1, 0 } instead of { negative integer,
+        positive integer, zero }
+  * filename = equidistant.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:294)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+
+  * filename = input40.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:295)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+
+  * filename = input48.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:296)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+
+==&gt; FAILED
+
+Test 7: check for fragile dependence on return value of toString()
+  * filename = equidistant.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:304)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+
+  * filename = input40.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:305)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+
+  * filename = input48.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
+    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:306)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+
+
+It is bad style to write code that depends on the particular format of
+the output from the toString() method, especially if your reason for
+doing so is to circumvent the public API (which intentionally does not
+provide access to the x- and y-coordinates).
+
+==&gt; FAILED
+
+Test 8: random line segments, none vertical or horizontal
+  *  1 random line segment
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
+    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:346)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+
+    - failed on trial 1 of 500
+     4
+      2818  1891
+      5933  6761
+     10294 13579
+      5310  5787
+
+  *  5 random line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
+    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:347)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+
+    - failed on trial 1 of 250
+     20
+     10748  5148
+     13838 13358
+     10954  6366
+     10297  5452
+      4799  2400
+      7297  2868
+      5767  1774
+     17659 14191
+     14765 15821
+      7991  4476
+     21328 15550
+     13082 10824
+     14387 10307
+     12247  7244
+      3735  1708
+     13569  9336
+      8632  4704
+     11695  7022
+     10857  7764
+      8894   222
+
+  * 10 random line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
+    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:348)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+
+    - failed on trial 1 of 100
+
+  * 15 random line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
+    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:349)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+
+    - failed on trial 1 of 50
+
+==&gt; FAILED
+
+Test 9: random line segments
+  *  1 random line segment
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
+    TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:379)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
+
+    - failed on trial 1 of 500
+     4
+      5421  7861
+      8271  8602
+      5571  7900
+      5921  7991
+
+  *  5 random line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
+    TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:380)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
+
+    - failed on trial 1 of 250
+     20
+      5882  3953
+      9273 10547
+      2115  3622
+      5084  2168
+      9273 10289
+      5958  2130
+      7344 10262
+      8314  9393
+      8542  9903
+      5809  9923
+      9273 10073
+      6257 10691
+      3438  5302
+      5669  9683
+      2745  4422
+      5802   960
+      6654  7350
+      9273 10391
+      6810  8520
+      7433 12707
+
+  * 10 random line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
+    TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:381)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
+
+    - failed on trial 1 of 100
+
+  * 15 random line segments
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
+    TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:382)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
+
+    - failed on trial 1 of 50
+
+==&gt; FAILED
+
+Test 10: check that data type is immutable by testing whether each method
+         returns the same value, regardless of any intervening operations
+  * input8.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testImmutable(TestBruteCollinearPoints.java:429)
+    TestBruteCollinearPoints.testImmutable(TestBruteCollinearPoints.java:516)
+    TestBruteCollinearPoints.test10(TestBruteCollinearPoints.java:531)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:753)
+
+    - sequence of operations was:
+          BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+
+    - failed on trial 1 of 100
+
+  * equidistant.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testImmutable(TestBruteCollinearPoints.java:429)
+    TestBruteCollinearPoints.testImmutable(TestBruteCollinearPoints.java:516)
+    TestBruteCollinearPoints.test10(TestBruteCollinearPoints.java:532)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:753)
+
+    - sequence of operations was:
+          BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+
+    - failed on trial 1 of 100
+
+==&gt; FAILED
+
+Test 11: check that data type does not mutate the constructor argument
+  * input8.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testMutateConstructorArgument(TestBruteCollinearPoints.java:545)
+    TestBruteCollinearPoints.test11(TestBruteCollinearPoints.java:565)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:756)
+
+  * equidistant.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testMutateConstructorArgument(TestBruteCollinearPoints.java:545)
+    TestBruteCollinearPoints.test11(TestBruteCollinearPoints.java:566)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:756)
+
+==&gt; FAILED
+
+Test 12: numberOfSegments() is consistent with segments()
+  * filename = input8.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
+    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
+    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:604)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
+
+  * filename = equidistant.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
+    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
+    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:605)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
+
+  * filename = input40.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
+    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
+    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:606)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
+
+  * filename = input48.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
+    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
+    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:607)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
+
+  * filename = horizontal5.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
+    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
+    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:608)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
+
+  * filename = vertical5.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
+    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
+    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:609)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
+
+  * filename = random23.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:7)
+    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
+    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
+    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:610)
+    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
+
+==&gt; FAILED
+
+Test 13: throws an exception if either the constructor argument is null
+         or any entry in array is null
+  * argument is null
+  * Point[] of length 10, number of null entries = 1
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     10
+      1575 10891
+     25404 29650
+      2630 17932
+     22461  4781
+      3324 30928
+     12743 14568
+     12104  3971
+      6170 18348
+     null
+     11354   103
+
+  * Point[] of length 10, number of null entries = 10
+  * Point[] of length 4, number of null entries = 1
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     4
+     11957  5641
+     null
+     30887 19061
+     32210 30666
+
+  * Point[] of length 3, number of null entries = 1
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     3
+     32628 18705
+     null
+     28342 26356
+
+  * Point[] of length 2, number of null entries = 1
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     2
+     19700 26540
+     null
+
+  * Point[] of length 1, number of null entries = 1
+==&gt; FAILED
+
+Test 14: check that the constructor throws an exception if duplicate points
+  * 50 points
+    - failed on trial 1 of 5
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+
+  * 25 points
+    - failed on trial 1 of 10
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+
+  * 5 points
+    - failed on trial 1 of 100
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     5
+     20102 28276
+     15930  9700
+     19763 24391
+     28919 19819
+     15930  9700
+
+  * 4 points
+    - failed on trial 1 of 100
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     4
+      9279 12157
+      9061 11911
+      9279 12157
+     22325 16419
+
+  * 3 points
+    - failed on trial 1 of 100
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     3
+     19223 23969
+     19223 23969
+      4793 17904
+
+  * 2 points
+    - failed on trial 1 of 100
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     2
+     11097 12285
+     11097 12285
+
+==&gt; FAILED
+
+
+Total: 0/17 tests passed!
+
+
+================================================================
+Testing correctness of FastCollinearPoints
+*-----------------------------------------------------------
+Running 21 total tests.
+
+The inputs satisfy the following conditions:
+  - no duplicate points
+  - all x- and y-coordinates between 0 and 32,767
+
+Test 1: points from a file
+  * filename = input8.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:7)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:156)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+
+  * filename = equidistant.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:7)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:157)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+
+  * filename = input40.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:7)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:158)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+
+  * filename = input48.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:7)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:159)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+
+  * filename = input299.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:7)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:160)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+
+==&gt; FAILED
+
+Test 2a: points from a file with horizontal line segments
+  * filename = horizontal5.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.ut
+
+...
+
+WARNING: the grading output was truncated due to excessive length.
+Typically, this is because you have a method that has an unanticipated side effect
+(such as printing to standard output or throwing an exception). A large amount of output
+can also arise from failing many tests.
