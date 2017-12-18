@@ -2,19 +2,26 @@
  *  Compilation:  javac Point.java
  *  Execution:    java Point
  *  Dependencies: none
- *  
+ *
  *  An immutable data type for points in the plane.
  *  For use on Coursera, Algorithms Part I programming assignment.
  *
  ******************************************************************************/
 
-import java.util.Comparator;
 import edu.princeton.cs.algs4.StdDraw;
+
+import java.util.Comparator;
+import java.util.Objects;
 
 public class Point implements Comparable<Point> {
 
     private final int x;     // x-coordinate of this point
     private final int y;     // y-coordinate of this point
+    private final Comparator<Point> slopeOrderComparator = (p1, p2) -> {
+        Objects.requireNonNull(p1);
+        Objects.requireNonNull(p2);
+        return (int) (slopeTo(p1) - slopeTo(p2));
+    };
 
     /**
      * Initializes a new point.
@@ -59,8 +66,14 @@ public class Point implements Comparable<Point> {
      * @return the slope between this point and the specified point
      */
     public double slopeTo(Point that) {
-        /* YOUR CODE HERE */
-        return 0;
+        Objects.requireNonNull(that);
+        if (that.x == x && that.y == y)
+            return Double.NEGATIVE_INFINITY;
+        else if (that.x == x)
+            return Double.POSITIVE_INFINITY;
+        else if (that.y == y)
+            return 0.0;
+        return ((double) (that.y - y)) / ((double) (that.x - x));
     }
 
     /**
@@ -76,8 +89,15 @@ public class Point implements Comparable<Point> {
      *         argument point
      */
     public int compareTo(Point that) {
-        /* YOUR CODE HERE */
-        return 0;
+        Objects.requireNonNull(that);
+        int x0 = x, y0 = y;
+        int x1 = that.x, y1 = that.y;
+        if (x0 == x1 && y0 == y1)
+            return 0;
+        if (y0 < y1 || (y0 == y1 && x0 < x1))
+            return -1;
+        else
+            return 1;
     }
 
     /**
@@ -87,8 +107,7 @@ public class Point implements Comparable<Point> {
      * @return the Comparator that defines this ordering on points
      */
     public Comparator<Point> slopeOrder() {
-        /* YOUR CODE HERE */
-        return null;
+        return slopeOrderComparator;
     }
 
 
