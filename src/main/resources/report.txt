@@ -5,25 +5,25 @@ ASSESSMENT SUMMARY
 Compilation:  PASSED
 API:          PASSED
 
-Findbugs:     FAILED (6 warnings)
+Findbugs:     FAILED (2 warnings)
 PMD:          PASSED
 Checkstyle:   PASSED
 
-Correctness:  11/41 tests passed
+Correctness:  19/41 tests passed
 Memory:       0/1 tests passed
-Timing:       37/41 tests passed
+Timing:       41/41 tests passed
 
-Aggregate score: 44.15%
+Aggregate score: 57.80%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
- 722 Dec 24 13:33 BruteCollinearPoints.java
- 728 Dec 24 13:33 FastCollinearPoints.java
-4.4K Dec 24 13:33 Point.java
- 582 Dec 24 13:33 Util.java
+1.1K Dec 24 14:53 BruteCollinearPoints.java
+1.1K Dec 24 14:53 FastCollinearPoints.java
+4.4K Dec 24 14:53 Point.java
+ 582 Dec 24 14:53 Util.java
 
 
 ********************************************************************************
@@ -62,13 +62,9 @@ FastCollinearPoints:
 
 % findbugs *.class
 *-----------------------------------------------------------
-M V EI_EXPOSE_REP EI: Returns a reference to the mutable object stored in the instance variable 'segments', which exposes the internal representation of the class 'BruteCollinearPoints'. Instead, create a defensive copy of the object referenced by 'segments' and return the copy.  At BruteCollinearPoints.java:[line 25]
-M V EI_EXPOSE_REP2 EI2: Stores a reference to an externally mutable object in the instance variable 'points', exposing the internal representation of the class 'BruteCollinearPoints'. Instead, create a defensive copy of the object referenced by the parameter variable 'points' and store that copy in the instance variable 'points'.   At BruteCollinearPoints.java:[line 11]
-M V EI_EXPOSE_REP EI: Returns a reference to the mutable object stored in the instance variable 'segments', which exposes the internal representation of the class 'FastCollinearPoints'. Instead, create a defensive copy of the object referenced by 'segments' and return the copy.  At FastCollinearPoints.java:[line 25]
-M V EI_EXPOSE_REP2 EI2: Stores a reference to an externally mutable object in the instance variable 'points', exposing the internal representation of the class 'FastCollinearPoints'. Instead, create a defensive copy of the object referenced by the parameter variable 'points' and store that copy in the instance variable 'points'.   At FastCollinearPoints.java:[line 11]
-L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'points' is never read. Consider removing it from the class.  At BruteCollinearPoints.java:[line 11]
-L P URF_UNREAD_FIELD UrF: The instance (or static) variable 'points' is never read. Consider removing it from the class.  At FastCollinearPoints.java:[line 11]
-Warnings generated: 6
+L D FE_FLOATING_POINT_EQUALITY FE: Tests for exact floating-point equality. Because floating-point calculations may involve rounding, the calculated values may be imprecise.  At BruteCollinearPoints.java:[line 19]
+L D FE_FLOATING_POINT_EQUALITY FE: Tests for exact floating-point equality. Because floating-point calculations may involve rounding, the calculated values may be imprecise.  At FastCollinearPoints.java:[line 19]
+Warnings generated: 2
 
 
 ================================================================
@@ -76,15 +72,6 @@ Warnings generated: 6
 
 % pmd .
 *-----------------------------------------------------------
-BruteCollinearPoints.java:5: Avoid unused private instance (or static) variables, such as 'points'. [UnusedPrivateField]
-BruteCollinearPoints.java:5: Can you replace the instance (or static) variable 'points' with a local variable? [SingularField]
-BruteCollinearPoints.java:6: The private instance (or static) variable 'segments' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-BruteCollinearPoints.java:25: Returning 'segments' may expose an internal array. If so, return a defensive copy. [MethodReturnsInternalArray]
-FastCollinearPoints.java:5: Avoid unused private instance (or static) variables, such as 'points'. [UnusedPrivateField]
-FastCollinearPoints.java:5: Can you replace the instance (or static) variable 'points' with a local variable? [SingularField]
-FastCollinearPoints.java:6: The private instance (or static) variable 'segments' can be made 'final'; it is initialized only in the declaration or constructor. [ImmutableField]
-FastCollinearPoints.java:25: Returning 'segments' may expose an internal array. If so, return a defensive copy. [MethodReturnsInternalArray]
-PMD ends with 8 warnings.
 
 
 ================================================================
@@ -177,132 +164,112 @@ The inputs satisfy the following conditions:
 
 Test 1: points from a file
   * filename = input8.txt
-    java.lang.NullPointerException: segment 7 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (10000, 0) -&gt; (7000, 3000)
+    - reference segment 0: (10000, 0) -&gt; (7000, 3000) -&gt; (3000, 7000) -&gt; (0, 10000)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:155)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+    - number of entries in student   solution: 2
+    - number of entries in reference solution: 2
+    - 2 extra entries in student solution, including: '(20000, 21000) -&gt; (6000, 7000)'
+    - 2 missing entries in student solution, including: '(3000, 4000) -&gt; (6000, 7000) -&gt; (14000, 15000) -&gt; (20000, 21000)'
 
   * filename = equidistant.txt
-    java.lang.NullPointerException: segment 14 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:156)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 4
+    - 3 missing entries in student solution, including: '(30000, 0) -&gt; (20000, 10000) -&gt; (10000, 20000) -&gt; (0, 30000)'
 
   * filename = input40.txt
-    java.lang.NullPointerException: segment 39 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:157)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 4
+    - 4 missing entries in student solution, including: '(2000, 29000) -&gt; (4000, 29000) -&gt; (22000, 29000) -&gt; (28000, 29000)'
 
   * filename = input48.txt
-    java.lang.NullPointerException: segment 47 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:158)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(1000, 26000) -&gt; (9000, 26000) -&gt; (11000, 26000) -&gt; (18000, 26000)'
 
 ==&gt; FAILED
 
 Test 2a: points from a file with horizontal line segments
   * filename = horizontal5.txt
-    java.lang.NullPointerException: segment 19 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (7453, 14118) -&gt; (5067, 14118)
+    - reference segment 4: (2682, 14118) -&gt; (5067, 14118) -&gt; (7453, 14118) -&gt; (7821, 14118)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test2a(TestBruteCollinearPoints.java:164)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:720)
+    - number of entries in student   solution: 5
+    - number of entries in reference solution: 5
+    - 4 extra entries in student solution, including: '(7453, 14118) -&gt; (5067, 14118)'
+    - 4 missing entries in student solution, including: '(2682, 14118) -&gt; (5067, 14118) -&gt; (7453, 14118) -&gt; (7821, 14118)'
 
   * filename = horizontal25.txt
-    java.lang.NullPointerException: segment 99 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (19459, 13870) -&gt; (18005, 13870)
+    - reference segment 13: (2566, 13870) -&gt; (10653, 13870) -&gt; (18005, 13870) -&gt; (19459, 13870)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test2a(TestBruteCollinearPoints.java:165)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:720)
+    - number of entries in student   solution: 25
+    - number of entries in reference solution: 25
+    - 22 extra entries in student solution, including: '(16352, 20913) -&gt; (8784, 20913)'
+    - 22 missing entries in student solution, including: '(8784, 20913) -&gt; (9880, 20913) -&gt; (16352, 20913) -&gt; (19666, 20913)'
 
 ==&gt; FAILED
 
 Test 2b: random horizontal line segments
   *  1 random horizontal line segment
-    java.lang.NullPointerException: segment 3 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (8340, 19060) -&gt; (16965, 19060)
+    - reference segment 0: (4138, 19060) -&gt; (8340, 19060) -&gt; (16711, 19060) -&gt; (16965, 19060)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
-    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:219)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: '(8340, 19060) -&gt; (16965, 19060)'
+    - 1 missing entry in student solution: '(4138, 19060) -&gt; (8340, 19060) -&gt; (16711, 19060) -&gt; (16965, 19060)'
 
     - failed on trial 1 of 500
      4
-      9614 11705
-      4784 11705
-      9595 11705
-     20675 11705
+      8340 19060
+      4138 19060
+     16711 19060
+     16965 19060
 
   *  5 random horizontal line segments
-    java.lang.NullPointerException: segment 19 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
-    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:220)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 5
+    - 5 missing entries in student solution, including: '(1746, 18038) -&gt; (8566, 18038) -&gt; (13506, 18038) -&gt; (19520, 18038)'
 
     - failed on trial 1 of 250
      20
-      9968 11890
-     18745 11890
-     14527  1400
-     10692  2765
-      5296 16273
-      8762  1400
-      2186 16273
-      6765  2765
-     13086 11890
-      4796  1400
-     15789 16273
-      4512  6641
-     16828  2765
-      9550  6641
-      2790  2765
-     11817  6641
-      6986 16273
-      6865  1400
-     10143 11890
-     12839  6641
+     13506 18038
+     20536  1222
+     15879 14468
+      7144 14468
+      5394 12018
+     19179 14468
+     14405  4993
+      8566 18038
+     14807  1222
+     10943 14468
+     10129 12018
+     14121 12018
+     18452  4993
+     16068 12018
+     12467  4993
+      1746 18038
+     19520 18038
+     14792  1222
+     15206  4993
+     13649  1222
 
   * 10 random horizontal line segments
-    java.lang.NullPointerException: segment 39 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
-    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:221)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 10
+    - 10 missing entries in student solution, including: '(5540, 20122) -&gt; (7573, 20122) -&gt; (9956, 20122) -&gt; (18735, 20122)'
 
     - failed on trial 1 of 50
 
   * 15 random horizontal line segments
-    java.lang.NullPointerException: segment 59 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
-    TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:222)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 15
+    - 15 missing entries in student solution, including: '(1736, 19539) -&gt; (3531, 19539) -&gt; (3827, 19539) -&gt; (6836, 19539)'
 
     - failed on trial 1 of 5
 
@@ -310,93 +277,84 @@ Test 2b: random horizontal line segments
 
 Test 3a: points from a file with vertical line segments
   * filename = vertical5.txt
-    java.lang.NullPointerException: segment 19 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (14407, 19953) -&gt; (14407, 17188)
+    - reference segment 3: (14407, 10367) -&gt; (14407, 17188) -&gt; (14407, 17831) -&gt; (14407, 19953)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test3a(TestBruteCollinearPoints.java:228)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:726)
+    - number of entries in student   solution: 5
+    - number of entries in reference solution: 5
+    - 5 extra entries in student solution, including: '(14407, 19953) -&gt; (14407, 17188)'
+    - 5 missing entries in student solution, including: '(14407, 10367) -&gt; (14407, 17188) -&gt; (14407, 17831) -&gt; (14407, 19953)'
 
   * filename = vertical25.txt
-    java.lang.NullPointerException: segment 99 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (11585, 5103) -&gt; (11585, 4132)
+    - reference segment 12: (11585, 4132) -&gt; (11585, 5103) -&gt; (11585, 11220) -&gt; (11585, 12912)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test3a(TestBruteCollinearPoints.java:229)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:726)
+    - number of entries in student   solution: 25
+    - number of entries in reference solution: 25
+    - 22 extra entries in student solution, including: '(9557, 18873) -&gt; (9557, 20238)'
+    - 22 missing entries in student solution, including: '(19953, 10489) -&gt; (19953, 10688) -&gt; (19953, 19299) -&gt; (19953, 20439)'
 
 ==&gt; FAILED
 
 Test 3b: random vertical line segments
   *  1 random vertical line segment
-    java.lang.NullPointerException: segment 3 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (10005, 1178) -&gt; (10005, 17658)
+    - reference segment 0: (10005, 1178) -&gt; (10005, 11891) -&gt; (10005, 17658) -&gt; (10005, 20204)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
-    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:235)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: '(10005, 1178) -&gt; (10005, 17658)'
+    - 1 missing entry in student solution: '(10005, 1178) -&gt; (10005, 11891) -&gt; (10005, 17658) -&gt; (10005, 20204)'
 
     - failed on trial 1 of 500
      4
-     13482  8790
-     13482 15412
-     13482  8387
-     13482 18882
+     10005  1178
+     10005 11891
+     10005 20204
+     10005 17658
 
   *  5 random vertical line segments
-    java.lang.NullPointerException: segment 19 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
-    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:236)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 5
+    - 5 missing entries in student solution, including: '(20156, 7846) -&gt; (20156, 9610) -&gt; (20156, 9666) -&gt; (20156, 17305)'
 
     - failed on trial 1 of 250
      20
-     11900  1805
-     11900 12033
-      8387 17707
-     11900 10122
-     20950 19309
-      8387  6415
-     11512  6785
-     11512 13348
-     11900  5809
-     18470 12769
-     20950 19275
-      8387  8470
-     11512 14717
-     20950 19784
-     18470  1651
-     20950 14727
-      8387  3054
-     11512 15718
-     18470 17604
-     18470 12359
+      3586  2991
+      9629  3208
+      3586  5593
+      8323 17348
+      3586  4638
+     20215  6679
+     20156  7846
+      9629  8886
+      8323  8025
+     20215  6180
+     20156  9610
+      9629 17346
+     20215 13608
+     20156  9666
+      8323  7800
+      3586 10983
+     20215 13071
+      9629  4191
+      8323 17076
+     20156 17305
 
   * 10 random vertical line segments
-    java.lang.NullPointerException: segment 39 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
-    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:237)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 10
+    - 10 missing entries in student solution, including: '(13415, 12672) -&gt; (13415, 14166) -&gt; (13415, 16980) -&gt; (13415, 17402)'
 
     - failed on trial 1 of 50
 
   * 15 random vertical line segments
-    java.lang.NullPointerException: segment 59 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
-    TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:238)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 15
+    - 15 missing entries in student solution, including: '(9845, 11177) -&gt; (9845, 15188) -&gt; (9845, 17027) -&gt; (9845, 17075)'
 
     - failed on trial 1 of 5
 
@@ -404,199 +362,57 @@ Test 3b: random vertical line segments
 
 Test 4a: points from a file with no line segments
   * filename = random23.txt
-    java.lang.NullPointerException: segment 22 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test4a(TestBruteCollinearPoints.java:244)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:732)
-
   * filename = random38.txt
-    java.lang.NullPointerException: segment 37 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test4a(TestBruteCollinearPoints.java:245)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:732)
-
-==&gt; FAILED
+==&gt; passed
 
 Test 4b: random points with no line segments
   *  5 random points
-    java.lang.NullPointerException: segment 4 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
-    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:274)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
-
-    - failed on trial 1 of 500
-     5
-     13811 15664
-     30122 16004
-     14675  5239
-      8345 28804
-     20629  2113
-
   * 10 random points
-    java.lang.NullPointerException: segment 9 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
-    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:275)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
-
-    - failed on trial 1 of 250
-     10
-      2191  8041
-       456  1002
-     10838  8800
-     30416 14819
-     23233 23600
-      6434 16924
-       330 29858
-     30448 27626
-     31840 14828
-      8928 30624
-
   * 20 random points
-    java.lang.NullPointerException: segment 19 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
-    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:276)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
-
-    - failed on trial 1 of 100
-     20
-     30592  9425
-     29795 24351
-     14614 20334
-     22805 26123
-     18155 23805
-     30034 32311
-     16466  7320
-     27455 30105
-     29963  5126
-     10286 17893
-     23535 13387
-     15045 10015
-      9193 14402
-     11651 14832
-     31816 30031
-      6762 30257
-     11241 11268
-     15939 13136
-     23459 11464
-     22630 30429
-
   * 50 random points
-    java.lang.NullPointerException: segment 49 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
-    TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:277)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
-
-    - failed on trial 1 of 10
-
-==&gt; FAILED
+==&gt; passed
 
 Test 5: points from a file with fewer than 4 points
   * filename = input1.txt
-    java.lang.NullPointerException: segment 0 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:283)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
-
   * filename = input2.txt
-    java.lang.NullPointerException: segment 1 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:284)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
-
   * filename = input3.txt
-    java.lang.NullPointerException: segment 2 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:285)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
-
-==&gt; FAILED
+==&gt; passed
 
 Test 6: check for dependence on either compareTo() or compare()
         returning { -1, +1, 0 } instead of { negative integer,
         positive integer, zero }
   * filename = equidistant.txt
-    java.lang.NullPointerException: segment 14 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:294)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 4
+    - 3 missing entries in student solution, including: '(30000, 0) -&gt; (20000, 10000) -&gt; (10000, 20000) -&gt; (0, 30000)'
 
   * filename = input40.txt
-    java.lang.NullPointerException: segment 39 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:295)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 4
+    - 4 missing entries in student solution, including: '(2000, 29000) -&gt; (4000, 29000) -&gt; (22000, 29000) -&gt; (28000, 29000)'
 
   * filename = input48.txt
-    java.lang.NullPointerException: segment 47 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:296)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(1000, 26000) -&gt; (9000, 26000) -&gt; (11000, 26000) -&gt; (18000, 26000)'
 
 ==&gt; FAILED
 
 Test 7: check for fragile dependence on return value of toString()
   * filename = equidistant.txt
-    java.lang.NullPointerException: segment 14 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:304)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 4
+    - 3 missing entries in student solution, including: '(30000, 0) -&gt; (20000, 10000) -&gt; (10000, 20000) -&gt; (0, 30000)'
 
   * filename = input40.txt
-    java.lang.NullPointerException: segment 39 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:305)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 4
+    - 4 missing entries in student solution, including: '(2000, 29000) -&gt; (4000, 29000) -&gt; (22000, 29000) -&gt; (28000, 29000)'
 
   * filename = input48.txt
-    java.lang.NullPointerException: segment 47 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
-    TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:306)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(1000, 26000) -&gt; (9000, 26000) -&gt; (11000, 26000) -&gt; (18000, 26000)'
 
 
 It is bad style to write code that depends on the particular format of
@@ -608,72 +424,61 @@ provide access to the x- and y-coordinates).
 
 Test 8: random line segments, none vertical or horizontal
   *  1 random line segment
-    java.lang.NullPointerException: segment 3 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (7100, 3340) -&gt; (12986, 14734)
+    - reference segment 0: (5792, 808) -&gt; (7100, 3340) -&gt; (9716, 8404) -&gt; (12986, 14734)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
-    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:346)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: '(7100, 3340) -&gt; (12986, 14734)'
+    - 1 missing entry in student solution: '(5792, 808) -&gt; (7100, 3340) -&gt; (9716, 8404) -&gt; (12986, 14734)'
 
     - failed on trial 1 of 500
      4
-      8904  3154
-     11484  6334
-     14064  9514
-     17934 14284
+      7100  3340
+      9716  8404
+      5792   808
+     12986 14734
 
   *  5 random line segments
-    java.lang.NullPointerException: segment 19 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
-    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:347)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 5
+    - 5 missing entries in student solution, including: '(1483, 12921) -&gt; (4030, 13551) -&gt; (8275, 14601) -&gt; (10822, 15231)'
 
     - failed on trial 1 of 250
      20
-      7644  8940
-      7632  6465
-     16526 15962
-     12602 11962
-      4848  7794
-     10910  8974
-       800  3025
-     16319  6910
-      2670  2670
-      6922  4030
-      4730  4246
-      6070  1108
-      7178  8749
-      2792  1962
-      5314  7985
-      8626  9874
-      9880  8186
-     11885  5800
-      3756  3765
-     10640  9962
+      5452  6894
+      4246 10509
+      3683 10373
+      5474 12999
+      5468 11334
+      8275 14601
+      3297  2689
+     10822 15231
+      1483 12921
+     14984  8240
+      5256  4745
+     12128 12413
+      2557 10101
+     17681  9521
+      5994  3970
+      5456  8004
+      3450  3369
+      4584  4233
+      2736  2825
+      4030 13551
 
   * 10 random line segments
-    java.lang.NullPointerException: segment 39 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
-    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:348)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 10
+    - 10 missing entries in student solution, including: '(1870, 13459) -&gt; (3612, 13761) -&gt; (5354, 14063) -&gt; (12322, 15271)'
 
     - failed on trial 1 of 100
 
   * 15 random line segments
-    java.lang.NullPointerException: segment 59 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
-    TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:349)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 15
+    - 15 missing entries in student solution, including: '(3503, 9111) -&gt; (9943, 10672) -&gt; (17303, 12456) -&gt; (20983, 13348)'
 
     - failed on trial 1 of 50
 
@@ -681,72 +486,61 @@ Test 8: random line segments, none vertical or horizontal
 
 Test 9: random line segments
   *  1 random line segment
-    java.lang.NullPointerException: segment 3 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (8319, 5915) -&gt; (8447, 6151)
+    - reference segment 0: (8319, 5915) -&gt; (8447, 6151) -&gt; (8831, 6859) -&gt; (9343, 7803)
 
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
-    TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:379)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: '(8319, 5915) -&gt; (8447, 6151)'
+    - 1 missing entry in student solution: '(8319, 5915) -&gt; (8447, 6151) -&gt; (8831, 6859) -&gt; (9343, 7803)'
 
-    - failed on trial 1 of 500
+    - failed on trial 3 of 500
      4
-     11440  7309
-      8890  6357
-     15265  8737
-     13840  8205
+      8319  5915
+      9343  7803
+      8831  6859
+      8447  6151
 
   *  5 random line segments
-    java.lang.NullPointerException: segment 19 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
-    TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:380)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 5
+    - 5 missing entries in student solution, including: '(3453, 13701) -&gt; (5093, 13701) -&gt; (5503, 13701) -&gt; (5749, 13701)'
 
     - failed on trial 1 of 250
      20
-      8124  7558
-     13368  9253
-      4619  4817
-      7087  7422
-      5561 10229
-      5561 10773
-      3935  4385
-      7713 13657
-      5773 12817
-      5561  9345
-      6557  6041
-      4900 12439
-     13368 10453
-     11723  8030
-      5561 10501
-     13368 10228
-      6452 13111
-      4106  4493
-     13368  9228
-     10259  7838
+     11035  9362
+      5689  8261
+     14562 13135
+     11385  9838
+      8393  5572
+     13246 10080
+      3453 13701
+      5093 13701
+     14590 13200
+     12059  6230
+      5503 13701
+      5749 13701
+      6911  5306
+      8003  5502
+     10285  8342
+      7257 10613
+      6553  9557
+      9710  7560
+      5881  8549
+     14422 12810
 
   * 10 random line segments
-    java.lang.NullPointerException: segment 39 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
-    TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:381)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 10
+    - 10 missing entries in student solution, including: '(4370, 12426) -&gt; (6047, 13791) -&gt; (6090, 13826) -&gt; (7079, 14631)'
 
     - failed on trial 1 of 100
 
   * 15 random line segments
-    java.lang.NullPointerException: segment 59 is null
-
-    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
-    TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
-    TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:382)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 15
+    - 15 missing entries in student solution, including: '(13162, 12219) -&gt; (13162, 12372) -&gt; (13162, 12899) -&gt; (13162, 12984)'
 
     - failed on trial 1 of 50
 
@@ -755,27 +549,8 @@ Test 9: random line segments
 Test 10: check that data type is immutable by testing whether each method
          returns the same value, regardless of any intervening operations
   * input8.txt
-    - failed after 7 operations involving BruteCollinearPoints
-    - first and last call to segments() returned different arrays
-
-    - sequence of operations was:
-          BruteCollinearPoints collinear = new BruteCollinearPoints(points);
-          collinear.numberOfSegments() -&gt; 8
-          collinear.numberOfSegments() -&gt; 8
-          collinear.segments()
-          collinear.numberOfSegments() -&gt; 8
-          mutate array returned by last call to segments()
-          collinear.segments()
-
-    - failed on trial 1 of 100
-
   * equidistant.txt
-    - failed after 31 operations involving BruteCollinearPoints
-    - first and last call to segments() returned different arrays
-
-    - failed on trial 1 of 100
-
-==&gt; FAILED
+==&gt; passed
 
 Test 11: check that data type does not mutate the constructor argument
   * input8.txt
@@ -813,7 +588,7 @@ Test 14: check that the constructor throws an exception if duplicate points
 ==&gt; passed
 
 
-Total: 4/17 tests passed!
+Total: 8/17 tests passed!
 
 
 ================================================================
@@ -827,168 +602,147 @@ The inputs satisfy the following conditions:
 
 Test 1: points from a file
   * filename = input8.txt
-    java.lang.NullPointerException: segment 7 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (10000, 0) -&gt; (7000, 3000)
+    - reference segment 0: (10000, 0) -&gt; (7000, 3000) -&gt; (3000, 7000) -&gt; (0, 10000)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:156)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+    - number of entries in student   solution: 2
+    - number of entries in reference solution: 2
+    - 2 extra entries in student solution, including: '(20000, 21000) -&gt; (6000, 7000)'
+    - 2 missing entries in student solution, including: '(3000, 4000) -&gt; (6000, 7000) -&gt; (14000, 15000) -&gt; (20000, 21000)'
 
   * filename = equidistant.txt
-    java.lang.NullPointerException: segment 14 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:157)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 4
+    - 3 missing entries in student solution, including: '(30000, 0) -&gt; (20000, 10000) -&gt; (10000, 20000) -&gt; (0, 30000)'
 
   * filename = input40.txt
-    java.lang.NullPointerException: segment 39 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:158)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 4
+    - 4 missing entries in student solution, including: '(2000, 29000) -&gt; (4000, 29000) -&gt; (22000, 29000) -&gt; (28000, 29000)'
 
   * filename = input48.txt
-    java.lang.NullPointerException: segment 47 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:159)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(1000, 26000) -&gt; (9000, 26000) -&gt; (11000, 26000) -&gt; (18000, 26000)'
 
   * filename = input299.txt
-    java.lang.NullPointerException: segment 298 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test1(TestFastCollinearPoints.java:160)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(3250, 17450) -&gt; (8500, 17450) -&gt; (13400, 17450) -&gt; (17250, 17450)'
 
 ==&gt; FAILED
 
 Test 2a: points from a file with horizontal line segments
   * filename = horizontal5.txt
-    java.lang.NullPointerException: segment 19 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (7453, 14118) -&gt; (5067, 14118)
+    - reference segment 4: (2682, 14118) -&gt; (5067, 14118) -&gt; (7453, 14118) -&gt; (7821, 14118)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:166)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
+    - number of entries in student   solution: 5
+    - number of entries in reference solution: 5
+    - 4 extra entries in student solution, including: '(7453, 14118) -&gt; (5067, 14118)'
+    - 4 missing entries in student solution, including: '(2682, 14118) -&gt; (5067, 14118) -&gt; (7453, 14118) -&gt; (7821, 14118)'
 
   * filename = horizontal25.txt
-    java.lang.NullPointerException: segment 99 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (19459, 13870) -&gt; (18005, 13870)
+    - reference segment 13: (2566, 13870) -&gt; (10653, 13870) -&gt; (18005, 13870) -&gt; (19459, 13870)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:167)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
+    - number of entries in student   solution: 25
+    - number of entries in reference solution: 25
+    - 22 extra entries in student solution, including: '(16352, 20913) -&gt; (8784, 20913)'
+    - 22 missing entries in student solution, including: '(8784, 20913) -&gt; (9880, 20913) -&gt; (16352, 20913) -&gt; (19666, 20913)'
 
   * filename = horizontal50.txt
-    java.lang.NullPointerException: segment 199 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (6300, 7218) -&gt; (6518, 7218)
+    - reference segment 17: (6300, 7218) -&gt; (6518, 7218) -&gt; (15233, 7218) -&gt; (17289, 7218)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:168)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
+    - number of entries in student   solution: 50
+    - number of entries in reference solution: 50
+    - 41 extra entries in student solution, including: '(5249, 20754) -&gt; (14800, 20754)'
+    - 41 missing entries in student solution, including: '(5249, 20754) -&gt; (5559, 20754) -&gt; (14800, 20754) -&gt; (17428, 20754)'
 
   * filename = horizontal75.txt
-    java.lang.NullPointerException: segment 299 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (20410, 19103) -&gt; (8086, 19103)
+    - reference segment 69: (1255, 19103) -&gt; (3822, 19103) -&gt; (8086, 19103) -&gt; (20410, 19103)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:169)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
+    - number of entries in student   solution: 75
+    - number of entries in reference solution: 75
+    - 59 extra entries in student solution, including: '(13055, 20618) -&gt; (10027, 20618)'
+    - 59 missing entries in student solution, including: '(10027, 20618) -&gt; (13055, 20618) -&gt; (15225, 20618) -&gt; (20029, 20618)'
 
   * filename = horizontal100.txt
-    java.lang.NullPointerException: segment 399 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (11219, 6140) -&gt; (1238, 6140)
+    - reference segment 30: (1238, 6140) -&gt; (1773, 6140) -&gt; (11219, 6140) -&gt; (11759, 6140)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:170)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
+    - number of entries in student   solution: 100
+    - number of entries in reference solution: 100
+    - 84 extra entries in student solution, including: '(19642, 20698) -&gt; (7673, 20698)'
+    - 84 missing entries in student solution, including: '(5835, 20698) -&gt; (7673, 20698) -&gt; (16154, 20698) -&gt; (19642, 20698)'
 
 ==&gt; FAILED
 
 Test 2b: random horizontal line segments
   *  1 random horizontal line segment
-    java.lang.NullPointerException: segment 3 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (6506, 1992) -&gt; (6321, 1992)
+    - reference segment 0: (6321, 1992) -&gt; (6506, 1992) -&gt; (8992, 1992) -&gt; (9853, 1992)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.horizontalSegments(TestFastCollinearPoints.java:182)
-    TestFastCollinearPoints.test2b(TestFastCollinearPoints.java:224)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:784)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: '(6506, 1992) -&gt; (6321, 1992)'
+    - 1 missing entry in student solution: '(6321, 1992) -&gt; (6506, 1992) -&gt; (8992, 1992) -&gt; (9853, 1992)'
 
     - failed on trial 1 of 500
      4
-     12337  6634
-     10459  6634
-     16004  6634
-     15622  6634
+      6506  1992
+      8992  1992
+      9853  1992
+      6321  1992
 
   *  5 random horizontal line segments
-    java.lang.NullPointerException: segment 19 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.horizontalSegments(TestFastCollinearPoints.java:182)
-    TestFastCollinearPoints.test2b(TestFastCollinearPoints.java:225)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:784)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 5
+    - 5 missing entries in student solution, including: '(4165, 20992) -&gt; (7874, 20992) -&gt; (10718, 20992) -&gt; (12567, 20992)'
 
     - failed on trial 1 of 250
      20
-     14352  8190
-      7886  8730
-     13034  8730
-     18232  8190
-     15389 16085
-     19084 16085
-     20480 16085
-      8883  8965
-     20263  5202
-     16587  8190
-     11913  8965
-     16859  5202
-      9396  5202
-     14785  8965
-     18953  8965
-      4337 16085
-     20415  8730
-      1081  8190
-     19040  5202
-     17170  8730
+      5259 16394
+     10718 20992
+      3387 16394
+     17631 14881
+     14288 14881
+     13507 12635
+     14008 12635
+     12019  4560
+     12567 20992
+      3319  4560
+     15957  4560
+     20064 14881
+     10406 12635
+      7874 20992
+     20722 12635
+      4165 20992
+     18325 16394
+     18121 16394
+     18847 14881
+      7643  4560
 
   * 10 random horizontal line segments
-    java.lang.NullPointerException: segment 39 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.horizontalSegments(TestFastCollinearPoints.java:182)
-    TestFastCollinearPoints.test2b(TestFastCollinearPoints.java:226)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:784)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 10
+    - 10 missing entries in student solution, including: '(8398, 20097) -&gt; (16365, 20097) -&gt; (16795, 20097) -&gt; (20509, 20097)'
 
     - failed on trial 1 of 50
 
   * 15 random horizontal line segments
-    java.lang.NullPointerException: segment 59 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.horizontalSegments(TestFastCollinearPoints.java:182)
-    TestFastCollinearPoints.test2b(TestFastCollinearPoints.java:227)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:784)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 15
+    - 15 missing entries in student solution, including: '(13354, 18368) -&gt; (14254, 18368) -&gt; (15615, 18368) -&gt; (20511, 18368)'
 
     - failed on trial 1 of 5
 
@@ -996,120 +750,114 @@ Test 2b: random horizontal line segments
 
 Test 3a: points from a file with vertical line segments
   * filename = vertical5.txt
-    java.lang.NullPointerException: segment 19 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (14407, 19953) -&gt; (14407, 17188)
+    - reference segment 3: (14407, 10367) -&gt; (14407, 17188) -&gt; (14407, 17831) -&gt; (14407, 19953)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:233)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+    - number of entries in student   solution: 5
+    - number of entries in reference solution: 5
+    - 5 extra entries in student solution, including: '(14407, 19953) -&gt; (14407, 17188)'
+    - 5 missing entries in student solution, including: '(14407, 10367) -&gt; (14407, 17188) -&gt; (14407, 17831) -&gt; (14407, 19953)'
 
   * filename = vertical25.txt
-    java.lang.NullPointerException: segment 99 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (11585, 5103) -&gt; (11585, 4132)
+    - reference segment 12: (11585, 4132) -&gt; (11585, 5103) -&gt; (11585, 11220) -&gt; (11585, 12912)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:234)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+    - number of entries in student   solution: 25
+    - number of entries in reference solution: 25
+    - 22 extra entries in student solution, including: '(9557, 18873) -&gt; (9557, 20238)'
+    - 22 missing entries in student solution, including: '(19953, 10489) -&gt; (19953, 10688) -&gt; (19953, 19299) -&gt; (19953, 20439)'
 
   * filename = vertical50.txt
-    java.lang.NullPointerException: segment 199 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (10695, 20756) -&gt; (10695, 1287)
+    - reference segment 27: (10695, 1287) -&gt; (10695, 10521) -&gt; (10695, 20756) -&gt; (10695, 20927)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:235)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+    - number of entries in student   solution: 50
+    - number of entries in reference solution: 50
+    - 39 extra entries in student solution, including: '(10174, 19026) -&gt; (10174, 19357)'
+    - 39 missing entries in student solution, including: '(5991, 15606) -&gt; (5991, 20227) -&gt; (5991, 20340) -&gt; (5991, 20424)'
 
   * filename = vertical75.txt
-    java.lang.NullPointerException: segment 299 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (2329, 9995) -&gt; (2329, 5466)
+    - reference segment 2: (2329, 3548) -&gt; (2329, 5466) -&gt; (2329, 9995) -&gt; (2329, 11424)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:236)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+    - number of entries in student   solution: 75
+    - number of entries in reference solution: 75
+    - 62 extra entries in student solution, including: '(18293, 17680) -&gt; (18293, 20983)'
+    - 62 missing entries in student solution, including: '(13780, 16365) -&gt; (13780, 17494) -&gt; (13780, 18253) -&gt; (13780, 18908)'
 
   * filename = vertical100.txt
-    java.lang.NullPointerException: segment 399 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 1: (2977, 6918) -&gt; (2977, 2179)
+    - reference segment 12: (2977, 2179) -&gt; (2977, 6918) -&gt; (2977, 15792) -&gt; (2977, 20105)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:237)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+    - number of entries in student   solution: 100
+    - number of entries in reference solution: 100
+    - 83 extra entries in student solution, including: '(9155, 20746) -&gt; (9155, 18793)'
+    - 83 missing entries in student solution, including: '(15135, 15588) -&gt; (15135, 17398) -&gt; (15135, 19476) -&gt; (15135, 20439)'
 
 ==&gt; FAILED
 
 Test 3b: random vertical line segments
   *  1 random vertical line segment
-    java.lang.NullPointerException: segment 3 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (17603, 15060) -&gt; (17603, 10375)
+    - reference segment 0: (17603, 10375) -&gt; (17603, 15060) -&gt; (17603, 15930) -&gt; (17603, 16590)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.verticalSegments(TestFastCollinearPoints.java:206)
-    TestFastCollinearPoints.test3b(TestFastCollinearPoints.java:243)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:790)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: '(17603, 15060) -&gt; (17603, 10375)'
+    - 1 missing entry in student solution: '(17603, 10375) -&gt; (17603, 15060) -&gt; (17603, 15930) -&gt; (17603, 16590)'
 
-    - failed on trial 1 of 500
+    - failed on trial 2 of 500
      4
-      7715 11915
-      7715 19163
-      7715 17673
-      7715  8267
+     17603 15060
+     17603 16590
+     17603 15930
+     17603 10375
 
   *  5 random vertical line segments
-    java.lang.NullPointerException: segment 19 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.verticalSegments(TestFastCollinearPoints.java:206)
-    TestFastCollinearPoints.test3b(TestFastCollinearPoints.java:244)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:790)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 5
+    - 5 missing entries in student solution, including: '(5747, 11728) -&gt; (5747, 16707) -&gt; (5747, 18912) -&gt; (5747, 19638)'
 
     - failed on trial 1 of 250
      20
-     18098  7463
-     18098  4845
-      1469 16971
-     16253  1249
-     16253  4823
-     20960 17150
-     20960 16808
-      7486  2197
-     20960 20155
-     18098 14595
-      1469  3345
-      7486  1847
-     16253 10731
-      1469 15599
-     18098 10014
-      7486  3275
-      7486 16265
-     20960  6546
-     16253 14424
-      1469 18592
+      6670  5664
+      6337 20840
+     13655 19964
+      6337 14632
+      5747 18912
+     13655 16473
+      5747 16707
+     15813  2445
+      5747 19638
+     15813 19774
+     15813 15239
+     15813 15343
+      6670  4181
+      6337  3365
+      6670 14218
+     13655  3375
+      6670 13217
+      6337 16569
+     13655 13316
+      5747 11728
 
   * 10 random vertical line segments
-    java.lang.NullPointerException: segment 39 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.verticalSegments(TestFastCollinearPoints.java:206)
-    TestFastCollinearPoints.test3b(TestFastCollinearPoints.java:245)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:790)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 10
+    - 10 missing entries in student solution, including: '(17009, 12079) -&gt; (17009, 14867) -&gt; (17009, 15525) -&gt; (17009, 20055)'
 
     - failed on trial 1 of 50
 
   * 15 random vertical line segments
-    java.lang.NullPointerException: segment 59 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.verticalSegments(TestFastCollinearPoints.java:206)
-    TestFastCollinearPoints.test3b(TestFastCollinearPoints.java:246)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:790)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 15
+    - 15 missing entries in student solution, including: '(5390, 10134) -&gt; (5390, 15636) -&gt; (5390, 16614) -&gt; (5390, 18831)'
 
     - failed on trial 1 of 5
 
@@ -1117,320 +865,586 @@ Test 3b: random vertical line segments
 
 Test 4a: points from a file with no line segments
   * filename = random23.txt
-    java.lang.NullPointerException: segment 22 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test4a(TestFastCollinearPoints.java:252)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:793)
-
   * filename = random38.txt
-    java.lang.NullPointerException: segment 37 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test4a(TestFastCollinearPoints.java:253)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:793)
-
   * filename = random91.txt
-    java.lang.NullPointerException: segment 90 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test4a(TestFastCollinearPoints.java:254)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:793)
-
   * filename = random152.txt
-    java.lang.NullPointerException: segment 151 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test4a(TestFastCollinearPoints.java:255)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:793)
-
-==&gt; FAILED
+==&gt; passed
 
 Test 4b: random points with no line segments
   *  5 random points
-    java.lang.NullPointerException: segment 4 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.no4CollinearPoints(TestFastCollinearPoints.java:266)
-    TestFastCollinearPoints.test4b(TestFastCollinearPoints.java:284)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:796)
-
-    - failed on trial 1 of 500
-     5
-      3314 22532
-     11033 31994
-      8397 28536
-      3235 18631
-      5829 24460
-
   * 10 random points
-    java.lang.NullPointerException: segment 9 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.no4CollinearPoints(TestFastCollinearPoints.java:266)
-    TestFastCollinearPoints.test4b(TestFastCollinearPoints.java:285)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:796)
-
-    - failed on trial 1 of 250
-     10
-      7721  3432
-      5808 12784
-     31496  8662
-     19811 16245
-     29153 20798
-     30958  2994
-     27773 15343
-      3981 27916
-     12058 28556
-     14057 28254
-
   * 20 random points
-    java.lang.NullPointerException: segment 19 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.no4CollinearPoints(TestFastCollinearPoints.java:266)
-    TestFastCollinearPoints.test4b(TestFastCollinearPoints.java:286)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:796)
-
-    - failed on trial 1 of 100
-     20
-      5543 18551
-     31846  5934
-      8735 23974
-      4931 32529
-      6879  5940
-     24177 16886
-      4029 26674
-     17872 15065
-     10048  3870
-     28742 26683
-      4986  1855
-     28681 19418
-     27183 23556
-     21634 19284
-     16086 24928
-      9655 29769
-     32338 17731
-     24420   266
-     21597 28736
-     29419 30419
-
   * 50 random points
-    java.lang.NullPointerException: segment 49 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.no4CollinearPoints(TestFastCollinearPoints.java:266)
-    TestFastCollinearPoints.test4b(TestFastCollinearPoints.java:287)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:796)
-
-    - failed on trial 1 of 10
-
-==&gt; FAILED
+==&gt; passed
 
 Test 5a: points from a file with 5 or more on some line segments
   * filename = input9.txt
-    java.lang.NullPointerException: segment 8 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (9000, 9000) -&gt; (6000, 6000)
+    - reference segment 0: (1000, 1000) -&gt; (2000, 2000) -&gt; (3000, 3000) -&gt; (4000, 4000) -&gt; (5000, 5000) -&gt; (6000, 6000) -&gt; (7000, 7000) -&gt; (8000, 8000) -&gt; (9000, 9000)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:293)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+    - number of entries in student   solution: 2
+    - number of entries in reference solution: 1
+    - 2 extra entries in student solution, including: '(9000, 9000) -&gt; (6000, 6000)'
+    - 1 missing entry in student solution: '(1000, 1000) -&gt; (2000, 2000) -&gt; (3000, 3000) -&gt; (4000, 4000) -&gt; (5000, 5000) -&gt; (6000, 6000) -&gt; (7000, 7000) -&gt; (8000, 8000) -&gt; (9000, 9000)'
 
   * filename = input10.txt
-    java.lang.NullPointerException: segment 9 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (4000, 30000) -&gt; (2000, 22000)
+    - reference segment 1: (1000, 18000) -&gt; (2000, 22000) -&gt; (3000, 26000) -&gt; (3500, 28000) -&gt; (4000, 30000)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:294)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 2
+    - 1 extra entry in student solution: '(4000, 30000) -&gt; (2000, 22000)'
+    - 2 missing entries in student solution, including: '(1000, 18000) -&gt; (2000, 22000) -&gt; (3000, 26000) -&gt; (3500, 28000) -&gt; (4000, 30000)'
 
   * filename = input20.txt
-    java.lang.NullPointerException: segment 19 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (4096, 20992) -&gt; (7168, 20992)
+    - reference segment 0: (4096, 20992) -&gt; (5120, 20992) -&gt; (6144, 20992) -&gt; (7168, 20992) -&gt; (8128, 20992)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:295)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+    - number of entries in student   solution: 4
+    - number of entries in reference solution: 5
+    - 3 extra entries in student solution, including: '(4160, 29184) -&gt; (7168, 29184)'
+    - 4 missing entries in student solution, including: '(4160, 29184) -&gt; (5120, 29184) -&gt; (6144, 29184) -&gt; (7168, 29184) -&gt; (8192, 29184)'
 
   * filename = input50.txt
-    java.lang.NullPointerException: segment 49 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:296)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 7
+    - 7 missing entries in student solution, including: '(1000, 26000) -&gt; (9000, 26000) -&gt; (11000, 26000) -&gt; (18000, 26000)'
 
   * filename = input80.txt
-    java.lang.NullPointerException: segment 79 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:297)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 31
+    - 31 missing entries in student solution, including: '(13000, 29000) -&gt; (19000, 29000) -&gt; (25000, 29000) -&gt; (28000, 29000)'
 
   * filename = input300.txt
-    java.lang.NullPointerException: segment 299 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:298)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(3250, 17450) -&gt; (8500, 17450) -&gt; (13400, 17450) -&gt; (17250, 17450)'
 
   * filename = inarow.txt
-    java.lang.NullPointerException: segment 28 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (5000, 0) -&gt; (20000, 0)
+    - reference segment 1: (0, 0) -&gt; (5000, 0) -&gt; (10000, 0) -&gt; (15000, 0) -&gt; (20000, 0) -&gt; (25000, 0) -&gt; (30000, 0)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:299)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+    - number of entries in student   solution: 3
+    - number of entries in reference solution: 5
+    - 3 extra entries in student solution, including: '(0, 20000) -&gt; (0, 10000)'
+    - 5 missing entries in student solution, including: '(30000, 0) -&gt; (27000, 7500) -&gt; (26000, 10000) -&gt; (20000, 25000) -&gt; (19000, 27500) -&gt; (18000, 30000)'
 
 ==&gt; FAILED
 
 Test 5b: points from a file with 5 or more on some line segments
   * filename = kw1260.txt
-    java.lang.NullPointerException: segment 1259 is null
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 6: (30600, 3000) -&gt; (30602, 3000)
+    - reference segment 118: (30500, 3000) -&gt; (30600, 3000) -&gt; (30601, 3000) -&gt; (30602, 3000) -&gt; (31002, 3000)
 
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5b(TestFastCollinearPoints.java:306)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:802)
+    - number of entries in student   solution: 44
+    - number of entries in reference solution: 288
+    - 26 extra entries in student solution, including: '(24445, 24729) -&gt; (24375, 25221)'
+    - 270 missing entries in student solution, including: '(12652, 30395) -&gt; (13180, 30413) -&gt; (13708, 30431) -&gt; (14236, 30449) -&gt; (14764, 30467)'
 
   * filename = rs1423.txt
-    java.lang.NullPointerException: segment 1422 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test5b(TestFastCollinearPoints.java:308)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:802)
+    - number of entries in student   solution: 111
+    - number of entries in reference solution: 443
+    - 332 missing entries in student solution, including: '(14169, 27672) -&gt; (13927, 27810) -&gt; (13685, 27948) -&gt; (13443, 28086)'
 
 ==&gt; FAILED
 
 Test 6: points from a file with fewer than 4 points
   * filename = input1.txt
-    java.lang.NullPointerException: segment 0 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test6(TestFastCollinearPoints.java:314)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:805)
-
   * filename = input2.txt
-    java.lang.NullPointerException: segment 1 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test6(TestFastCollinearPoints.java:315)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:805)
-
   * filename = input3.txt
-    java.lang.NullPointerException: segment 2 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test6(TestFastCollinearPoints.java:316)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:805)
-
-==&gt; FAILED
+==&gt; passed
 
 Test 7: check for dependence on either compareTo() or compare()
         returning { -1, +1, 0 } instead of { negative integer,
         positive integer, zero }
   * filename = equidistant.txt
-    java.lang.NullPointerException: segment 14 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test7(TestFastCollinearPoints.java:325)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:808)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 4
+    - 3 missing entries in student solution, including: '(30000, 0) -&gt; (20000, 10000) -&gt; (10000, 20000) -&gt; (0, 30000)'
 
   * filename = input40.txt
-    java.lang.NullPointerException: segment 39 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test7(TestFastCollinearPoints.java:326)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:808)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 4
+    - 4 missing entries in student solution, including: '(2000, 29000) -&gt; (4000, 29000) -&gt; (22000, 29000) -&gt; (28000, 29000)'
 
   * filename = input48.txt
-    java.lang.NullPointerException: segment 47 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test7(TestFastCollinearPoints.java:327)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:808)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(1000, 26000) -&gt; (9000, 26000) -&gt; (11000, 26000) -&gt; (18000, 26000)'
 
   * filename = input299.txt
-    java.lang.NullPointerException: segment 298 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test7(TestFastCollinearPoints.java:328)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:808)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(3250, 17450) -&gt; (8500, 17450) -&gt; (13400, 17450) -&gt; (17250, 17450)'
 
 ==&gt; FAILED
 
 Test 8: check for fragile dependence on return value of toString()
   * filename = equidistant.txt
-    java.lang.NullPointerException: segment 14 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test8(TestFastCollinearPoints.java:336)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:811)
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 4
+    - 3 missing entries in student solution, including: '(30000, 0) -&gt; (20000, 10000) -&gt; (10000, 20000) -&gt; (0, 30000)'
 
   * filename = input40.txt
-    java.lang.NullPointerException: segment 39 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test8(TestFastCollinearPoints.java:337)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:811)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 4
+    - 4 missing entries in student solution, including: '(2000, 29000) -&gt; (4000, 29000) -&gt; (22000, 29000) -&gt; (28000, 29000)'
 
   * filename = input48.txt
-    java.lang.NullPointerException: segment 47 is null
-
-    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
-    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
-    TestFastCollinearPoints.test8(TestFastCollinearPoints.java:338)
-    TestFastCollinearPoints.main(TestFastCollinearPoints.java:811)
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 6
+    - 6 missing entries in student solution, including: '(1000, 26000) -&gt; (9000, 26000) -&gt; (11000, 26000) -&gt; (18000, 26000)'
 
 
-It is bad style to write code that depends on the
+It is bad style to write code that depends on the particular format of
+the output from the toString() method, especially if your reason for
+doing so is to circumvent the public API (which intentionally does not
+provide access to the x- and y-coordinates).
 
-...
+==&gt; FAILED
 
-WARNING: the grading output was truncated due to excessive length.
-Typically, this is because you have a method that has an unanticipated side effect
-(such as printing to standard output or throwing an exception). A large amount of output
-can also arise from failing many tests.
+Test 9: random line segments, none vertical or horizontal
+  *  1 random line segment
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (4881, 11881) -&gt; (9225, 13801)
+    - reference segment 0: (4881, 11881) -&gt; (7596, 13081) -&gt; (9225, 13801) -&gt; (10854, 14521)
+
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: '(4881, 11881) -&gt; (9225, 13801)'
+    - 1 missing entry in student solution: '(4881, 11881) -&gt; (7596, 13081) -&gt; (9225, 13801) -&gt; (10854, 14521)'
+
+    - failed on trial 1 of 500
+     4
+      4881 11881
+      7596 13081
+     10854 14521
+      9225 13801
+
+  *  5 random line segments
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 5
+    - 5 missing entries in student solution, including: '(6380, 6345) -&gt; (8480, 10061) -&gt; (10580, 13777) -&gt; (12155, 16564)'
+
+    - failed on trial 1 of 500
+     20
+     13385 14675
+      3034   827
+      1885  3755
+      9935 11399
+      3784  2551
+     10580 13777
+      8053 15762
+     12155 16564
+      8480 10061
+      8181  7315
+      6380  6345
+     13960 15221
+      8011  3060
+      9409 15481
+       493  4240
+     11293 20700
+      8659 13757
+      8113  5613
+      8249  9017
+      8593 16585
+
+  * 25 random line segments
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 25
+    - 25 missing entries in student solution, including: '(1266, 13582) -&gt; (3057, 13642) -&gt; (10818, 13902) -&gt; (14400, 14022)'
+
+    - failed on trial 1 of 100
+
+  * 50 random line segments
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 50
+    - 50 missing entries in student solution, including: '(10493, 15660) -&gt; (10676, 16559) -&gt; (11042, 18357) -&gt; (11408, 20155)'
+
+    - failed on trial 1 of 15
+
+  * 100 random line segments
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 100
+    - 100 missing entries in student solution, including: '(55, 14551) -&gt; (4930, 14721) -&gt; (8830, 14857) -&gt; (15655, 15095)'
+
+    - failed on trial 1 of 2
+
+==&gt; FAILED
+
+Test 10: random line segments
+  *  1 random line segment
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (10264, 7718) -&gt; (10558, 8159)
+    - reference segment 0: (10180, 7592) -&gt; (10264, 7718) -&gt; (10376, 7886) -&gt; (10558, 8159)
+
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 1
+    - 1 extra entry in student solution: '(10264, 7718) -&gt; (10558, 8159)'
+    - 1 missing entry in student solution: '(10180, 7592) -&gt; (10264, 7718) -&gt; (10376, 7886) -&gt; (10558, 8159)'
+
+    - failed on trial 1 of 500
+     4
+     10264  7718
+     10180  7592
+     10376  7886
+     10558  8159
+
+  *  5 random line segments
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 5
+    - 5 missing entries in student solution, including: '(8687, 11187) -&gt; (8943, 11379) -&gt; (8975, 11403) -&gt; (9375, 11703)'
+
+    - failed on trial 1 of 500
+     20
+      3211  7939
+      7683  7675
+      7939  7675
+     14365  7077
+      9600 11198
+      7983  7675
+      2756  7714
+     12230  6955
+      8975 11403
+      8943 11379
+      8795  9910
+     13910  7051
+      7290  7502
+      9375 11703
+      8830  9966
+      5850  9244
+      7659  7675
+     11985  6941
+      4576  8614
+      8687 11187
+
+  * 25 random line segments
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 25
+    - 25 missing entries in student solution, including: '(8132, 11974) -&gt; (8322, 11974) -&gt; (8337, 11974) -&gt; (8352, 11974)'
+
+    - failed on trial 1 of 100
+
+  * 50 random line segments
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 50
+    - 50 missing entries in student solution, including: '(13629, 14206) -&gt; (13845, 14386) -&gt; (13857, 14396) -&gt; (13917, 14446)'
+
+    - failed on trial 1 of 15
+
+  * 100 random line segments
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 100
+    - 100 missing entries in student solution, including: '(6659, 13566) -&gt; (7459, 13566) -&gt; (7659, 13566) -&gt; (8159, 13566)'
+
+    - failed on trial 1 of 2
+
+==&gt; FAILED
+
+Test 11: random distinct points in a given range
+  * 5 random points in a 10-by-10 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 1
+    - 1 missing entry in student solution: '(0, 4) -&gt; (6, 4) -&gt; (7, 4) -&gt; (8, 4)'
+
+    - failed on trial 8 of 500
+     5
+         7     4
+         0     4
+         8     4
+         9     2
+         6     4
+
+  * 10 random points in a 10-by-10 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 1
+    - 1 missing entry in student solution: '(5, 1) -&gt; (6, 2) -&gt; (8, 4) -&gt; (9, 5)'
+
+    - failed on trial 13 of 500
+     10
+         2     8
+         3     8
+         8     4
+         1     1
+         6     7
+         9     5
+         8     2
+         5     1
+         6     2
+         4     5
+
+  * 50 random points in a 10-by-10 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 44
+    - 44 missing entries in student solution, including: '(0, 9) -&gt; (1, 9) -&gt; (4, 9) -&gt; (7, 9) -&gt; (9, 9)'
+
+    - failed on trial 1 of 100
+
+  * 90 random points in a 10-by-10 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 122
+    - 122 missing entries in student solution, including: '(0, 9) -&gt; (1, 9) -&gt; (2, 9) -&gt; (3, 9) -&gt; (4, 9) -&gt; (5, 9) -&gt; (7, 9) -&gt; (8, 9) -&gt; (9, 9)'
+
+    - failed on trial 1 of 50
+
+  * 200 random points in a 50-by-50 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 200
+    - 200 missing entries in student solution, including: '(1, 49) -&gt; (4, 49) -&gt; (22, 49) -&gt; (44, 49)'
+
+    - failed on trial 1 of 10
+
+==&gt; FAILED
+
+Test 12: m*n points on an m-by-n grid
+  * 3-by-3 grid
+  * 4-by-4 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 10
+    - 10 missing entries in student solution, including: '(0, 3) -&gt; (1, 3) -&gt; (2, 3) -&gt; (3, 3)'
+
+  * 5-by-5 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 16
+    - 16 missing entries in student solution, including: '(0, 4) -&gt; (1, 4) -&gt; (2, 4) -&gt; (3, 4) -&gt; (4, 4)'
+
+  * 10-by-10 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 154
+    - 154 missing entries in student solution, including: '(0, 9) -&gt; (1, 9) -&gt; (2, 9) -&gt; (3, 9) -&gt; (4, 9) -&gt; (5, 9) -&gt; (6, 9) -&gt; (7, 9) -&gt; (8, 9) -&gt; (9, 9)'
+
+  * 20-by-20 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 2446
+    - 2446 missing entries in student solution, including: '(0, 19) -&gt; (1, 19) -&gt; (2, 19) -&gt; (3, 19) -&gt; (4, 19) -&gt; (5, 19) -&gt; (6, 19) -&gt; (7, 19) -&gt; (8, 19) -&gt; (9, 19) -&gt; (10, 19) -&gt; (11, 19) -&gt; (12, 19) -&gt; (13, 19) -&gt; (14, 19) -&gt; (15, 19) -&gt; (16, 19) -&gt; (17, 19) -&gt; (18, 19) -&gt; (19, 19)'
+
+  * 5-by-4 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 13
+    - 13 missing entries in student solution, including: '(0, 3) -&gt; (1, 3) -&gt; (2, 3) -&gt; (3, 3) -&gt; (4, 3)'
+
+  * 6-by-4 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 16
+    - 16 missing entries in student solution, including: '(0, 3) -&gt; (1, 3) -&gt; (2, 3) -&gt; (3, 3) -&gt; (4, 3) -&gt; (5, 3)'
+
+  * 10-by-4 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 38
+    - 38 missing entries in student solution, including: '(0, 3) -&gt; (1, 3) -&gt; (2, 3) -&gt; (3, 3) -&gt; (4, 3) -&gt; (5, 3) -&gt; (6, 3) -&gt; (7, 3) -&gt; (8, 3) -&gt; (9, 3)'
+
+  * 15-by-4 grid
+    - number of entries in student   solution: 0
+    - number of entries in reference solution: 79
+    - 79 missing entries in student solution, including: '(0, 3) -&gt; (1, 3) -&gt; (2, 3) -&gt; (3, 3) -&gt; (4, 3) -&gt; (5, 3) -&gt; (6, 3) -&gt; (7, 3) -&gt; (8, 3) -&gt; (9, 3) -&gt; (10, 3) -&gt; (11, 3) -&gt; (12, 3) -&gt; (13, 3) -&gt; (14, 3)'
+
+  * 25-by-4 grid
+    - segments() contains a subsegment of a segment in reference solution
+    - student   segment 0: (12, 2) -&gt; (21, 2)
+    - reference segment 94: (0, 2) -&gt; (1, 2) -&gt; (2, 2) -&gt; (3, 2) -&gt; (4, 2) -&gt; (5, 2) -&gt; (6, 2) -&gt; (7, 2) -&gt; (8, 2) -&gt; (9, 2) -&gt; (10, 2) -&gt; (11, 2) -&gt; (12, 2) -&gt; (13, 2) -&gt; (14, 2) -&gt; (15, 2) -&gt; (16, 2) -&gt; (17, 2) -&gt; (18, 2) -&gt; (19, 2) -&gt; (20, 2) -&gt; (21, 2) -&gt; (22, 2) -&gt; (23, 2) -&gt; (24, 2)
+
+    - number of entries in student   solution: 1
+    - number of entries in reference solution: 213
+    - 1 extra entry in student solution: '(12, 2) -&gt; (21, 2)'
+    - 213 missing entries in student solution, including: '(0, 3) -&gt; (1, 3) -&gt; (2, 3) -&gt; (3, 3) -&gt; (4, 3) -&gt; (5, 3) -&gt; (6, 3) -&gt; (7, 3) -&gt; (8, 3) -&gt; (9, 3) -&gt; (10, 3) -&gt; (11, 3) -&gt; (12, 3) -&gt; (13, 3) -&gt; (14, 3) -&gt; (15, 3) -&gt; (16, 3) -&gt; (17, 3) -&gt; (18, 3) -&gt; (19, 3) -&gt; (20, 3) -&gt; (21, 3) -&gt; (22, 3) -&gt; (23, 3) -&gt; (24, 3)'
+
+==&gt; FAILED
+
+Test 13: check that data type is immutable by testing whether each method
+         returns the same value, regardless of any intervening operations
+  * input8.txt
+  * equidistant.txt
+==&gt; passed
+
+Test 14: check that data type does not mutate the constructor argument
+  * input8.txt
+  * equidistant.txt
+==&gt; passed
+
+Test 15: numberOfSegments() is consistent with segments()
+  * filename = input8.txt
+  * filename = equidistant.txt
+  * filename = input40.txt
+  * filename = input48.txt
+  * filename = horizontal5.txt
+  * filename = vertical5.txt
+  * filename = random23.txt
+==&gt; passed
+
+Test 16: throws an exception if either constructor argument is null
+         or any entry in array is null
+  * argument is null
+  * Point[] of length 10, number of null entries = 1
+  * Point[] of length 10, number of null entries = 10
+  * Point[] of length 4, number of null entries = 1
+  * Point[] of length 3, number of null entries = 1
+  * Point[] of length 2, number of null entries = 1
+  * Point[] of length 1, number of null entries = 1
+==&gt; passed
+
+Test 17: check that the constructor throws an exception if duplicate points
+  * 50 points
+  * 25 points
+  * 5 points
+  * 4 points
+  * 3 points
+  * 2 points
+==&gt; passed
+
+
+Total: 8/21 tests passed!
+
+
+================================================================
+********************************************************************************
+*  MEMORY
+********************************************************************************
+
+Analyzing memory of Point
+*-----------------------------------------------------------
+Running 1 total tests.
+
+The maximum amount of memory per Point object is 32 bytes.
+
+Student memory = 56 bytes (failed)
+
+Total: 0/1 tests passed!
+
+================================================================
+
+
+
+********************************************************************************
+*  TIMING
+********************************************************************************
+
+Timing BruteCollinearPoints
+*-----------------------------------------------------------
+Running 10 total tests.
+
+Test 1a-1e: Find collinear points among n random distinct points
+
+
+                                                      slopeTo()
+             n    time     slopeTo()   compare()  + 2*compare()        compareTo()
+-----------------------------------------------------------------------------------------------
+=&gt; passed    16   0.00          12           0             12                    0
+=&gt; passed    32   0.00          24           0             24                    0
+=&gt; passed    64   0.00          48           0             48                    0
+=&gt; passed   128   0.00          96           0             96                    0
+=&gt; passed   256   0.00         192           0            192                    0
+==&gt; 5/5 tests passed
+
+Test 2a-2e: Find collinear points among n/4 arbitrary line segments
+
+
+                                                      slopeTo()
+             n    time     slopeTo()   compare()  + 2*compare()        compareTo()
+-----------------------------------------------------------------------------------------------
+=&gt; passed    16   0.00          12           0             12                    0
+=&gt; passed    32   0.00          24           0             24                    0
+=&gt; passed    64   0.00          48           0             48                    0
+=&gt; passed   128   0.00          96           0             96                    0
+=&gt; passed   256   0.00         192           0            192                    0
+==&gt; 5/5 tests passed
+
+Total: 10/10 tests passed!
+
+
+================================================================
+
+
+
+Timing FastCollinearPoints
+*-----------------------------------------------------------
+Running 31 total tests.
+
+Test 1a-1g: Find collinear points among n random distinct points
+
+
+                                                      slopeTo()
+             n    time     slopeTo()   compare()  + 2*compare()        compareTo()
+-----------------------------------------------------------------------------------------------
+=&gt; passed    64   0.00          48           0             48                    0
+=&gt; passed   128   0.00          96           0             96                    0
+=&gt; passed   256   0.00         192           0            192                    0
+=&gt; passed   512   0.00         384           0            384                    0
+=&gt; passed  1024   0.01         768           0            768                    0
+=&gt; passed  2048   0.00        1536           0           1536                    0
+==&gt; 6/6 tests passed
+
+lg ratio(slopeTo() + 2*compare()) = lg (1536 / 768) = 1.00
+=&gt; passed
+
+==&gt; 7/7 tests passed
+
+Test 2a-2g: Find collinear points among the n points on an n-by-1 grid
+
+                                                      slopeTo()
+             n    time     slopeTo()   compare()  + 2*compare()        compareTo()
+-----------------------------------------------------------------------------------------------
+=&gt; passed    64   0.00          48           0             48                    0
+=&gt; passed   128   0.00          96           0             96                    0
+=&gt; passed   256   0.00         192           0            192                    0
+=&gt; passed   512   0.00         384           0            384                    0
+=&gt; passed  1024   0.00         768           0            768                    0
+=&gt; passed  2048   0.00        1536           0           1536                    0
+=&gt; passed  4096   0.02        3072           0           3072                    0
+==&gt; 7/7 tests passed
+
+lg ratio(slopeTo() + 2*compare()) = lg (3072 / 1536) = 1.00
+=&gt; passed
+
+==&gt; 8/8 tests passed
+
+Test 3a-3g: Find collinear points among the n points on an n/4-by-4 grid
+
+                                                      slopeTo()
+             n    time     slopeTo()   compare()  + 2*compare()        compareTo()
+-----------------------------------------------------------------------------------------------
+=&gt; passed    64   0.00          48           0             48                    0
+=&gt; passed   128   0.00          96           0             96                    0
+=&gt; passed   256   0.00         192           0            192                    0
+=&gt; passed   512   0.00         384           0            384                    0
+=&gt; passed  1024   0.00         768           0            768                    0
+=&gt; passed  2048   0.00        1536           0           1536                    0
+=&gt; passed  4096   0.01        3072           0           3072                    0
+==&gt; 7/7 tests passed
+
+lg ratio(slopeTo() + 2*compare()) = lg (3072 / 1536) = 1.00
+=&gt; passed
+
+==&gt; 8/8 tests passed
+
+Test 4a-4g: Find collinear points among the n points on an n/8-by-8 grid
+
+                                                      slopeTo()
+             n    time     slopeTo()   compare()  + 2*compare()        compareTo()
+-----------------------------------------------------------------------------------------------
+=&gt; passed    64   0.00          48           0             48                    0
+=&gt; passed   128   0.00          96           0             96                    0
+=&gt; passed   256   0.00         192           0            192                    0
+=&gt; passed   512   0.00         384           0            384                    0
+=&gt; passed  1024   0.00         768           0            768                    0
+=&gt; passed  2048   0.00        1536           0           1536                    0
+=&gt; passed  4096   0.02        3072           0           3072                    0
+==&gt; 7/7 tests passed
+
+lg ratio(slopeTo() + 2*compare()) = lg (3072 / 1536) = 1.00
+=&gt; passed
+
+==&gt; 8/8 tests passed
+
+Total: 31/31 tests passed!
+
+
+================================================================
+
+
+
+
