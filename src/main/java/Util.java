@@ -1,5 +1,5 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Chris Qiu
@@ -8,11 +8,12 @@ class Util {
     static void validate(Point[] points) {
         if (points == null)
             throw new IllegalArgumentException();
-        Set<Point> set = new HashSet<>();
+        List<Point> set = new ArrayList<>();
         for (Point point : points) {
             if (point == null)
                 throw new IllegalArgumentException();
-            set.add(point);
+            if (!set.contains(point))
+                set.add(point);
         }
         if (set.size() != points.length)
             throw new IllegalArgumentException();

@@ -9,21 +9,21 @@ Findbugs:     FAILED (6 warnings)
 PMD:          PASSED
 Checkstyle:   PASSED
 
-Correctness:  3/41 tests passed
+Correctness:  11/41 tests passed
 Memory:       0/1 tests passed
-Timing:       0/41 tests passed
+Timing:       37/41 tests passed
 
-Aggregate score: 14.39%
+Aggregate score: 44.15%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
- 722 Dec 24 13:10 BruteCollinearPoints.java
- 728 Dec 24 13:10 FastCollinearPoints.java
-4.4K Dec 24 13:10 Point.java
- 533 Dec 24 13:10 Util.java
+ 722 Dec 24 13:33 BruteCollinearPoints.java
+ 728 Dec 24 13:33 FastCollinearPoints.java
+4.4K Dec 24 13:33 Point.java
+ 582 Dec 24 13:33 Util.java
 
 
 ********************************************************************************
@@ -177,61 +177,37 @@ The inputs satisfy the following conditions:
 
 Test 1: points from a file
   * filename = input8.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 7 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:155)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
 
   * filename = equidistant.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 14 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:156)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
 
   * filename = input40.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 39 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:157)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
 
   * filename = input48.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 47 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test1(TestBruteCollinearPoints.java:158)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:717)
@@ -240,31 +216,19 @@ Test 1: points from a file
 
 Test 2a: points from a file with horizontal line segments
   * filename = horizontal5.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 19 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test2a(TestBruteCollinearPoints.java:164)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:720)
 
   * filename = horizontal25.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 99 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test2a(TestBruteCollinearPoints.java:165)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:720)
@@ -273,76 +237,58 @@ Test 2a: points from a file with horizontal line segments
 
 Test 2b: random horizontal line segments
   *  1 random horizontal line segment
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 3 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
     TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:219)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
 
     - failed on trial 1 of 500
      4
-     14455  7800
-     20093  7800
-      5540  7800
-     14621  7800
+      9614 11705
+      4784 11705
+      9595 11705
+     20675 11705
 
   *  5 random horizontal line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 19 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
     TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:220)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
 
     - failed on trial 1 of 250
      20
-     16959 16359
-      1085 16359
-      5118  9227
-     19878  6580
-     12867 12612
-      8706 12612
-     18925 16359
-      4219  6580
-      9466  6580
-      2904  9227
-     11189 18051
-     10814 12612
-     19598  6580
-     19656 18051
-     18886 16359
-     12369 18051
-     20461 18051
-     10775  9227
-     20106  9227
-     13415 12612
+      9968 11890
+     18745 11890
+     14527  1400
+     10692  2765
+      5296 16273
+      8762  1400
+      2186 16273
+      6765  2765
+     13086 11890
+      4796  1400
+     15789 16273
+      4512  6641
+     16828  2765
+      9550  6641
+      2790  2765
+     11817  6641
+      6986 16273
+      6865  1400
+     10143 11890
+     12839  6641
 
   * 10 random horizontal line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 39 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
     TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:221)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
@@ -350,16 +296,10 @@ Test 2b: random horizontal line segments
     - failed on trial 1 of 50
 
   * 15 random horizontal line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 59 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.horizontalSegments(TestBruteCollinearPoints.java:177)
     TestBruteCollinearPoints.test2b(TestBruteCollinearPoints.java:222)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:723)
@@ -370,31 +310,19 @@ Test 2b: random horizontal line segments
 
 Test 3a: points from a file with vertical line segments
   * filename = vertical5.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 19 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test3a(TestBruteCollinearPoints.java:228)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:726)
 
   * filename = vertical25.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 99 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test3a(TestBruteCollinearPoints.java:229)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:726)
@@ -403,76 +331,58 @@ Test 3a: points from a file with vertical line segments
 
 Test 3b: random vertical line segments
   *  1 random vertical line segment
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 3 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
     TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:235)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
 
     - failed on trial 1 of 500
      4
-     18295  9183
-     18295 20758
-     18295 15017
-     18295 19033
+     13482  8790
+     13482 15412
+     13482  8387
+     13482 18882
 
   *  5 random vertical line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 19 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
     TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:236)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
 
     - failed on trial 1 of 250
      20
-      3719 19987
-     11353 12355
-      3719  8485
-      9067 18420
-     15906  8106
-     11353  2992
-     15906  9257
-      3719 10221
-      2954 14745
-      2954 17279
-      2954  2986
-      9067  6791
-      2954 10667
-      9067  6544
-     15906 14902
-      3719 12400
-     15906 15871
-      9067  4886
-     11353 20895
-     11353 16602
+     11900  1805
+     11900 12033
+      8387 17707
+     11900 10122
+     20950 19309
+      8387  6415
+     11512  6785
+     11512 13348
+     11900  5809
+     18470 12769
+     20950 19275
+      8387  8470
+     11512 14717
+     20950 19784
+     18470  1651
+     20950 14727
+      8387  3054
+     11512 15718
+     18470 17604
+     18470 12359
 
   * 10 random vertical line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 39 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
     TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:237)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
@@ -480,16 +390,10 @@ Test 3b: random vertical line segments
     - failed on trial 1 of 50
 
   * 15 random vertical line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 59 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.verticalSegments(TestBruteCollinearPoints.java:201)
     TestBruteCollinearPoints.test3b(TestBruteCollinearPoints.java:238)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:729)
@@ -500,31 +404,19 @@ Test 3b: random vertical line segments
 
 Test 4a: points from a file with no line segments
   * filename = random23.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 22 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test4a(TestBruteCollinearPoints.java:244)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:732)
 
   * filename = random38.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 37 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test4a(TestBruteCollinearPoints.java:245)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:732)
@@ -533,105 +425,81 @@ Test 4a: points from a file with no line segments
 
 Test 4b: random points with no line segments
   *  5 random points
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 4 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
     TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:274)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
 
     - failed on trial 1 of 500
      5
-      9279   264
-     13737 24076
-     29281 15051
-      9773  9905
-      6965 20584
+     13811 15664
+     30122 16004
+     14675  5239
+      8345 28804
+     20629  2113
 
   * 10 random points
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 9 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
     TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:275)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
 
     - failed on trial 1 of 250
      10
-     31879 25986
-     31783   853
-     27368 12038
-      3301 12753
-     16846 28320
-      2134 21574
-      7480 11696
-     28389 21376
-     21938  7242
-      8541 10460
+      2191  8041
+       456  1002
+     10838  8800
+     30416 14819
+     23233 23600
+      6434 16924
+       330 29858
+     30448 27626
+     31840 14828
+      8928 30624
 
   * 20 random points
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 19 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
     TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:276)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
 
     - failed on trial 1 of 100
      20
-     25678 24085
-      5727  2876
-     19699 25704
-      5447  2819
-     31656 25568
-      4474 18224
-     31495 12718
-     21795 12899
-     31023 30352
-      1609  5963
-       401    52
-      2251 17279
-     28676 30953
-     19378 16954
-     23409  3308
-     20257  6678
-     18294 32047
-     25884 17696
-     13616  6867
-     24598 30724
+     30592  9425
+     29795 24351
+     14614 20334
+     22805 26123
+     18155 23805
+     30034 32311
+     16466  7320
+     27455 30105
+     29963  5126
+     10286 17893
+     23535 13387
+     15045 10015
+      9193 14402
+     11651 14832
+     31816 30031
+      6762 30257
+     11241 11268
+     15939 13136
+     23459 11464
+     22630 30429
 
   * 50 random points
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 49 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.no4CollinearPoints(TestBruteCollinearPoints.java:256)
     TestBruteCollinearPoints.test4b(TestBruteCollinearPoints.java:277)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:735)
@@ -642,46 +510,28 @@ Test 4b: random points with no line segments
 
 Test 5: points from a file with fewer than 4 points
   * filename = input1.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 0 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:283)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
 
   * filename = input2.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 1 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:284)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
 
   * filename = input3.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 2 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test5(TestBruteCollinearPoints.java:285)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:738)
@@ -692,46 +542,28 @@ Test 6: check for dependence on either compareTo() or compare()
         returning { -1, +1, 0 } instead of { negative integer,
         positive integer, zero }
   * filename = equidistant.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 14 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:294)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
 
   * filename = input40.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 39 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:295)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
 
   * filename = input48.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 47 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test6(TestBruteCollinearPoints.java:296)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:741)
@@ -740,46 +572,28 @@ Test 6: check for dependence on either compareTo() or compare()
 
 Test 7: check for fragile dependence on return value of toString()
   * filename = equidistant.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 14 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:304)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
 
   * filename = input40.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 39 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:305)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
 
   * filename = input48.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 47 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.file(TestBruteCollinearPoints.java:150)
     TestBruteCollinearPoints.test7(TestBruteCollinearPoints.java:306)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:744)
@@ -794,76 +608,58 @@ provide access to the x- and y-coordinates).
 
 Test 8: random line segments, none vertical or horizontal
   *  1 random line segment
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 3 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
     TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:346)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
 
     - failed on trial 1 of 500
      4
-     12586 10910
-     11146  9626
-      6346  5346
-      1546  1066
+      8904  3154
+     11484  6334
+     14064  9514
+     17934 14284
 
   *  5 random line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 19 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
     TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:347)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
 
     - failed on trial 1 of 250
      20
-       726  1380
-      5724  6852
-      6665  1032
-      7462 15255
-      1552   748
-      9300 12084
-      5910   231
-      4532  5108
-      5848  4933
-      8141 21828
-      9524 13249
-      6589  6804
-      2248  2233
-      2952  4383
-     11248  8983
-      8464 11819
-      9459  9018
-     10602 12285
-     11110 13737
-      7288  6013
+      7644  8940
+      7632  6465
+     16526 15962
+     12602 11962
+      4848  7794
+     10910  8974
+       800  3025
+     16319  6910
+      2670  2670
+      6922  4030
+      4730  4246
+      6070  1108
+      7178  8749
+      2792  1962
+      5314  7985
+      8626  9874
+      9880  8186
+     11885  5800
+      3756  3765
+     10640  9962
 
   * 10 random line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 39 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
     TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:348)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
@@ -871,16 +667,10 @@ Test 8: random line segments, none vertical or horizontal
     - failed on trial 1 of 100
 
   * 15 random line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 59 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.noVerticalOrHorizontalSegments(TestBruteCollinearPoints.java:328)
     TestBruteCollinearPoints.test8(TestBruteCollinearPoints.java:349)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:747)
@@ -891,76 +681,58 @@ Test 8: random line segments, none vertical or horizontal
 
 Test 9: random line segments
   *  1 random line segment
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 3 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
     TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:379)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
 
     - failed on trial 1 of 500
      4
-      9614  9755
-      9650  9818
-      9598  9727
-      9646  9811
+     11440  7309
+      8890  6357
+     15265  8737
+     13840  8205
 
   *  5 random line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 19 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
     TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:380)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
 
     - failed on trial 1 of 250
      20
-     11051  6709
-      6867 10422
-      6962 14189
-      5492 13013
-     10199 12961
-     10930 14466
-      9536 11596
-      7229 11034
-     11015  6697
-      5487 10498
-      6931 11206
-     10488 13556
-      6707  8462
-      6033 10666
-     10883  6653
-      7099 10994
-      5192 12773
-      7622 14717
-     10955  6677
-      6835 10030
+      8124  7558
+     13368  9253
+      4619  4817
+      7087  7422
+      5561 10229
+      5561 10773
+      3935  4385
+      7713 13657
+      5773 12817
+      5561  9345
+      6557  6041
+      4900 12439
+     13368 10453
+     11723  8030
+      5561 10501
+     13368 10228
+      6452 13111
+      4106  4493
+     13368  9228
+     10259  7838
 
   * 10 random line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 39 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
     TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:381)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
@@ -968,16 +740,10 @@ Test 9: random line segments
     - failed on trial 1 of 100
 
   * 15 random line segments
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 59 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:107)
+    TestBruteCollinearPoints.toLineSegments226(TestBruteCollinearPoints.java:48)
+    TestBruteCollinearPoints.testSegments(TestBruteCollinearPoints.java:109)
     TestBruteCollinearPoints.arbitrarySegments(TestBruteCollinearPoints.java:361)
     TestBruteCollinearPoints.test9(TestBruteCollinearPoints.java:382)
     TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:750)
@@ -989,42 +755,23 @@ Test 9: random line segments
 Test 10: check that data type is immutable by testing whether each method
          returns the same value, regardless of any intervening operations
   * input8.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testImmutable(TestBruteCollinearPoints.java:429)
-    TestBruteCollinearPoints.testImmutable(TestBruteCollinearPoints.java:516)
-    TestBruteCollinearPoints.test10(TestBruteCollinearPoints.java:531)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:753)
+    - failed after 7 operations involving BruteCollinearPoints
+    - first and last call to segments() returned different arrays
 
     - sequence of operations was:
           BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+          collinear.numberOfSegments() -&gt; 8
+          collinear.numberOfSegments() -&gt; 8
+          collinear.segments()
+          collinear.numberOfSegments() -&gt; 8
+          mutate array returned by last call to segments()
+          collinear.segments()
 
     - failed on trial 1 of 100
 
   * equidistant.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testImmutable(TestBruteCollinearPoints.java:429)
-    TestBruteCollinearPoints.testImmutable(TestBruteCollinearPoints.java:516)
-    TestBruteCollinearPoints.test10(TestBruteCollinearPoints.java:532)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:753)
-
-    - sequence of operations was:
-          BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+    - failed after 31 operations involving BruteCollinearPoints
+    - first and last call to segments() returned different arrays
 
     - failed on trial 1 of 100
 
@@ -1032,243 +779,41 @@ Test 10: check that data type is immutable by testing whether each method
 
 Test 11: check that data type does not mutate the constructor argument
   * input8.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testMutateConstructorArgument(TestBruteCollinearPoints.java:545)
-    TestBruteCollinearPoints.test11(TestBruteCollinearPoints.java:565)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:756)
-
   * equidistant.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testMutateConstructorArgument(TestBruteCollinearPoints.java:545)
-    TestBruteCollinearPoints.test11(TestBruteCollinearPoints.java:566)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:756)
-
-==&gt; FAILED
+==&gt; passed
 
 Test 12: numberOfSegments() is consistent with segments()
   * filename = input8.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
-    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
-    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:604)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
-
   * filename = equidistant.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
-    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
-    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:605)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
-
   * filename = input40.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
-    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
-    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:606)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
-
   * filename = input48.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
-    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
-    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:607)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
-
   * filename = horizontal5.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
-    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
-    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:608)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
-
   * filename = vertical5.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
-    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
-    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:609)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
-
   * filename = random23.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
-
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    BruteCollinearPoints.&lt;init&gt;(BruteCollinearPoints.java:10)
-    TestBruteCollinearPoints.testNumberOfSegments(TestBruteCollinearPoints.java:573)
-    TestBruteCollinearPoints.fileNumberOfSegments(TestBruteCollinearPoints.java:599)
-    TestBruteCollinearPoints.test12(TestBruteCollinearPoints.java:610)
-    TestBruteCollinearPoints.main(TestBruteCollinearPoints.java:759)
-
-==&gt; FAILED
+==&gt; passed
 
 Test 13: throws an exception if either the constructor argument is null
          or any entry in array is null
   * argument is null
   * Point[] of length 10, number of null entries = 1
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-     10
-     16578 25976
-     13520 31785
-      2367 16665
-     31950 13750
-     15476  4222
-        40  2794
-     28858 26684
-     30648 24068
-     19401 21480
-     null
-
   * Point[] of length 10, number of null entries = 10
   * Point[] of length 4, number of null entries = 1
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-     4
-     27536  2719
-     22178 22021
-     null
-     21504  4054
-
   * Point[] of length 3, number of null entries = 1
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-     3
-     14384  7242
-      7577 23479
-     null
-
   * Point[] of length 2, number of null entries = 1
   * Point[] of length 1, number of null entries = 1
-==&gt; FAILED
+==&gt; passed
 
 Test 14: check that the constructor throws an exception if duplicate points
   * 50 points
-    - failed on trial 1 of 5
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-
   * 25 points
-    - failed on trial 1 of 10
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-
   * 5 points
-    - failed on trial 1 of 100
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-     5
-     10172 26676
-      4398  3337
-     16533  1007
-      3459 30722
-      3459 30722
-
   * 4 points
-    - failed on trial 1 of 100
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-     4
-     32131 30341
-     12901 18102
-     31915 25188
-     12901 18102
-
   * 3 points
-    - failed on trial 1 of 100
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-     3
-     22127 18023
-      1787  9662
-      1787  9662
-
   * 2 points
-    - failed on trial 1 of 100
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-     2
-      6301 26696
-      6301 26696
-
-==&gt; FAILED
+==&gt; passed
 
 
-Total: 0/17 tests passed!
+Total: 4/17 tests passed!
 
 
 ================================================================
@@ -1282,76 +827,46 @@ The inputs satisfy the following conditions:
 
 Test 1: points from a file
   * filename = input8.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 7 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test1(TestFastCollinearPoints.java:156)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
 
   * filename = equidistant.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 14 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test1(TestFastCollinearPoints.java:157)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
 
   * filename = input40.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 39 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test1(TestFastCollinearPoints.java:158)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
 
   * filename = input48.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 47 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test1(TestFastCollinearPoints.java:159)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
 
   * filename = input299.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 298 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test1(TestFastCollinearPoints.java:160)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:778)
@@ -1360,76 +875,558 @@ Test 1: points from a file
 
 Test 2a: points from a file with horizontal line segments
   * filename = horizontal5.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 19 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:166)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
 
   * filename = horizontal25.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 99 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:167)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
 
   * filename = horizontal50.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 199 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:168)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
 
   * filename = horizontal75.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 299 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
     TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
     TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:169)
     TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
 
   * filename = horizontal100.txt
-    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+    java.lang.NullPointerException: segment 399 is null
 
-    Point.hashCode(Point.java:274)
-    java.util.HashMap.hash(HashMap.java:338)
-    java.util.HashMap.put(HashMap.java:611)
-    java.util.HashSet.add(HashSet.java:219)
-    Util.validate(Util.java:15)
-     ...
-    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
-    TestFastCollinearPoints.testSegments(T
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:170)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
+
+==&gt; FAILED
+
+Test 2b: random horizontal line segments
+  *  1 random horizontal line segment
+    java.lang.NullPointerException: segment 3 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.horizontalSegments(TestFastCollinearPoints.java:182)
+    TestFastCollinearPoints.test2b(TestFastCollinearPoints.java:224)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:784)
+
+    - failed on trial 1 of 500
+     4
+     12337  6634
+     10459  6634
+     16004  6634
+     15622  6634
+
+  *  5 random horizontal line segments
+    java.lang.NullPointerException: segment 19 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.horizontalSegments(TestFastCollinearPoints.java:182)
+    TestFastCollinearPoints.test2b(TestFastCollinearPoints.java:225)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:784)
+
+    - failed on trial 1 of 250
+     20
+     14352  8190
+      7886  8730
+     13034  8730
+     18232  8190
+     15389 16085
+     19084 16085
+     20480 16085
+      8883  8965
+     20263  5202
+     16587  8190
+     11913  8965
+     16859  5202
+      9396  5202
+     14785  8965
+     18953  8965
+      4337 16085
+     20415  8730
+      1081  8190
+     19040  5202
+     17170  8730
+
+  * 10 random horizontal line segments
+    java.lang.NullPointerException: segment 39 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.horizontalSegments(TestFastCollinearPoints.java:182)
+    TestFastCollinearPoints.test2b(TestFastCollinearPoints.java:226)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:784)
+
+    - failed on trial 1 of 50
+
+  * 15 random horizontal line segments
+    java.lang.NullPointerException: segment 59 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.horizontalSegments(TestFastCollinearPoints.java:182)
+    TestFastCollinearPoints.test2b(TestFastCollinearPoints.java:227)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:784)
+
+    - failed on trial 1 of 5
+
+==&gt; FAILED
+
+Test 3a: points from a file with vertical line segments
+  * filename = vertical5.txt
+    java.lang.NullPointerException: segment 19 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:233)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+
+  * filename = vertical25.txt
+    java.lang.NullPointerException: segment 99 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:234)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+
+  * filename = vertical50.txt
+    java.lang.NullPointerException: segment 199 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:235)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+
+  * filename = vertical75.txt
+    java.lang.NullPointerException: segment 299 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:236)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+
+  * filename = vertical100.txt
+    java.lang.NullPointerException: segment 399 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test3a(TestFastCollinearPoints.java:237)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:787)
+
+==&gt; FAILED
+
+Test 3b: random vertical line segments
+  *  1 random vertical line segment
+    java.lang.NullPointerException: segment 3 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.verticalSegments(TestFastCollinearPoints.java:206)
+    TestFastCollinearPoints.test3b(TestFastCollinearPoints.java:243)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:790)
+
+    - failed on trial 1 of 500
+     4
+      7715 11915
+      7715 19163
+      7715 17673
+      7715  8267
+
+  *  5 random vertical line segments
+    java.lang.NullPointerException: segment 19 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.verticalSegments(TestFastCollinearPoints.java:206)
+    TestFastCollinearPoints.test3b(TestFastCollinearPoints.java:244)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:790)
+
+    - failed on trial 1 of 250
+     20
+     18098  7463
+     18098  4845
+      1469 16971
+     16253  1249
+     16253  4823
+     20960 17150
+     20960 16808
+      7486  2197
+     20960 20155
+     18098 14595
+      1469  3345
+      7486  1847
+     16253 10731
+      1469 15599
+     18098 10014
+      7486  3275
+      7486 16265
+     20960  6546
+     16253 14424
+      1469 18592
+
+  * 10 random vertical line segments
+    java.lang.NullPointerException: segment 39 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.verticalSegments(TestFastCollinearPoints.java:206)
+    TestFastCollinearPoints.test3b(TestFastCollinearPoints.java:245)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:790)
+
+    - failed on trial 1 of 50
+
+  * 15 random vertical line segments
+    java.lang.NullPointerException: segment 59 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.verticalSegments(TestFastCollinearPoints.java:206)
+    TestFastCollinearPoints.test3b(TestFastCollinearPoints.java:246)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:790)
+
+    - failed on trial 1 of 5
+
+==&gt; FAILED
+
+Test 4a: points from a file with no line segments
+  * filename = random23.txt
+    java.lang.NullPointerException: segment 22 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test4a(TestFastCollinearPoints.java:252)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:793)
+
+  * filename = random38.txt
+    java.lang.NullPointerException: segment 37 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test4a(TestFastCollinearPoints.java:253)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:793)
+
+  * filename = random91.txt
+    java.lang.NullPointerException: segment 90 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test4a(TestFastCollinearPoints.java:254)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:793)
+
+  * filename = random152.txt
+    java.lang.NullPointerException: segment 151 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test4a(TestFastCollinearPoints.java:255)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:793)
+
+==&gt; FAILED
+
+Test 4b: random points with no line segments
+  *  5 random points
+    java.lang.NullPointerException: segment 4 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.no4CollinearPoints(TestFastCollinearPoints.java:266)
+    TestFastCollinearPoints.test4b(TestFastCollinearPoints.java:284)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:796)
+
+    - failed on trial 1 of 500
+     5
+      3314 22532
+     11033 31994
+      8397 28536
+      3235 18631
+      5829 24460
+
+  * 10 random points
+    java.lang.NullPointerException: segment 9 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.no4CollinearPoints(TestFastCollinearPoints.java:266)
+    TestFastCollinearPoints.test4b(TestFastCollinearPoints.java:285)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:796)
+
+    - failed on trial 1 of 250
+     10
+      7721  3432
+      5808 12784
+     31496  8662
+     19811 16245
+     29153 20798
+     30958  2994
+     27773 15343
+      3981 27916
+     12058 28556
+     14057 28254
+
+  * 20 random points
+    java.lang.NullPointerException: segment 19 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.no4CollinearPoints(TestFastCollinearPoints.java:266)
+    TestFastCollinearPoints.test4b(TestFastCollinearPoints.java:286)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:796)
+
+    - failed on trial 1 of 100
+     20
+      5543 18551
+     31846  5934
+      8735 23974
+      4931 32529
+      6879  5940
+     24177 16886
+      4029 26674
+     17872 15065
+     10048  3870
+     28742 26683
+      4986  1855
+     28681 19418
+     27183 23556
+     21634 19284
+     16086 24928
+      9655 29769
+     32338 17731
+     24420   266
+     21597 28736
+     29419 30419
+
+  * 50 random points
+    java.lang.NullPointerException: segment 49 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.no4CollinearPoints(TestFastCollinearPoints.java:266)
+    TestFastCollinearPoints.test4b(TestFastCollinearPoints.java:287)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:796)
+
+    - failed on trial 1 of 10
+
+==&gt; FAILED
+
+Test 5a: points from a file with 5 or more on some line segments
+  * filename = input9.txt
+    java.lang.NullPointerException: segment 8 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:293)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+
+  * filename = input10.txt
+    java.lang.NullPointerException: segment 9 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:294)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+
+  * filename = input20.txt
+    java.lang.NullPointerException: segment 19 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:295)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+
+  * filename = input50.txt
+    java.lang.NullPointerException: segment 49 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:296)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+
+  * filename = input80.txt
+    java.lang.NullPointerException: segment 79 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:297)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+
+  * filename = input300.txt
+    java.lang.NullPointerException: segment 299 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:298)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+
+  * filename = inarow.txt
+    java.lang.NullPointerException: segment 28 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5a(TestFastCollinearPoints.java:299)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:799)
+
+==&gt; FAILED
+
+Test 5b: points from a file with 5 or more on some line segments
+  * filename = kw1260.txt
+    java.lang.NullPointerException: segment 1259 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5b(TestFastCollinearPoints.java:306)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:802)
+
+  * filename = rs1423.txt
+    java.lang.NullPointerException: segment 1422 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test5b(TestFastCollinearPoints.java:308)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:802)
+
+==&gt; FAILED
+
+Test 6: points from a file with fewer than 4 points
+  * filename = input1.txt
+    java.lang.NullPointerException: segment 0 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test6(TestFastCollinearPoints.java:314)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:805)
+
+  * filename = input2.txt
+    java.lang.NullPointerException: segment 1 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test6(TestFastCollinearPoints.java:315)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:805)
+
+  * filename = input3.txt
+    java.lang.NullPointerException: segment 2 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test6(TestFastCollinearPoints.java:316)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:805)
+
+==&gt; FAILED
+
+Test 7: check for dependence on either compareTo() or compare()
+        returning { -1, +1, 0 } instead of { negative integer,
+        positive integer, zero }
+  * filename = equidistant.txt
+    java.lang.NullPointerException: segment 14 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test7(TestFastCollinearPoints.java:325)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:808)
+
+  * filename = input40.txt
+    java.lang.NullPointerException: segment 39 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test7(TestFastCollinearPoints.java:326)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:808)
+
+  * filename = input48.txt
+    java.lang.NullPointerException: segment 47 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test7(TestFastCollinearPoints.java:327)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:808)
+
+  * filename = input299.txt
+    java.lang.NullPointerException: segment 298 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test7(TestFastCollinearPoints.java:328)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:808)
+
+==&gt; FAILED
+
+Test 8: check for fragile dependence on return value of toString()
+  * filename = equidistant.txt
+    java.lang.NullPointerException: segment 14 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test8(TestFastCollinearPoints.java:336)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:811)
+
+  * filename = input40.txt
+    java.lang.NullPointerException: segment 39 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test8(TestFastCollinearPoints.java:337)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:811)
+
+  * filename = input48.txt
+    java.lang.NullPointerException: segment 47 is null
+
+    TestFastCollinearPoints.toLineSegments226(TestFastCollinearPoints.java:49)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:109)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test8(TestFastCollinearPoints.java:338)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:811)
+
+
+It is bad style to write code that depends on the
 
 ...
 
