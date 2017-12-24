@@ -20,7 +20,12 @@ public class Point implements Comparable<Point> {
     private final Comparator<Point> slopeOrderComparator = (p1, p2) -> {
         Objects.requireNonNull(p1);
         Objects.requireNonNull(p2);
-        return (int) (slopeTo(p1) - slopeTo(p2));
+        double v = slopeTo(p1) - slopeTo(p2);
+        if (v > 0)
+            return 1;
+        else if (v < 0)
+            return -1;
+        return 0;
     };
 
     /**

@@ -9,21 +9,21 @@ Findbugs:     FAILED (6 warnings)
 PMD:          PASSED
 Checkstyle:   PASSED
 
-Correctness:  2/41 tests passed
+Correctness:  3/41 tests passed
 Memory:       0/1 tests passed
 Timing:       0/41 tests passed
 
-Aggregate score: 12.93%
+Aggregate score: 14.39%
 [Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
- 722 Dec 18 02:49 BruteCollinearPoints.java
- 728 Dec 18 02:49 FastCollinearPoints.java
-4.1K Dec 18 02:49 Point.java
- 533 Dec 18 02:49 Util.java
+ 722 Dec 24 13:10 BruteCollinearPoints.java
+ 728 Dec 24 13:10 FastCollinearPoints.java
+4.4K Dec 24 13:10 Point.java
+ 533 Dec 24 13:10 Util.java
 
 
 ********************************************************************************
@@ -150,55 +150,15 @@ Test 3: p.slopeOrder().compare(q, r)
   * antisymmetric, where p, q, and r have coordinates in [0, 500)
   * antisymmetric, where p, q, and r have coordinates in [0, 32768)
   * transitive, where p, q, r, and s have coordinates in [0, 500)
-     Failed on trial 19 of 100000
-     p                            = (401, 120)
-     q                            = (132, 167)
-     r                            = (141, 423)
-     s                            = (311, 277)
-     p.slopeOrder().compare(q, r) = 0
-     p.slopeOrder().compare(r, s) = 0
-     p.slopeOrder().compare(q, s) = 1
   * transitive, where p, q, r, and s have coordinates in [0, 32768)
-     Failed on trial 139 of 100000
-     p                            = (365, 1544)
-     q                            = (7706, 10059)
-     r                            = (32283, 9481)
-     s                            = (16391, 2166)
-     p.slopeOrder().compare(q, r) = 0
-     p.slopeOrder().compare(r, s) = 0
-     p.slopeOrder().compare(q, s) = 1
   * sign of compare(), where p, q, and r have coordinates in [0, 500)
-     Failed on trial 3 of 100000
-     p                         = (173, 267)
-     q                         = (379, 44)
-     r                         = (284, 165)
-     student   p.compare(q, r) = 0
-     reference p.compare(q, r) = -1
-     reference p.slopeTo(q)    = -1.0825242718446602
-     reference p.slopeTo(r)    = -0.918918918918919
   * sign of compare(), where p, q, and r have coordinates in [0, 32768)
-     Failed on trial 2 of 100000
-     p                         = (19141, 19988)
-     q                         = (6834, 953)
-     r                         = (11058, 15471)
-     student   p.compare(q, r) = 0
-     reference p.compare(q, r) = 1
-     reference p.slopeTo(q)    = 1.546680750792232
-     reference p.slopeTo(r)    = 0.5588271681306446
   * sign of compare(), where p, q, and r have coordinates in [0, 10)
-     Failed on trial 2 of 100000
-     p                         = (2, 0)
-     q                         = (8, 7)
-     r                         = (6, 5)
-     student   p.compare(q, r) = 0
-     reference p.compare(q, r) = -1
-     reference p.slopeTo(q)    = 1.1666666666666667
-     reference p.slopeTo(r)    = 1.25
   * throw java.lang.NullPointerException if either argument is null
-==&gt; FAILED
+==&gt; passed
 
 
-Total: 2/3 tests passed!
+Total: 3/3 tests passed!
 
 
 ================================================================
@@ -329,10 +289,10 @@ Test 2b: random horizontal line segments
 
     - failed on trial 1 of 500
      4
-      5118  6106
-      6760  6106
-      1288  6106
-      2452  6106
+     14455  7800
+     20093  7800
+      5540  7800
+     14621  7800
 
   *  5 random horizontal line segments
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -351,26 +311,26 @@ Test 2b: random horizontal line segments
 
     - failed on trial 1 of 250
      20
-      9225  2300
-      5432  2300
-     10982  2300
-     20126  6989
-      8611  1017
-      9549 13619
-     16322  8446
-     12443  8446
-     17139  8446
-      8692  1017
-     11510  6989
-      4103  8446
-      5750 13619
-     20433  6989
-     18985  1017
-     17291  1017
-     12322  2300
-      3086 13619
-      4275 13619
-      2571  6989
+     16959 16359
+      1085 16359
+      5118  9227
+     19878  6580
+     12867 12612
+      8706 12612
+     18925 16359
+      4219  6580
+      9466  6580
+      2904  9227
+     11189 18051
+     10814 12612
+     19598  6580
+     19656 18051
+     18886 16359
+     12369 18051
+     20461 18051
+     10775  9227
+     20106  9227
+     13415 12612
 
   * 10 random horizontal line segments
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -459,10 +419,10 @@ Test 3b: random vertical line segments
 
     - failed on trial 1 of 500
      4
-      9368 11957
-      9368  2913
-      9368  7313
-      9368 19744
+     18295  9183
+     18295 20758
+     18295 15017
+     18295 19033
 
   *  5 random vertical line segments
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -481,26 +441,26 @@ Test 3b: random vertical line segments
 
     - failed on trial 1 of 250
      20
-     11633 18481
-     18302  1927
-     14615  1548
-     14615  7325
-     11633 14165
-      5572  6053
-      5572  1744
-      9091  4777
-      9091  2970
-     11633 19065
-     14615 11182
-      9091  7905
-      5572  7735
-      5572 16128
-      9091 13549
-     11633  6707
-     14615 10901
-     18302  1410
-     18302  2583
-     18302 12738
+      3719 19987
+     11353 12355
+      3719  8485
+      9067 18420
+     15906  8106
+     11353  2992
+     15906  9257
+      3719 10221
+      2954 14745
+      2954 17279
+      2954  2986
+      9067  6791
+      2954 10667
+      9067  6544
+     15906 14902
+      3719 12400
+     15906 15871
+      9067  4886
+     11353 20895
+     11353 16602
 
   * 10 random vertical line segments
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -589,11 +549,11 @@ Test 4b: random points with no line segments
 
     - failed on trial 1 of 500
      5
-     31607 25210
-      6479 17318
-      4292 22231
-      1449 17093
-     22583  8261
+      9279   264
+     13737 24076
+     29281 15051
+      9773  9905
+      6965 20584
 
   * 10 random points
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -612,16 +572,16 @@ Test 4b: random points with no line segments
 
     - failed on trial 1 of 250
      10
-     14945 10214
-     22187  2328
-      5068  7198
-     24345 19899
-     12430 11862
-      3970 12759
-     28030 27888
-      9028 11269
-     29342   419
-      5716 16448
+     31879 25986
+     31783   853
+     27368 12038
+      3301 12753
+     16846 28320
+      2134 21574
+      7480 11696
+     28389 21376
+     21938  7242
+      8541 10460
 
   * 20 random points
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -640,26 +600,26 @@ Test 4b: random points with no line segments
 
     - failed on trial 1 of 100
      20
-     19901  6907
-     27877 12420
-     31422  9081
-      6590 26757
-     21856 18079
-     23525  7094
-     22123  2266
-       171 31257
-     16230    57
-      3997 23161
-     18910 25119
-      6865 28662
-     19148 28975
-     11845 27046
-     30850 17467
-     20792 22348
-     19809  7547
-     30710  9096
-     29689  7459
-     21998 12399
+     25678 24085
+      5727  2876
+     19699 25704
+      5447  2819
+     31656 25568
+      4474 18224
+     31495 12718
+     21795 12899
+     31023 30352
+      1609  5963
+       401    52
+      2251 17279
+     28676 30953
+     19378 16954
+     23409  3308
+     20257  6678
+     18294 32047
+     25884 17696
+     13616  6867
+     24598 30724
 
   * 50 random points
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -850,10 +810,10 @@ Test 8: random line segments, none vertical or horizontal
 
     - failed on trial 1 of 500
      4
-      2900  7165
-     11645  8320
-     18005  9160
-     16415  8950
+     12586 10910
+     11146  9626
+      6346  5346
+      1546  1066
 
   *  5 random line segments
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -872,26 +832,26 @@ Test 8: random line segments, none vertical or horizontal
 
     - failed on trial 1 of 250
      20
-     18158 13495
-      5064  2245
-     11576 11624
-     12723  7901
-     12146 15454
-      9447  8848
-      8583  3641
-     10265  2815
-     10239  5345
-      7427  1798
-     13704  7360
-     10659 13078
-     20963 15622
-      3912  1563
-     11519 11241
-     14418 10659
-     10457 12373
-     12548  9241
-     13551  8753
-     10248  5314
+       726  1380
+      5724  6852
+      6665  1032
+      7462 15255
+      1552   748
+      9300 12084
+      5910   231
+      4532  5108
+      5848  4933
+      8141 21828
+      9524 13249
+      6589  6804
+      2248  2233
+      2952  4383
+     11248  8983
+      8464 11819
+      9459  9018
+     10602 12285
+     11110 13737
+      7288  6013
 
   * 10 random line segments
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -947,10 +907,10 @@ Test 9: random line segments
 
     - failed on trial 1 of 500
      4
-     13056  4763
-     13056   629
-     13056   317
-     13056  3203
+      9614  9755
+      9650  9818
+      9598  9727
+      9646  9811
 
   *  5 random line segments
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -969,26 +929,26 @@ Test 9: random line segments
 
     - failed on trial 1 of 250
      20
-      6437 13118
-      8314  6263
-      5849 10556
-      6474  9890
-     14600 14233
-     14600 12057
-     14600 12121
-      7959 12401
-      5793 10312
-      9279 14633
-      6336  7149
-       889  6038
-      7362  9885
-     14600 10009
-      6876  8589
-       988  6041
-      5415  8665
-      6201  6789
-      4255  6140
-      5539  8309
+     11051  6709
+      6867 10422
+      6962 14189
+      5492 13013
+     10199 12961
+     10930 14466
+      9536 11596
+      7229 11034
+     11015  6697
+      5487 10498
+      6931 11206
+     10488 13556
+      6707  8462
+      6033 10666
+     10883  6653
+      7099 10994
+      5192 12773
+      7622 14717
+     10955  6677
+      6835 10030
 
   * 10 random line segments
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
@@ -1215,36 +1175,38 @@ Test 13: throws an exception if either the constructor argument is null
     - constructor throws a java.lang.UnsupportedOperationException
     - constructor should throw a java.lang.IllegalArgumentException
      10
-      2131 14186
-     23330 17690
-     28420 29363
-     15542  1538
-      2556 11558
+     16578 25976
+     13520 31785
+      2367 16665
+     31950 13750
+     15476  4222
+        40  2794
+     28858 26684
+     30648 24068
+     19401 21480
      null
-     29818  9404
-      3708 13339
-     19310  3637
-     26060  7132
 
   * Point[] of length 10, number of null entries = 10
   * Point[] of length 4, number of null entries = 1
+    - constructor throws wrong exception
+    - constructor throws a java.lang.UnsupportedOperationException
+    - constructor should throw a java.lang.IllegalArgumentException
+     4
+     27536  2719
+     22178 22021
+     null
+     21504  4054
+
   * Point[] of length 3, number of null entries = 1
     - constructor throws wrong exception
     - constructor throws a java.lang.UnsupportedOperationException
     - constructor should throw a java.lang.IllegalArgumentException
      3
-         6 14004
+     14384  7242
+      7577 23479
      null
-     21250  7200
 
   * Point[] of length 2, number of null entries = 1
-    - constructor throws wrong exception
-    - constructor throws a java.lang.UnsupportedOperationException
-    - constructor should throw a java.lang.IllegalArgumentException
-     2
-     28338  1953
-     null
-
   * Point[] of length 1, number of null entries = 1
 ==&gt; FAILED
 
@@ -1267,11 +1229,11 @@ Test 14: check that the constructor throws an exception if duplicate points
     - constructor throws a java.lang.UnsupportedOperationException
     - constructor should throw a java.lang.IllegalArgumentException
      5
-      5564 13347
-     17918 27571
-     16988  4465
-      5564 13347
-     21005 17671
+     10172 26676
+      4398  3337
+     16533  1007
+      3459 30722
+      3459 30722
 
   * 4 points
     - failed on trial 1 of 100
@@ -1279,10 +1241,10 @@ Test 14: check that the constructor throws an exception if duplicate points
     - constructor throws a java.lang.UnsupportedOperationException
     - constructor should throw a java.lang.IllegalArgumentException
      4
-     31228  7634
-     27709 29483
-     27709 29483
-     26614 11229
+     32131 30341
+     12901 18102
+     31915 25188
+     12901 18102
 
   * 3 points
     - failed on trial 1 of 100
@@ -1290,9 +1252,9 @@ Test 14: check that the constructor throws an exception if duplicate points
     - constructor throws a java.lang.UnsupportedOperationException
     - constructor should throw a java.lang.IllegalArgumentException
      3
-     22594  3857
-     29059 16686
-     29059 16686
+     22127 18023
+      1787  9662
+      1787  9662
 
   * 2 points
     - failed on trial 1 of 100
@@ -1300,8 +1262,8 @@ Test 14: check that the constructor throws an exception if duplicate points
     - constructor throws a java.lang.UnsupportedOperationException
     - constructor should throw a java.lang.IllegalArgumentException
      2
-      9949  1231
-      9949  1231
+      6301 26696
+      6301 26696
 
 ==&gt; FAILED
 
@@ -1430,7 +1392,44 @@ Test 2a: points from a file with horizontal line segments
   * filename = horizontal50.txt
     java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
 
-    Point.hashCode(Point
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:168)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
+
+  * filename = horizontal75.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
+    TestFastCollinearPoints.testSegments(TestFastCollinearPoints.java:107)
+    TestFastCollinearPoints.file(TestFastCollinearPoints.java:151)
+    TestFastCollinearPoints.test2a(TestFastCollinearPoints.java:169)
+    TestFastCollinearPoints.main(TestFastCollinearPoints.java:781)
+
+  * filename = horizontal100.txt
+    java.lang.UnsupportedOperationException: calling hashCode() is not permitted on this assignment
+
+    Point.hashCode(Point.java:274)
+    java.util.HashMap.hash(HashMap.java:338)
+    java.util.HashMap.put(HashMap.java:611)
+    java.util.HashSet.add(HashSet.java:219)
+    Util.validate(Util.java:15)
+     ...
+    FastCollinearPoints.&lt;init&gt;(FastCollinearPoints.java:10)
+    TestFastCollinearPoints.testSegments(T
 
 ...
 
