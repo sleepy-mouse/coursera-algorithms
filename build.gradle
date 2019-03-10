@@ -1,12 +1,4 @@
-buildscript {
-    ext.slf4j = '1.7.25'
-    ext.logback = '1.2.2'
-    ext.guava = '23.3-jre'
-    ext.lombok = '1.16.18'
-    ext.junit = '4.12'
-    ext.assertj_version = '3.8.0'
-}
-
+apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'project-report'
@@ -25,11 +17,26 @@ repositories {
     }
 }
 
+ext {
+    slf4j = '1.7.25'
+    logback = '1.2.2'
+    guava = '23.3-jre'
+    lombok = '1.16.18'
+    junit = '4.12'
+    assertj_version = '3.8.0'
+    groovy = '2.5.6'
+}
+
 dependencies {
-    compile "ch.qos.logback:logback-classic:$logback"
-    compile "org.projectlombok:lombok:$lombok"
-    compile files('libs/algs4.jar')
+    implementation "ch.qos.logback:logback-classic:$logback"
+    implementation "org.projectlombok:lombok:$lombok"
+    implementation "org.codehaus.groovy:groovy-all:${groovy}"
+    implementation files('libs/algs4.jar')
     testCompile "com.google.guava:guava:$guava"
     testCompile "junit:junit:$junit"
     testCompile "org.assertj:assertj-core:${assertj_version}"
+}
+
+task prepare(type: gradle.PrepareTask) {
+    assignmentName = 'PART1_WEEK1'
 }
