@@ -51,7 +51,7 @@ public class PercolationTest {
     }
 
     @Test
-    public void t() {
+    public void testIndexMapping() {
 //        log.info(String.valueOf(Percolation.transform(4, 4, 1)));
 //        Assert.assertEquals(1, Percolation.transform(3, 1, 1));
 //        Assert.assertEquals(6, Percolation.transform(3, 2, 3));
