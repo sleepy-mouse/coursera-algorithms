@@ -6,28 +6,29 @@ public class Percolation {
     private final WeightedQuickUnionUF uf;
     private final Site[] sites;
     private final int n;
-    private int numberOfOpenSites;
+    private int openSiteCount;
     private final int[] topRowIndices;
     private final int[] bottomRowIndices;
 
     // create n-by-n grid, with all sites blocked
     public Percolation(int n) {
         if (n <= 0)
-            throw new IllegalArgumentException("numberOfElements must be greater than zero.");
+            throw new IllegalArgumentException("n must be greater than zero.");
         this.n = n;
-        int numberOfElements = transform(n, n, n);
-        uf = new WeightedQuickUnionUF(numberOfElements + 1);
-        sites = new Site[numberOfElements + 1];
+        int elementCount = transform(n, n, n);
+        uf = new WeightedQuickUnionUF(elementCount + 1);
+        sites = new Site[elementCount + 1];
         topRowIndices = new int[n];
         for (int i = 0, j = 1; i < topRowIndices.length && j <= n; i++, j++) {
             topRowIndices[i] = j;
         }
         bottomRowIndices = new int[n];
-        for (int i = 0, j = numberOfElements; i < bottomRowIndices.length && j > numberOfElements - n; i++, j--) {
+        for (int i = 0, j = elementCount; i < bottomRowIndices.length && j > elementCount - n; i++, j--) {
             bottomRowIndices[i] = j;
         }
     }
 
+    // Get the unique incremented number standing for the site, so it can be used for Union-Find algorithm
     private static int transform(int n, int row, int col) {
         return n * (row - 1) + col;
     }
@@ -42,7 +43,7 @@ public class Percolation {
     public void open(int row, int col) {
         final int i = checkIndex(row, col);
         Site site = openSite(row, col, i);
-        checkNeighbour(site);
+        mergeOpenNeighbour(site);
     }
 
     private int findOpenNeighbour(int row, int col) {
@@ -55,7 +56,7 @@ public class Percolation {
         return row < 1 || row > n || col < 1 || col > n;
     }
 
-    private void checkNeighbour(Site site) {
+    private void mergeOpenNeighbour(Site site) {
         int x = site.x, y = site.y;
         int left = findOpenNeighbour(x - 1, y);
         int right = findOpenNeighbour(x + 1, y);
@@ -79,7 +80,7 @@ public class Percolation {
         }
         if (!site.isOpen()) {
             site.setOpen(true);
-            numberOfOpenSites++;
+            openSiteCount++;
         }
         return site;
     }
@@ -97,7 +98,7 @@ public class Percolation {
 
     // number of open sites
     public int numberOfOpenSites() {
-        return numberOfOpenSites;
+        return openSiteCount;
     }
 
     public boolean isFull(int row, int col) {
@@ -142,18 +143,6 @@ public class Percolation {
 
         void setOpen(boolean open) {
             this.open = open;
-        }
-
-        public int getX() {
-            return x;
-        }
-
-        public int getY() {
-            return y;
-        }
-
-        public int getI() {
-            return i;
         }
 
         @Override

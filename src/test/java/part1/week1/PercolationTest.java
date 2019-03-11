@@ -21,16 +21,16 @@ public class PercolationTest {
     public void visualise() {
         URL filePath = Percolation.class.getResource(RESOURCE_PATH + "/input1.txt");
         In in = new In(filePath);
-        int n = in.readInt();                   // n-by-n percolation system
-        StdDraw.enableDoubleBuffering();        // turn on animation mode
-        Percolation perc = new Percolation(n);  // repeatedly read in sites to open and draw resulting system
-        draw(perc, n);
+        int n = in.readInt();
+        Percolation percolation = new Percolation(n);
+        StdDraw.enableDoubleBuffering();
+        draw(percolation, n);
         StdDraw.show();
         StdDraw.pause(DELAY);
         while (!in.isEmpty()) {
             int i = in.readInt(), j = in.readInt();
-            perc.open(i, j);
-            draw(perc, n);
+            percolation.open(i, j);
+            draw(percolation, n);
             StdDraw.show();
             StdDraw.pause(DELAY);
         }
