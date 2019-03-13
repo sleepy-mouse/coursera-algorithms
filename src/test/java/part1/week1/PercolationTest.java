@@ -28,7 +28,7 @@ import static part1.week1.PercolationVisualizer.draw;
 @Slf4j
 public class PercolationTest {
     // delay in miliseconds (controls animation speed)
-    private static final int DELAY = 500;
+    private static final int DELAY = 800;
     private static final String RESOURCE_PATH = "/part1/week1/percolation";
 
     private In getIn(final String fileName) {
@@ -152,7 +152,7 @@ public class PercolationTest {
         singleTest(getFileName("input1.txt"), true);
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void input2_no() {
         singleTest(getFileName("input2-no.txt"), false);
@@ -176,7 +176,7 @@ public class PercolationTest {
         singleTest(getFileName("input5.txt"), true);
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void input6() {
         singleTest(getFileName("input6.txt"), true);
@@ -230,12 +230,13 @@ public class PercolationTest {
         singleTest(getFileName("input50.txt"), true);
     }
 
-    //    @Ignore
+    @Ignore
     @Test
     public void heart25() {
         singleTest(getFileName("heart25.txt"), false);
     }
 
+    @Ignore
     @Test
     public void snake13() {
         singleTest(getFileName("snake13.txt"), true);

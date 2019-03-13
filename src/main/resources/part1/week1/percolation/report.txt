@@ -5,23 +5,23 @@ ASSESSMENT SUMMARY
 Compilation:  PASSED
 API:          PASSED
 
-Findbugs:     PASSED
+Spotbugs:     PASSED
 PMD:          PASSED
-Checkstyle:   FAILED (0 errors, 3 warnings)
+Checkstyle:   PASSED
 
-Correctness:  29/30 tests passed
-Memory:       4/8 tests passed
-Timing:       4/20 tests passed
+Correctness:  32/33 tests passed
+Memory:       5/8 tests passed
+Timing:       3/20 tests passed
 
-Aggregate score: 77.00%
-[Compilation: 5%, API: 5%, Findbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
+Aggregate score: 77.43%
+[Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%]
 
 ASSESSMENT DETAILS
 
 The following files were submitted:
 ----------------------------------
-5.3K Nov 27 03:42 Percolation.java
-2.6K Nov 27 03:42 PercolationStats.java
+3.4K Mar 13 11:00 Percolation.java
+2.6K Mar 13 11:00 PercolationStats.java
 
 
 ********************************************************************************
@@ -53,7 +53,7 @@ PercolationStats:
 ********************************************************************************
 
 
-% findbugs *.class
+% spotbugs *.class
 *-----------------------------------------------------------
 
 
@@ -72,12 +72,8 @@ PercolationStats:
 
 % custom checkstyle checks for Percolation.java
 *-----------------------------------------------------------
+[INFO] Percolation.java:97: Using a loop in this method might be a performance bug. [Performance]
 [INFO] Percolation.java:107: Using a loop in this method might be a performance bug. [Performance]
-[INFO] Percolation.java:117: Using a loop in this method might be a performance bug. [Performance]
-[WARN] Percolation.java:3:1: Defining a nested class in this program suggests poor design. [Design]
-[WARN] Percolation.java:8:19: Can you use the type 'boolean[]' instead of 'int[]'? [Design]
-[WARN] Percolation.java:9:19: Can you use the type 'boolean[]' instead of 'int[]'? [Design]
-Checkstyle ends with 0 errors and 3 warnings.
 
 % custom checkstyle checks for PercolationStats.java
 *-----------------------------------------------------------
@@ -92,14 +88,19 @@ Checkstyle ends with 0 errors and 3 warnings.
 
 Testing correctness of Percolation
 *-----------------------------------------------------------
-Running 15 total tests.
+Running 18 total tests.
 
 Tests 1 through 8 create a Percolation object using your code, then repeatedly
 open sites by calling open(). After each call to open(), it checks the return
 values of isOpen(), percolates(), numberOfOpenSites(), and isFull() in that order.
-Except as noted, a site is opened at most once.
+Tests 11 through 14 create a Percolation object using your code, then repeatedly
+call the methods open(), isOpen(), isFull(), percolates(), and, numberOfOpenSites()
+in random order with probabilities p = (p1, p2, p3, p4, p5). The tests stop
+immediately after the system percolates.
 
-Tests 13 through 15 test backwash.
+Tests 16 through 18 test backwash.
+
+Except as noted, a site is opened at most once.
 
 Test 1: open predetermined list of sites using file inputs
   * filename = input6.txt
@@ -180,16 +181,44 @@ Test 10: open predetermined list of sites using file inputs,
   * filename = input8.txt;  order = percolates(),     isFull(),     isOpen()
 ==&gt; passed
 
-Test 11: call all methods in random order until just before system percolates
-  * n = 3
-  * n = 5
-  * n = 7
-  * n = 10
-  * n = 20
-  * n = 50
+Test 11: call open(), isOpen(), and numberOfOpenSites()
+         in random order until system percolates
+  * n = 3, trials = 40, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 5, trials = 20, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 7, trials = 10, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 10, trials = 5, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 20, trials = 2, p = (0.4, 0.4, 0.0, 0.0, 0.3)
+  * n = 50, trials = 1, p = (0.4, 0.4, 0.0, 0.0, 0.3)
 ==&gt; passed
 
-Test 12: call all methods in random order until almost all sites are open,
+Test 12: call open() and percolates() in random order until system percolates
+  * n = 3, trials = 40, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 5, trials = 20, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 7, trials = 10, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 10, trials = 5, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 20, trials = 2, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+  * n = 50, trials = 1, p = (0.5, 0.0, 0.0, 0.5, 0.0)
+==&gt; passed
+
+Test 13: call open() and isFull() in random order until system percolates
+  * n = 3, trials = 40, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+  * n = 5, trials = 20, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+  * n = 7, trials = 10, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+  * n = 10, trials = 5, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+  * n = 20, trials = 2, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+  * n = 50, trials = 1, p = (0.5, 0.0, 0.5, 0.0, 0.0)
+==&gt; passed
+
+Test 14: call all methods in random order until system percolates
+  * n = 3, trials = 40, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+  * n = 5, trials = 20, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+  * n = 7, trials = 10, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+  * n = 10, trials = 5, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+  * n = 20, trials = 2, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+  * n = 50, trials = 1, p = (0.2, 0.2, 0.2, 0.2, 0.2)
+==&gt; passed
+
+Test 15: call all methods in random order until almost all sites are open,
          but with inputs not prone to backwash
   * n = 3
   * n = 5
@@ -199,7 +228,7 @@ Test 12: call all methods in random order until almost all sites are open,
   * n = 50
 ==&gt; passed
 
-Test 13: check for backwash with predetermined sites
+Test 16: check for backwash with predetermined sites
   * filename = input20.txt
   * filename = input10.txt
   * filename = input50.txt
@@ -214,14 +243,14 @@ Test 13: check for backwash with predetermined sites
 
 ==&gt; FAILED
 
-Test 14: check for backwash with predetermined sites that have
+Test 17: check for backwash with predetermined sites that have
          multiple percolating paths
   * filename = input3.txt
   * filename = input4.txt
   * filename = input7.txt
 ==&gt; passed
 
-Test 15: call all methods in random order until all sites are open,
+Test 18: call all methods in random order until all sites are open,
          allowing isOpen() to be called on a site more than once
          (these inputs are prone to backwash)
   * n = 3
@@ -233,7 +262,7 @@ Test 15: call all methods in random order until all sites are open,
 ==&gt; passed
 
 
-Total: 14/15 tests passed!
+Total: 17/18 tests passed!
 
 
 ================================================================
@@ -424,15 +453,18 @@ Test 4: Call PercolationStats methods with trials = 3 and values of n that go up
 
          n  seconds log ratio
      ------------------------
-       724     0.18       2.4
-      1024     0.41       2.3
-      1448     1.15       3.0
-      2048     2.84       2.6
-      2896     7.13       2.7
-==&gt; passed
+       512     0.12       2.6
+       724     0.29       2.5
+      1024     0.75       2.8
+      1448     2.11       3.0
+      2048     4.96       2.5
+      2896    10.55       2.2
+     [ exceeded the time limit of 10.0 seconds ]
+
+==&gt; FAILED
 
 
-Total: 4/4 tests passed!
+Total: 3/4 tests passed!
 
 
 ================================================================
@@ -451,7 +483,7 @@ Test 1a-1d: check that total memory &lt;= 17 n^2 + 128 n + 1024 bytes
 
                  n        bytes
 --------------------------------------------
-=&gt; FAILED       64       145232   (1.8x)
+=&gt; passed       64        37048
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -459,7 +491,7 @@ Test 1a-1d: check that total memory &lt;= 17 n^2 + 128 n + 1024 bytes
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-Total: 0/4 tests passed!
+Total: 1/4 tests passed!
 
 ================================================================
 
@@ -480,10 +512,10 @@ Test 1a-1e: Creates an n-by-n percolation system; open sites at random until
                                        2 * connected()
                  n       union()              + find()        constructor
 -----------------------------------------------------------------------------------
-=&gt; FAILED       16          182                  5904   (3.2x)          1
-=&gt; FAILED       32          713                157314  (21.3x)          1
-=&gt; FAILED       64         2599               2225658  (75.5x)          1
-=&gt; FAILED      128        11431              34331774 (291.0x)          1
+=&gt; FAILED       16          183                 15678   (8.5x)          1
+=&gt; FAILED       32          753                162248  (22.0x)          1
+=&gt; FAILED       64         2425               1369054  (46.4x)          1
+=&gt; FAILED      128        10361              32368718 (274.4x)          1
 
         ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
         OperationCountLimitExceededException
@@ -507,12 +539,12 @@ Tests 2a-2f: Check whether the number of calls to union(), connected(), and find
 
                  n     per open()      per isOpen()    per isFull()    per percolates()
 ---------------------------------------------------------------------------------------------
-=&gt; FAILED       16        4               0               9              81   (3.4x)
-=&gt; FAILED       32        4               0              17             374  (15.6x)
-=&gt; FAILED       64        4               0              44   (1.8x)   1848  (77.0x)
-=&gt; FAILED      128        4               0              80   (3.3x)   6640 (276.7x)
-=&gt; FAILED      256        4               0             144   (6.0x)  22608 (942.0x)
-=&gt; FAILED      512        4               0             294  (12.3x)  87318 (4e+03x)
+=&gt; FAILED       16        4               0              10              90   (3.8x)
+=&gt; FAILED       32        4               0              22             440  (18.3x)
+=&gt; FAILED       64        4               0              35   (1.5x)   1400  (58.3x)
+=&gt; FAILED      128        4               0              83   (3.5x)   6308 (262.8x)
+=&gt; FAILED      256        4               0             148   (6.2x)  24124 (1e+03x)
+=&gt; FAILED      512        4               0             288  (12.0x)  86400 (4e+03x)
 
 
 WARNING: the time limit of 180 seconds was exceeded, so not all tests could be completed.

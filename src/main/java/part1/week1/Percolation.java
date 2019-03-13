@@ -4,28 +4,19 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
     private final WeightedQuickUnionUF uf;
-    private final Site[] sites;
+    private final boolean[] sites;
     private final int n;
     private int openSiteCount;
-    private final int[] topRowIndices;
-    private final int[] bottomRowIndices;
+    private final int elementCount;
 
     // create n-by-n grid, with all sites blocked
     public Percolation(int n) {
         if (n <= 0)
             throw new IllegalArgumentException("n must be greater than zero.");
         this.n = n;
-        int elementCount = transform(n, n, n);
+        elementCount = transform(n, n, n);
         uf = new WeightedQuickUnionUF(elementCount + 1);
-        sites = new Site[elementCount + 1];
-        topRowIndices = new int[n];
-        for (int i = 0, j = 1; i < topRowIndices.length && j <= n; i++, j++) {
-            topRowIndices[i] = j;
-        }
-        bottomRowIndices = new int[n];
-        for (int i = 0, j = elementCount; i < bottomRowIndices.length && j > elementCount - n; i++, j--) {
-            bottomRowIndices[i] = j;
-        }
+        sites = new boolean[elementCount + 1];
     }
 
     // Get the unique incremented number standing for the site, so it can be used for Union-Find algorithm
@@ -42,8 +33,23 @@ public class Percolation {
     // open site (row, col) if it is not open already
     public void open(int row, int col) {
         final int i = checkIndex(row, col);
-        Site site = openSite(row, col, i);
-        mergeOpenNeighbour(site);
+        openSite(i);
+        mergeOpenNeighbour(row, col, i);
+    }
+
+    private void mergeOpenNeighbour(int x, int y, int i) {
+        int left = findOpenNeighbour(x - 1, y);
+        int right = findOpenNeighbour(x + 1, y);
+        int top = findOpenNeighbour(x, y + 1);
+        int bottom = findOpenNeighbour(x, y - 1);
+        unionSites(left, i);
+        unionSites(right, i);
+        unionSites(top, i);
+        unionSites(bottom, i);
+    }
+
+    private boolean invalidIndex(int row, int col) {
+        return row < 1 || row > n || col < 1 || col > n;
     }
 
     private int findOpenNeighbour(int row, int col) {
@@ -52,37 +58,19 @@ public class Percolation {
         return isOpen(index) ? index : -1;
     }
 
-    private boolean invalidIndex(int row, int col) {
-        return row < 1 || row > n || col < 1 || col > n;
-    }
-
-    private void mergeOpenNeighbour(Site site) {
-        int x = site.x, y = site.y;
-        int left = findOpenNeighbour(x - 1, y);
-        int right = findOpenNeighbour(x + 1, y);
-        int top = findOpenNeighbour(x, y + 1);
-        int bottom = findOpenNeighbour(x, y - 1);
-        if (left > 0)
-            uf.union(left, site.i);
-        if (right > 0)
-            uf.union(right, site.i);
-        if (top > 0)
-            uf.union(top, site.i);
-        if (bottom > 0)
-            uf.union(bottom, site.i);
-    }
-
-    private Site openSite(int row, int col, int i) {
-        Site site = sites[i];
-        if (site == null) {
-            site = new Site(row, col, i);
-            sites[i] = site;
+    private void unionSites(int neighbourIndex, int siteIndex) {
+        if (neighbourIndex > 0) {
+            uf.union(neighbourIndex, siteIndex);
         }
-        if (!site.isOpen()) {
-            site.setOpen(true);
+    }
+
+    private void openSite(int i) {
+        boolean s = sites[i];
+        // Closed site
+        if (!s) {
+            sites[i] = true;
             openSiteCount++;
         }
-        return site;
     }
 
     // is site (row, col) open?
@@ -92,8 +80,7 @@ public class Percolation {
     }
 
     private boolean isOpen(int index) {
-        Site site = sites[index];
-        return site != null && site.isOpen();
+        return sites[index];
     }
 
     // number of open sites
@@ -107,71 +94,23 @@ public class Percolation {
     }
 
     private boolean isFull(int siteIndex) {
-        for (int j : topRowIndices) {
-            if (isOpen(j) && uf.connected(siteIndex, j)) {
+        for (int i = 1; i <= n; i++) {
+            boolean openSite = sites[i];
+            if (openSite && uf.connected(i, siteIndex)) {
                 return true;
             }
         }
         return false;
     }
 
-    // does the system percolate?
     public boolean percolates() {
-        for (int i : bottomRowIndices) {
-            if (isOpen(i) && isFull(i)) {
+        for (int k = 0, i = elementCount; k < n; k++, i = elementCount - k) {
+            if (!sites[i])
+                continue;
+            if (isFull(i)) {
                 return true;
             }
         }
         return false;
-    }
-
-    private static class Site {
-        private final int x;
-        private final int y;
-        private final int i;
-        private boolean open;
-
-        Site(int x, int y, int i) {
-            this.x = x;
-            this.y = y;
-            this.i = i;
-        }
-
-        boolean isOpen() {
-            return open;
-        }
-
-        void setOpen(boolean open) {
-            this.open = open;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (obj == null || getClass() != obj.getClass()) return false;
-
-            Site site = (Site) obj;
-
-            if (x != site.x) return false;
-            if (y != site.y) return false;
-            if (i != site.i) return false;
-            return open == site.open;
-        }
-
-        @Override
-        public int hashCode() {
-            return i;
-        }
-
-        static boolean isNeighbour(Site s1, Site s2) {
-            if (s1 == null || s2 == null)
-                return false;
-            if (s1.equals(s2))
-                return false;
-            if (s1.x == s2.x) {
-                return Math.abs(s1.y - s2.y) == 1;
-            } else
-                return s1.y == s2.y && Math.abs(s1.x - s2.x) == 1;
-        }
     }
 }
