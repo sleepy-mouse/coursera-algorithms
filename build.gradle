@@ -4,8 +4,8 @@ apply plugin: 'idea'
 apply plugin: 'project-report'
 
 jar {
-    baseName = 'coursera-algorithms'
-    version = '0.1.0-SNAPSHOT'
+    archiveBaseName = 'coursera-algorithms'
+    archiveVersion = '0.1.0-SNAPSHOT'
 }
 
 java {
@@ -31,13 +31,14 @@ ext {
 }
 
 dependencies {
+    compileOnly "org.projectlombok:lombok:$lombok"
+    annotationProcessor "org.projectlombok:lombok:$lombok"
     implementation "ch.qos.logback:logback-classic:$logback"
-    implementation "org.projectlombok:lombok:$lombok"
     implementation "org.codehaus.groovy:groovy-all:${groovy}"
     implementation files('libs/algs4.jar')
-    testCompile "com.google.guava:guava:$guava"
-    testCompile "junit:junit:$junit"
-    testCompile "org.assertj:assertj-core:${assertj_version}"
+    testImplementation "com.google.guava:guava:$guava"
+    testImplementation "junit:junit:$junit"
+    testImplementation "org.assertj:assertj-core:${assertj_version}"
 }
 
 task prepare(type: gradle.PrepareTask) {
