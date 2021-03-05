@@ -24,21 +24,28 @@ ext {
     slf4j = '1.7.25'
     logback = '1.2.2'
     guava = '23.3-jre'
-    lombok = '1.18.12'
-    junit = '4.12'
+    lombok = '1.18.18'
+    junit = '5.7.1'
     assertj_version = '3.8.0'
     groovy = '2.5.6'
 }
 
 dependencies {
-    compileOnly "org.projectlombok:lombok:$lombok"
     annotationProcessor "org.projectlombok:lombok:$lombok"
+    implementation "org.projectlombok:lombok:$lombok"
     implementation "ch.qos.logback:logback-classic:$logback"
     implementation "org.codehaus.groovy:groovy-all:${groovy}"
     implementation files('libs/algs4.jar')
     testImplementation "com.google.guava:guava:$guava"
-    testImplementation "junit:junit:$junit"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit"
     testImplementation "org.assertj:assertj-core:${assertj_version}"
+    testImplementation "org.projectlombok:lombok:$lombok"
+    testAnnotationProcessor "org.projectlombok:lombok:$lombok"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 task prepare(type: gradle.PrepareTask) {
