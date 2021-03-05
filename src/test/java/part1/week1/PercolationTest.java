@@ -5,8 +5,8 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -30,6 +30,18 @@ public class PercolationTest {
     // delay in miliseconds (controls animation speed)
     private static final int DELAY = 800;
     private static final String RESOURCE_PATH = "/part1/week1/percolation";
+
+    private static URL getFileName(String fileName) {
+        try {
+            URI uri = Percolation.class.getResource(RESOURCE_PATH).toURI();
+            Path path1 = Paths.get(uri);
+            Path path = Paths.get(path1.toString(), fileName);
+            return path.toUri().toURL();
+        } catch (URISyntaxException | MalformedURLException e) {
+            log.error("", e);
+            return null;
+        }
+    }
 
     private In getIn(final String fileName) {
         return new In(Percolation.class.getResource(RESOURCE_PATH + "/" + fileName));
@@ -64,18 +76,6 @@ public class PercolationTest {
         }
     }
 
-    private static URL getFileName(String fileName) {
-        try {
-            URI uri = Percolation.class.getResource(RESOURCE_PATH).toURI();
-            Path path1 = Paths.get(uri);
-            Path path = Paths.get(path1.toString(), fileName);
-            return path.toUri().toURL();
-        } catch (URISyntaxException | MalformedURLException e) {
-            log.error("", e);
-            return null;
-        }
-    }
-
     private Map<URL, Boolean> getTests() {
         try {
             Path path = Paths.get(Percolation.class.getResource(RESOURCE_PATH).toURI());
@@ -93,13 +93,13 @@ public class PercolationTest {
         }
     }
 
-    //    @Ignore
+    //    @Disabled
     @Test
     public void all() {
         getTests().forEach(this::singleTest);
     }
 
-    //    @Ignore
+    //    @Disabled
     @Test
     public void visualise() {
         In in = getIn("input6.txt");
@@ -118,7 +118,7 @@ public class PercolationTest {
         }
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void percolationStats() {
         Stopwatch stopwatch = Stopwatch.createStarted();
@@ -132,7 +132,7 @@ public class PercolationTest {
         log.info("Time: {} ns", stopwatch.elapsed().getNano());
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testIndexMapping() {
 //        log.info(String.valueOf(Percolation.transform(4, 4, 1)));
@@ -146,103 +146,103 @@ public class PercolationTest {
 //        Assert.assertEquals(9, Percolation.transform(4, 3, 1));
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input1() {
         singleTest(getFileName("input1.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input2_no() {
         singleTest(getFileName("input2-no.txt"), false);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input3() {
         singleTest(getFileName("input3.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input4() {
         singleTest(getFileName("input4.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input5() {
         singleTest(getFileName("input5.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input6() {
         singleTest(getFileName("input6.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input7() {
         singleTest(getFileName("input7.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input8() {
         singleTest(getFileName("input8.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input8_dups() {
         singleTest(getFileName("input8-dups.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input8_no() {
         singleTest(getFileName("input8-no.txt"), false);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input10() {
         singleTest(getFileName("input10.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input10_no() {
         singleTest(getFileName("input10-no.txt"), false);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input20() {
         singleTest(getFileName("input20.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void input50() {
         singleTest(getFileName("input50.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void heart25() {
         singleTest(getFileName("heart25.txt"), false);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void snake13() {
         singleTest(getFileName("snake13.txt"), true);
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void snake101() {
         singleTest(getFileName("snake101.txt"), true);

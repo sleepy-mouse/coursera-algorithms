@@ -1,8 +1,8 @@
 package part1.week2;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 public class RandomizedQueueTest {
     private RandomizedQueue<Integer> queue;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         queue = new RandomizedQueue<>();
     }

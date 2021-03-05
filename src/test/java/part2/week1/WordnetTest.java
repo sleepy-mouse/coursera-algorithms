@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.In;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
@@ -18,10 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 public class WordnetTest {
+
+    @Rule
+    public final ExpectedException illegalArgument = ExpectedException.none();
 
     private static String getResourceString(String fileName) {
         return "/part2/week1/" + fileName;
@@ -68,9 +71,6 @@ public class WordnetTest {
     private In in(String fileName) {
         return new In(SAP.class.getResource(getResourceString(fileName)));
     }
-
-    @Rule
-    public final ExpectedException illegalArgument = ExpectedException.none();
 
     @Test
     public void digraph1() {

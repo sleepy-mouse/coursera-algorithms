@@ -2,8 +2,8 @@ package part1.week2;
 
 import com.google.common.collect.ImmutableList;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +16,7 @@ public class LinkedListTest {
     private static final List<Integer> LIST = ImmutableList.of(1, 2, 3, 4, 5);
     private LinkedList<Integer> l;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         l = new LinkedList<>();
     }
