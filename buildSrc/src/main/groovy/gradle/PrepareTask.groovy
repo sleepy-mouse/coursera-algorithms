@@ -19,9 +19,9 @@ class PrepareTask extends DefaultTask {
     def prepare() {
         println 'Prepare assignment zip file to be uploaded to Coursera.'
         Assignment assignment = Assignment.valueOf(assignmentName)
-        def srcPath = assignment.getSrcPath(project.projectDir)
+        GString srcPath = assignment.getSrcPath(project.projectDir as File)
         List<File> deliverables = process(srcPath, assignment)
-        File zip = compress(assignment.zipFileName, project.buildDir, deliverables)
+        File zip = compress(assignment.zipFileName, project.buildDir as File, deliverables)
         (0..150).each { print '*' }
         println ""
         println "Submission:"
@@ -33,9 +33,7 @@ class PrepareTask extends DefaultTask {
         ZipOutputStream zipOS = new ZipOutputStream(new FileOutputStream(zip))
         deliverables.each { f ->
             zipOS.putNextEntry(new ZipEntry(f.name))
-            f.withInputStream { InputStream is ->
-                Files.copy(is, zipOS)
-            }
+            Files.copy(f.toPath(), zipOS)
             zipOS.closeEntry()
         }
         zipOS.close()
