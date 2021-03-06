@@ -51,12 +51,16 @@ public class PercolationTest {
         return new In(url);
     }
 
-    private void singleTest(URL fileName, boolean expected) {
-        log.info("File: {}", fileName);
+    private void singleTest(URL fileURL, boolean expected) {
+        try {
+            log.info("File: {}", Paths.get(fileURL.toURI()).getFileName());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
         In in = null;
         Percolation percolation;
         try {
-            in = getIn(fileName);
+            in = getIn(fileURL);
             int n = in.readInt();
             Stopwatch stopwatch = Stopwatch.createStarted();
             percolation = new Percolation(n);
@@ -67,13 +71,17 @@ public class PercolationTest {
             boolean percolates = percolation.percolates();
             Duration elapsed = stopwatch.elapsed();
             log.info("Time: {} ns", elapsed.getNano());
-            assertThat(percolates)
-                    .isEqualTo(expected);
+            assertThat(percolates).isEqualTo(expected);
         } finally {
+            printDelimiter();
             if (in != null) {
                 in.close();
             }
         }
+    }
+
+    private void printDelimiter() {
+        System.out.println("*****************************************************************************************");
     }
 
     private Map<URL, Boolean> getTests() {
