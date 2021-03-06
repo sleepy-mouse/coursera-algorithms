@@ -6,8 +6,8 @@ public class Percolation {
     private final WeightedQuickUnionUF uf;
     private final boolean[] sites;
     private final int n;
-    private int openSiteCount;
     private final int elementCount;
+    private int openSiteCount;
 
     // create n-by-n grid, with all sites blocked
     public Percolation(int n) {
@@ -24,7 +24,7 @@ public class Percolation {
         return n * (row - 1) + col;
     }
 
-    private int checkIndex(int row, int col) {
+    private int toIndex(int row, int col) {
         if (invalidIndex(row, col))
             throw new IllegalArgumentException("Invalid: " + row + ", " + col);
         return transform(n, row, col);
@@ -32,7 +32,7 @@ public class Percolation {
 
     // open site (row, col) if it is not open already
     public void open(int row, int col) {
-        final int i = checkIndex(row, col);
+        final int i = toIndex(row, col);
         openSite(i);
         mergeOpenNeighbour(row, col, i);
     }
@@ -75,7 +75,7 @@ public class Percolation {
 
     // is site (row, col) open?
     public boolean isOpen(int row, int col) {
-        final int i = checkIndex(row, col);
+        final int i = toIndex(row, col);
         return isOpen(i);
     }
 
@@ -89,7 +89,7 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
-        int i = checkIndex(row, col);
+        int i = toIndex(row, col);
         return isOpen(i) && isFull(i);
     }
 
