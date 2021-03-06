@@ -52,6 +52,8 @@ public class PercolationTest {
     }
 
     private void singleTest(URL fileURL, boolean expected) {
+        if (fileURL == null)
+            return;
         try {
             log.info("File: {}", Paths.get(fileURL.toURI()).getFileName());
         } catch (URISyntaxException e) {
@@ -238,6 +240,12 @@ public class PercolationTest {
         singleTest(getFileName("input50.txt"), true);
     }
 
+    //    @Disabled
+    @Test
+    public void greeting57() {
+        singleTest(getFileName("greeting57.txt"), false);
+    }
+
     @Disabled
     @Test
     public void heart25() {
@@ -254,5 +262,23 @@ public class PercolationTest {
     @Test
     public void snake101() {
         singleTest(getFileName("snake101.txt"), true);
+    }
+
+    //    @Disabled
+    @Test
+    public void jerry47() {
+        singleTest(getFileName("jerry47.txt"), true);
+    }
+
+    //    @Disabled
+    @Test
+    public void sedgewick60() {
+        singleTest(getFileName("sedgewick60.txt"), true);
+    }
+
+    //    @Disabled
+    @Test
+    public void wayne98() {
+        singleTest(getFileName("wayne98.txt"), true);
     }
 }
