@@ -96,7 +96,7 @@ public class Percolation {
     private boolean isFull(int siteIndex) {
         for (int i = 1; i <= n; i++) {
             boolean openSite = sites[i];
-            if (openSite && uf.connected(i, siteIndex)) {
+            if (openSite && uf.find(i) == uf.find(siteIndex)) {
                 return true;
             }
         }
