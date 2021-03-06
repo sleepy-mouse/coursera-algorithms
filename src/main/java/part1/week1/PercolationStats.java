@@ -3,7 +3,6 @@ package part1.week1;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
-import edu.princeton.cs.algs4.Stopwatch;
 
 public class PercolationStats {
     private final double mean;
@@ -34,6 +33,22 @@ public class PercolationStats {
         confidenceHi = mean + marginOfError;
     }
 
+    private static double marginOfError(double stddev, int n) {
+        return 1.96 * stddev / Math.sqrt(n);
+    }
+
+    public static void main(String[] args) {
+        if (args.length != 2)
+            return;
+        final int n = Integer.parseInt(args[0]);
+        final int T = Integer.parseInt(args[1]);
+        PercolationStats stats = new PercolationStats(n, T);
+        String format = "%1$-23s = %2$s%n";
+        StdOut.printf(format, "mean", stats.mean());
+        StdOut.printf(format, "stddev", stats.stddev());
+        StdOut.printf(format, "95% confidence interval", "[" + stats.confidenceLo() + ", " + stats.confidenceHi() + "]");
+    }
+
     // sample mean of percolation threshold
     public double mean() {
         return mean;
@@ -52,24 +67,5 @@ public class PercolationStats {
     // high endpoint of 95% confidence interval
     public double confidenceHi() {
         return confidenceHi;
-    }
-
-    private static double marginOfError(double stddev, int n) {
-        return 1.96 * stddev / Math.sqrt(n);
-    }
-
-    public static void main(String[] args) {
-        Stopwatch stopwatch = new Stopwatch();
-        if (args.length != 2)
-            return;
-        final int n = Integer.parseInt(args[0]);
-        final int T = Integer.parseInt(args[1]);
-        PercolationStats stats = new PercolationStats(n, T);
-        String format = "%1$-23s = %2$s%n";
-        StdOut.printf(format, "mean", stats.mean());
-        StdOut.printf(format, "stddev", stats.stddev());
-        StdOut.printf(format, "95% confidence interval", "[" + stats.confidenceLo() + ", " + stats.confidenceHi() + "]");
-        final double elapsedTime = stopwatch.elapsedTime();
-        System.out.println("elapsedTime: " + elapsedTime);
     }
 }
